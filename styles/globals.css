@@ -95,6 +95,19 @@ a:hover {
   flex: 1;
 }
 
+.navbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 26px;
+  color: var(--text-primary);
+}
+
+.navbar__link {
+  font-size: 18px;
+}
+
 .navbar__desktop {
   display: none;
   align-items: center;

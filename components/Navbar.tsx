@@ -1,10 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/Button";
 import { cn } from "@/lib/utils";
+import Logo from "@/public/images/nav/logo.png";
 
 const links = [
   { href: "/", label: "首页" },
@@ -35,8 +37,9 @@ export function Navbar() {
       <div className="navbar__inner">
         <div className="navbar__group">
           <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
-            <div>
-              <div style={{ fontWeight: 800, fontSize: 26 }}>破晓石科技</div>
+            <div className="navbar__brand">
+              <Image src={Logo} alt="破晓石科技 Logo" width={50} height={50} priority />
+              <span>晓石云</span>
             </div>
           </Link>
           <nav className="navbar__desktop">
@@ -44,6 +47,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
+                className="navbar__link"
                 style={{
                   color: pathname === link.href ? "var(--text-primary)" : "var(--text-secondary)",
                   fontWeight: pathname === link.href ? 600 : 400
@@ -81,6 +85,7 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
+              className="navbar__link"
               style={{
                 display: "block",
                 marginBottom: 12,
