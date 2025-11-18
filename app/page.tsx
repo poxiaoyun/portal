@@ -84,8 +84,8 @@ export default function HomePage() {
         title="为 AI 云原生时代创造好基座"
         description="专注云原生开源、混合云与 AI 智算平台，为企业提供覆盖容器云、混合云、智算云及 AI 能力的全栈解决方案。"
         ctaPrimary={{ label: "预约演示", href: "/contact" }}
-        ctaSecondary={{ label: "了解产品矩阵", href: "/products" }}
-        badge={<Tag color="blue">原生无界 · 破晓时刻</Tag>}
+        ctaSecondary={{ label: "产品矩阵", href: "/products" }}
+        badge={<Tag color="black">网站由 AI 智能体驱动</Tag>}
       />
 
       <section style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px" }}>

@@ -13,13 +13,13 @@ const baseDescription =
 
 export const metadata: Metadata = {
   title: {
-    default: "成都破晓石科技 | 云原生与 AI 智算官网",
+    default: "成都破晓石科技 | 原生无界·破晓时刻",
     template: "%s | 成都破晓石科技"
   },
   description: baseDescription,
   metadataBase: new URL("https://www.poxiaoshi.com"),
   openGraph: {
-    title: "成都破晓石科技 | 云原生与 AI 智算官网",
+    title: "成都破晓石科技 | 原生无界·破晓时刻",
     description: baseDescription,
     type: "website",
     url: "https://www.poxiaoshi.com",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "成都破晓石科技 | 云原生与 AI 智算官网",
+    title: "成都破晓石科技 | 原生无界·破晓时刻",
     description: baseDescription,
     images: ["/og.png"]
   }

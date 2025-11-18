@@ -36,7 +36,7 @@ export function Navbar() {
         <div className="navbar__group">
           <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
             <div>
-              <div style={{ fontWeight: 600, fontSize: 18 }}>破晓石科技</div>
+              <div style={{ fontWeight: 800, fontSize: 26 }}>破晓石科技</div>
             </div>
           </Link>
           <nav className="navbar__desktop">
