@@ -1,3 +1,5 @@
+"use client";
+
 import { Card as AntCard, Space, Typography } from "antd";
 import type { ReactNode } from "react";
 

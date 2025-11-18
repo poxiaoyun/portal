@@ -1,3 +1,5 @@
+"use client";
+
 import { Hero } from "@/components/Hero";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
@@ -117,13 +119,13 @@ export default function HomePage() {
             <Col xs={24} md={8} key={product.title}>
               <Card title={product.title} description={product.description}>
                 <Space direction="vertical" size={6}>
-                  {product.bullets.map((item) => (
+                {product.bullets.map((item) => (
                     <Typography.Text key={item} type="secondary">
                       • {item}
                     </Typography.Text>
-                  ))}
+                ))}
                 </Space>
-              </Card>
+            </Card>
             </Col>
           ))}
         </Row>
@@ -145,7 +147,7 @@ export default function HomePage() {
                 <Typography.Paragraph type="secondary">痛点：{item.pain}</Typography.Paragraph>
                 <Typography.Paragraph type="secondary">方案：{item.solution}</Typography.Paragraph>
                 <Typography.Text strong>价值：{item.value}</Typography.Text>
-              </Card>
+            </Card>
             </Col>
           ))}
         </Row>
@@ -175,7 +177,7 @@ export default function HomePage() {
                 }}
               >
                 <Image src={partner.logo} alt={partner.name} width={120} height={50} style={{ objectFit: "contain", opacity: 0.7 }} />
-              </div>
+            </div>
             </Col>
           ))}
         </Row>
@@ -201,10 +203,10 @@ export default function HomePage() {
           <Space size="large" style={{ marginTop: 24 }}>
             <Button type="primary" size="large" href="https://github.com/poxiaoyun" target="_blank" rel="noreferrer">
               访问 GitHub
-            </Button>
+          </Button>
             <Button type="default" size="large" href="/contact">
               立即联系
-            </Button>
+          </Button>
           </Space>
         </div>
       </section>

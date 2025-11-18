@@ -1,3 +1,5 @@
+"use client";
+
 import type { Metadata } from "next";
 import { Card } from "@/components/Card";
 import { Typography, Row, Col } from "antd";

@@ -41,7 +41,7 @@ export function Navbar() {
             </Link>
           ))}
           <Button type="primary" href="https://github.com/poxiaoyun" target="_blank" rel="noreferrer">
-            GitHub
+              GitHub
           </Button>
         </nav>
         <Button className="navbar__mobileTrigger" type="text" onClick={() => setOpen(true)}>
@@ -50,7 +50,7 @@ export function Navbar() {
       </div>
       {open && (
         <div style={{ borderTop: "1px solid rgba(15,23,42,0.08)", background: "#fff", padding: 24 }}>
-          {links.map((link) => (
+            {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
@@ -61,11 +61,11 @@ export function Navbar() {
                 color: pathname === link.href ? "var(--text-primary)" : "var(--text-secondary)"
               }}
             >
-              {link.label}
-            </Link>
-          ))}
+                {link.label}
+              </Link>
+            ))}
           <Button type="default" href="https://github.com/poxiaoyun" target="_blank" rel="noreferrer" style={{ width: "100%" }}>
-            GitHub
+              GitHub
           </Button>
         </div>
       )}

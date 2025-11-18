@@ -1,3 +1,5 @@
+"use client";
+
 import type { Metadata } from "next";
 import { TeamMemberCard } from "@/components/TeamMemberCard";
 import { Typography, Row, Col, Card as AntCard, Timeline } from "antd";

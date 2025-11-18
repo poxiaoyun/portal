@@ -1,3 +1,5 @@
+"use client";
+
 import { Avatar, Card, Space, Typography } from "antd";
 import Image from "next/image";
 

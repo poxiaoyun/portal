@@ -1,3 +1,5 @@
+"use client";
+
 import { Layout, Row, Col, Typography, Space } from "antd";
 
 export function Footer() {
