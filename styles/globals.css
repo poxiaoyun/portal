@@ -73,9 +73,8 @@ a:hover {
 
 .navbar--scrolled {
   border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(245, 247, 251,0.08);;
   backdrop-filter: blur(18px);
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
 }
 
 .navbar__inner {
@@ -86,29 +85,16 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
 }
 
 .navbar__desktop {
   display: none;
-  flex: 1;
   align-items: center;
-  justify-content: center;
   gap: 24px;
 }
 
 .navbar__mobileTrigger {
   display: inline-flex;
-}
-
-.navbar__desktopCta {
-  display: none;
-}
-
-.navbar__mobileMenu {
-  border-top: 1px solid rgba(15, 23, 42, 0.08);
-  background: #fff;
-  padding: 24px;
 }
 
 @media (min-width: 1024px) {
@@ -118,10 +104,6 @@ a:hover {
 
   .navbar__mobileTrigger {
     display: none;
-  }
-
-  .navbar__desktopCta {
-    display: inline-flex;
   }
 }
 
