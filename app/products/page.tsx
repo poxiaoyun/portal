@@ -48,24 +48,26 @@ const products = [
 
 export default function ProductsPage() {
   return (
-    <div className="space-y-10">
-      <header className="space-y-4">
-        <p className="text-sm uppercase tracking-[0.4em] text-brand">Products</p>
-        <h1 className="text-4xl font-semibold text-slate-900">全栈产品矩阵</h1>
-        <p className="text-slate-700">以云原生为统一基座，面向不同阶段的企业提供从基础设施到 AI 智算的产品组合。</p>
+    <div className="container space-y-16 py-12">
+      <header className="mx-auto max-w-3xl text-center">
+        <p className="mb-3 text-sm font-medium uppercase tracking-wider text-slate-500">Products</p>
+        <h1 className="mb-4 text-4xl font-bold text-slate-900 lg:text-5xl">全栈产品矩阵</h1>
+        <p className="text-lg leading-relaxed text-slate-600">以云原生为统一基座，面向不同阶段的企业提供从基础设施到 AI 智算的产品组合。</p>
       </header>
 
-      {products.map((product) => (
-        <section key={product.title} className="rounded-3xl border border-white/60 bg-white/70 backdrop-blur-xl backdrop-saturate-150 p-6 shadow-lg">
-          <h2 className="text-2xl font-semibold text-slate-900">{product.title}</h2>
-          <p className="mt-2 text-slate-700">{product.intro}</p>
-          <Grid cols="grid-cols-1 md:grid-cols-2" className="mt-6">
-            {product.features.map((feature) => (
-              <Card key={feature} title={feature.split("：")[0]} description={feature.split("：")[1] ?? ""} />
-            ))}
-          </Grid>
-        </section>
-      ))}
+      <div className="space-y-12">
+        {products.map((product) => (
+          <section key={product.title} className="card-glow p-8">
+            <h2 className="mb-3 text-2xl font-bold text-slate-900">{product.title}</h2>
+            <p className="mb-6 text-slate-600">{product.intro}</p>
+            <Grid cols="grid-cols-1 md:grid-cols-2" className="gap-4">
+              {product.features.map((feature) => (
+                <Card key={feature} title={feature.split("：")[0]} description={feature.split("：")[1] ?? ""} />
+              ))}
+            </Grid>
+          </section>
+        ))}
+      </div>
     </div>
   );
 }

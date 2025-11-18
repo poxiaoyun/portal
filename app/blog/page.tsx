@@ -28,22 +28,22 @@ const posts = [
 
 export default function BlogPage() {
   return (
-    <div className="space-y-8">
-      <header className="space-y-4">
-        <p className="text-sm uppercase tracking-[0.4em] text-brand">Resources</p>
-        <h1 className="text-4xl font-semibold text-slate-900">博客 / 资源</h1>
-        <p className="text-slate-700">精选技术洞察、案例与白皮书，帮助团队快速掌握云原生与 AI 智算的最佳实践。</p>
+    <div className="container space-y-16 py-12">
+      <header className="mx-auto max-w-3xl text-center">
+        <p className="mb-3 text-sm font-medium uppercase tracking-wider text-slate-500">Resources</p>
+        <h1 className="mb-4 text-4xl font-bold text-slate-900 lg:text-5xl">博客 / 资源</h1>
+        <p className="text-lg leading-relaxed text-slate-600">精选技术洞察、案例与白皮书，帮助团队快速掌握云原生与 AI 智算的最佳实践。</p>
       </header>
       <div className="grid gap-6 md:grid-cols-2">
         {posts.map((post) => (
-          <Link key={post.slug} href={`/blog/${post.slug}`} className="rounded-3xl border border-white/60 bg-white/70 backdrop-blur-xl backdrop-saturate-150 p-4 transition hover:-translate-y-1 hover:shadow-xl shadow-lg">
-            <Image src={post.image} alt={post.title} width={800} height={420} className="rounded-2xl" />
-            <div className="mt-4 space-y-2">
-              <p className="text-xs text-slate-500">
+          <Link key={post.slug} href={`/blog/${post.slug}`} className="card-glow overflow-hidden transition-all hover:-translate-y-1">
+            <Image src={post.image} alt={post.title} width={800} height={420} className="w-full" />
+            <div className="p-6">
+              <p className="mb-2 text-xs text-slate-500">
                 {post.date} · {post.readingTime}
               </p>
-              <h2 className="text-2xl font-semibold text-slate-900">{post.title}</h2>
-              <p className="text-sm text-slate-700">{post.excerpt}</p>
+              <h2 className="mb-2 text-xl font-semibold text-slate-900">{post.title}</h2>
+              <p className="text-sm leading-relaxed text-slate-600">{post.excerpt}</p>
             </div>
           </Link>
         ))}

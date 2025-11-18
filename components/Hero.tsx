@@ -17,44 +17,22 @@ interface HeroProps {
 
 export function Hero({ title, subtitle, description, ctaPrimary, ctaSecondary, badge, className }: HeroProps) {
   return (
-    <section className={cn("relative isolate overflow-hidden rounded-3xl border border-white/60 bg-white/70 p-10 shadow-2xl backdrop-blur-xl backdrop-saturate-150", className)}>
-      <div className="absolute inset-0 bg-hero-glow opacity-40" aria-hidden="true" />
-      <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="space-y-6">
-          {badge}
-          <p className="text-base font-semibold uppercase tracking-[0.3em] text-brand">{subtitle}</p>
-          <h1 className="text-4xl font-semibold text-slate-900 md:text-5xl">{title}</h1>
-          <p className="max-w-2xl text-lg text-slate-700">{description}</p>
-          <div className="flex flex-wrap gap-4">
-            <Button asChild>
+    <section className={cn("relative overflow-hidden", className)}>
+      <div className="container py-20 lg:py-32">
+        <div className="mx-auto max-w-4xl text-center">
+          {badge && <div className="mb-6">{badge}</div>}
+          <p className="mb-4 text-sm font-medium uppercase tracking-wider text-slate-500">{subtitle}</p>
+          <h1 className="mb-6 text-5xl font-bold tracking-tight text-slate-900 lg:text-6xl">{title}</h1>
+          <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-slate-600">{description}</p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button size="lg" asChild>
               <Link href={ctaPrimary.href}>{ctaPrimary.label}</Link>
             </Button>
             {ctaSecondary && (
-              <Button variant="secondary" asChild>
+              <Button variant="secondary" size="lg" asChild>
                 <Link href={ctaSecondary.href}>{ctaSecondary.label}</Link>
               </Button>
             )}
-          </div>
-        </div>
-        <div className="relative rounded-3xl border border-white/60 bg-gradient-to-br from-brand/10 to-white/80 backdrop-blur-xl p-8">
-          <div className="grid-pattern absolute inset-1 rounded-3xl opacity-40" />
-          <div className="relative space-y-4 text-sm text-slate-700">
-            <p className="text-brand font-semibold">原生无界，破晓时刻</p>
-            <p>以云原生为统一基座，打造面向未来的 AI 原生基础设施。</p>
-            <ul className="space-y-2">
-              <li className="flex items-center gap-2 text-slate-900">
-                <span className="h-2 w-2 rounded-full bg-brand" />
-                原生节点部署，5 倍资源利用率
-              </li>
-              <li className="flex items-center gap-2 text-slate-900">
-                <span className="h-2 w-2 rounded-full bg-brand" />
-                企业级虚拟化与全栈安全
-              </li>
-              <li className="flex items-center gap-2 text-slate-900">
-                <span className="h-2 w-2 rounded-full bg-brand" />
-                AI 智算服务与国产化支持
-              </li>
-            </ul>
           </div>
         </div>
       </div>

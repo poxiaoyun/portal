@@ -37,31 +37,31 @@ const timeline = [
 
 export default function AboutPage() {
   return (
-    <div className="space-y-12">
-      <section className="space-y-4">
-        <p className="text-sm uppercase tracking-[0.4em] text-brand">About</p>
-        <h1 className="text-4xl font-semibold text-slate-900">以技术驱动成长</h1>
-        <p className="text-slate-700">
+    <div className="container space-y-16 py-12">
+      <header className="mx-auto max-w-3xl text-center">
+        <p className="mb-3 text-sm font-medium uppercase tracking-wider text-slate-500">About</p>
+        <h1 className="mb-4 text-4xl font-bold text-slate-900 lg:text-5xl">以技术驱动成长</h1>
+        <p className="text-lg leading-relaxed text-slate-600">
           成都破晓石科技有限公司（Chengdu Poxiaoshi Technology Co., Ltd.）致力于云原生、开源产品与 AI 智算平台的自主研发。
           我们为企业提供覆盖容器云、混合云、AI 智算云及 AI 能力应用的全栈解决方案，帮助客户打造弹性、安全、可信赖的数字底座。
         </p>
-      </section>
+      </header>
 
-      <section className="grid gap-8 lg:grid-cols-2">
-        <div className="rounded-3xl border border-white/60 bg-white/70 backdrop-blur-xl backdrop-saturate-150 p-6 shadow-lg">
-          <h2 className="text-2xl font-semibold text-slate-900">使命与愿景</h2>
-          <p className="mt-4 text-slate-700">以云原生为统一基座，打造面向未来的 AI 原生基础设施。</p>
-          <ul className="mt-4 space-y-2 text-sm text-slate-600">
+      <section className="grid gap-6 lg:grid-cols-2">
+        <div className="card-glow p-8">
+          <h2 className="mb-4 text-2xl font-bold text-slate-900">使命与愿景</h2>
+          <p className="mb-4 text-slate-600">以云原生为统一基座，打造面向未来的 AI 原生基础设施。</p>
+          <ul className="space-y-2 text-sm leading-relaxed text-slate-600">
             <li>使命：让企业以最短路径拥抱云原生与 AI。</li>
             <li>愿景：成为企业数智化进程中的长期技术伙伴。</li>
             <li>价值观：开放、可信、共创，持续投入开源生态。</li>
           </ul>
         </div>
-        <div className="rounded-3xl border border-white/60 bg-white/70 backdrop-blur-xl backdrop-saturate-150 p-6 shadow-lg">
-          <h2 className="text-2xl font-semibold text-slate-900">开源生态</h2>
-          <p className="mt-4 text-slate-700">KubeGems 等自研开源项目已在多个行业落地，构建完善的社区、培训与联合创新机制。</p>
-          <ul className="mt-4 space-y-2 text-sm text-slate-600">
-            <li>GitHub：<a href="https://github.com/poxiaoyun" className="text-brand hover:underline">https://github.com/poxiaoyun</a></li>
+        <div className="card-glow p-8">
+          <h2 className="mb-4 text-2xl font-bold text-slate-900">开源生态</h2>
+          <p className="mb-4 text-slate-600">KubeGems 等自研开源项目已在多个行业落地，构建完善的社区、培训与联合创新机制。</p>
+          <ul className="space-y-2 text-sm leading-relaxed text-slate-600">
+            <li>GitHub：<a href="https://github.com/poxiaoyun" className="text-slate-900 hover:underline font-medium">https://github.com/poxiaoyun</a></li>
             <li>贡献指南：欢迎 Issue、PR、企业共建计划。</li>
             <li>社区活动：线上技术直播、线下工作坊、联合黑客松。</li>
           </ul>
@@ -69,8 +69,8 @@ export default function AboutPage() {
       </section>
 
       <section>
-        <h2 className="text-3xl font-semibold text-slate-900">核心团队</h2>
-        <Grid cols="grid-cols-1 md:grid-cols-3" className="mt-6">
+        <h2 className="mb-8 text-center text-3xl font-bold text-slate-900">核心团队</h2>
+        <Grid cols="grid-cols-1 md:grid-cols-3" className="gap-6">
           {team.map((member) => (
             <TeamMemberCard key={member.name} {...member} />
           ))}
@@ -78,12 +78,12 @@ export default function AboutPage() {
       </section>
 
       <section>
-        <h2 className="text-3xl font-semibold text-slate-900">发展历程</h2>
-        <div className="mt-6 space-y-4">
+        <h2 className="mb-8 text-center text-3xl font-bold text-slate-900">发展历程</h2>
+        <div className="mx-auto max-w-2xl space-y-4">
           {timeline.map((item) => (
-            <div key={item.year} className="flex items-start gap-4 rounded-2xl border border-white/60 bg-white/70 backdrop-blur-xl backdrop-saturate-150 p-4 shadow-md">
-              <div className="text-2xl font-bold text-brand">{item.year}</div>
-              <p className="text-slate-700">{item.event}</p>
+            <div key={item.year} className="card-glow flex items-start gap-6 p-6">
+              <div className="text-2xl font-bold text-slate-900">{item.year}</div>
+              <p className="flex-1 text-slate-600">{item.event}</p>
             </div>
           ))}
         </div>

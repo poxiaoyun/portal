@@ -6,19 +6,19 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-full text-sm font-semibold transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-60",
+  "inline-flex items-center justify-center rounded-lg text-sm font-medium transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-brand text-white hover:bg-brand-light focus-visible:outline-brand-light shadow-lg shadow-brand/30",
+        default: "bg-slate-900 text-white hover:bg-slate-800 focus-visible:outline-slate-900 shadow-sm hover:shadow",
         secondary:
-          "bg-white/80 backdrop-blur-sm text-slate-900 hover:bg-white focus-visible:outline-slate-400 border border-slate-200/80 shadow-md",
-        ghost: "bg-transparent text-brand hover:bg-brand/10 focus-visible:outline-brand/40"
+          "bg-white text-slate-900 hover:bg-slate-50 focus-visible:outline-slate-400 border border-slate-200 shadow-sm hover:shadow",
+        ghost: "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-slate-400"
       },
       size: {
-        default: "h-11 px-6",
-        sm: "h-9 px-4 text-xs",
-        lg: "h-12 px-8 text-base",
+        default: "h-10 px-4",
+        sm: "h-8 px-3 text-xs",
+        lg: "h-12 px-6 text-base",
         icon: "h-10 w-10"
       },
       loading: {
