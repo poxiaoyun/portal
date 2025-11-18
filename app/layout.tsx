@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "@lobehub/ui/style.css";
 import "antd/dist/reset.css";
 import "@/styles/globals.css";
 import { Navbar } from "@/components/Navbar";
