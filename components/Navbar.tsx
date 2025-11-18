@@ -37,7 +37,6 @@ export function Navbar() {
           <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
             <div>
               <div style={{ fontWeight: 600, fontSize: 18 }}>破晓石科技</div>
-              <div style={{ fontSize: 12, color: "var(--text-secondary)" }}>Chengdu Poxiaoshi Technology</div>
             </div>
           </Link>
           <nav className="navbar__desktop">
