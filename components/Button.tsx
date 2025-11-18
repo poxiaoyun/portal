@@ -40,6 +40,14 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, loading, children, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
+    // 当 asChild 为 true 时，Slot 只能接收单个子元素，所以不显示 loading spinner
+    if (asChild) {
+      return (
+        <Comp className={cn(buttonVariants({ variant, size, loading: false, className }))} ref={ref} {...props}>
+          {children}
+        </Comp>
+      );
+    }
     return (
       <Comp className={cn(buttonVariants({ variant, size, loading, className }))} ref={ref} {...props}>
         {loading && (
