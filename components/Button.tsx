@@ -1,5 +1,5 @@
 "use client";
 
-export { Button } from "@lobehub/ui";
-export type { ButtonProps } from "@lobehub/ui";
+export { Button } from "antd";
+export type { ButtonProps } from "antd";
 
