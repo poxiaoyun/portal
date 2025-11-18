@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/Button";
 import { cn } from "@/lib/utils";
-import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/", label: "首页" },
