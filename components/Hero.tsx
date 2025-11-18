@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/Button";
 import { cn } from "@/lib/utils";
+import { AuroraBackground } from "@lobehub/ui/awesome";
 import { ReactNode } from "react";
 
 interface HeroProps {
@@ -16,8 +17,13 @@ interface HeroProps {
 
 export function Hero({ title, subtitle, description, ctaPrimary, ctaSecondary, badge, className }: HeroProps) {
   return (
-    <section className={cn("relative overflow-hidden", className)}>
-      <div className="container py-20 lg:py-32">
+    <AuroraBackground
+      className={cn("relative overflow-hidden", className)}
+      paddingInline={24}
+      paddingBlock={80}
+      style={{ width: "100%" }}
+    >
+      <div className="container py-12 lg:py-20">
         <div className="mx-auto max-w-4xl text-center">
           {badge && <div className="mb-6">{badge}</div>}
           <p className="mb-4 text-sm font-medium uppercase tracking-wider text-slate-500">{subtitle}</p>
@@ -35,7 +41,7 @@ export function Hero({ title, subtitle, description, ctaPrimary, ctaSecondary, b
           </div>
         </div>
       </div>
-    </section>
+    </AuroraBackground>
   );
 }
 
