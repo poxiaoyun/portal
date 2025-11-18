@@ -82,7 +82,7 @@ export default function HomePage() {
     <>
       <Hero
         title="为 AI 云原生时代创造好基座"
-        description="专注自研开源产品、混合云与 AI 智算平台，为企业提供覆盖容器云、混合云、智算云及 AI 能力的全栈解决方案。"
+        description="专注云原生开源、混合云与 AI 智算平台，为企业提供覆盖容器云、混合云、智算云及 AI 能力的全栈解决方案。"
         ctaPrimary={{ label: "预约演示", href: "/contact" }}
         ctaSecondary={{ label: "了解产品矩阵", href: "/products" }}
         badge={<Tag color="blue">原生无界 · 破晓时刻</Tag>}
@@ -90,9 +90,9 @@ export default function HomePage() {
 
       <section style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
-          <Typography.Title level={2}>技术驱动，服务企业级云与 AI</Typography.Title>
+          <Typography.Title level={2}>企业级云服务与AI解决方案</Typography.Title>
           <Typography.Paragraph style={{ fontSize: 18, color: "var(--text-secondary)" }}>
-            成都破晓石科技有限公司专注云原生与 AI 智算领域，聚焦核心场景：混合云基础设施、AI 模型全生命周期治理、开源生态落地。
+            破晓石科技专注云原生与 AI 智算领域，聚焦核心场景：混合云基础设施、AI 模型全生命周期治理、开源生态落地。
             依托自主可控的产品体系，帮助企业在安全合规的前提下实现资源统一调度、业务敏捷迭代与智能创新。
           </Typography.Paragraph>
         </div>
@@ -101,7 +101,7 @@ export default function HomePage() {
             <Statistic title="算力利用率提升" value="5x" valueStyle={{ fontSize: 48 }} />
           </Col>
           <Col xs={24} md={8}>
-            <Statistic title="行业解决方案" value={30} suffix="+" valueStyle={{ fontSize: 48 }} />
+            <Statistic title="行业解决方案" value={5} suffix="+" valueStyle={{ fontSize: 48 }} />
           </Col>
           <Col xs={24} md={8}>
             <Statistic title="国产化适配覆盖" value="100%" valueStyle={{ fontSize: 48 }} />
