@@ -54,38 +54,38 @@ export function ContactForm({ className }: { className?: string }) {
   }
 
   return (
-    <form onSubmit={onSubmit} className={cn("space-y-4 rounded-2xl border border-white/10 bg-slate-900/60 p-6", className)}>
+    <form onSubmit={onSubmit} className={cn("space-y-4 rounded-2xl border border-white/60 bg-white/70 backdrop-blur-xl backdrop-saturate-150 p-6 shadow-xl", className)}>
       <div>
-        <label htmlFor="name" className="text-sm text-slate-200">
+        <label htmlFor="name" className="text-sm text-slate-700 font-medium">
           姓名 *
         </label>
-        <input id="name" name="name" required className="mt-2 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-brand focus:outline-none" />
+        <input id="name" name="name" required className="mt-2 w-full rounded-xl border border-slate-200 bg-white/90 backdrop-blur-sm px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20" />
       </div>
       <div>
-        <label htmlFor="company" className="text-sm text-slate-200">
+        <label htmlFor="company" className="text-sm text-slate-700 font-medium">
           公司 *
         </label>
-        <input id="company" name="company" required className="mt-2 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-brand focus:outline-none" />
+        <input id="company" name="company" required className="mt-2 w-full rounded-xl border border-slate-200 bg-white/90 backdrop-blur-sm px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20" />
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <label htmlFor="email" className="text-sm text-slate-200">
+          <label htmlFor="email" className="text-sm text-slate-700 font-medium">
             邮箱 *
           </label>
-          <input id="email" name="email" type="email" required className="mt-2 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-brand focus:outline-none" />
+          <input id="email" name="email" type="email" required className="mt-2 w-full rounded-xl border border-slate-200 bg-white/90 backdrop-blur-sm px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20" />
         </div>
         <div>
-          <label htmlFor="phone" className="text-sm text-slate-200">
+          <label htmlFor="phone" className="text-sm text-slate-700 font-medium">
             电话 *
           </label>
-          <input id="phone" name="phone" required className="mt-2 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-brand focus:outline-none" />
+          <input id="phone" name="phone" required className="mt-2 w-full rounded-xl border border-slate-200 bg-white/90 backdrop-blur-sm px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20" />
         </div>
       </div>
       <div>
-        <label htmlFor="message" className="text-sm text-slate-200">
+        <label htmlFor="message" className="text-sm text-slate-700 font-medium">
           需求描述 *
         </label>
-        <textarea id="message" name="message" rows={4} required className="mt-2 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-brand focus:outline-none" />
+        <textarea id="message" name="message" rows={4} required className="mt-2 w-full rounded-xl border border-slate-200 bg-white/90 backdrop-blur-sm px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20" />
       </div>
       {error && <p className="text-sm text-red-400">{error}</p>}
       {status === "success" && <p className="text-sm text-emerald-400">提交成功，我们会尽快联系您。</p>}

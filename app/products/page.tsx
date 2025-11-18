@@ -50,15 +50,15 @@ export default function ProductsPage() {
   return (
     <div className="space-y-10">
       <header className="space-y-4">
-        <p className="text-sm uppercase tracking-[0.4em] text-brand-light">Products</p>
-        <h1 className="text-4xl font-semibold text-white">全栈产品矩阵</h1>
-        <p className="text-slate-200/80">以云原生为统一基座，面向不同阶段的企业提供从基础设施到 AI 智算的产品组合。</p>
+        <p className="text-sm uppercase tracking-[0.4em] text-brand">Products</p>
+        <h1 className="text-4xl font-semibold text-slate-900">全栈产品矩阵</h1>
+        <p className="text-slate-700">以云原生为统一基座，面向不同阶段的企业提供从基础设施到 AI 智算的产品组合。</p>
       </header>
 
       {products.map((product) => (
-        <section key={product.title} className="rounded-3xl border border-white/10 bg-white/5 p-6">
-          <h2 className="text-2xl font-semibold text-white">{product.title}</h2>
-          <p className="mt-2 text-slate-200/80">{product.intro}</p>
+        <section key={product.title} className="rounded-3xl border border-white/60 bg-white/70 backdrop-blur-xl backdrop-saturate-150 p-6 shadow-lg">
+          <h2 className="text-2xl font-semibold text-slate-900">{product.title}</h2>
+          <p className="mt-2 text-slate-700">{product.intro}</p>
           <Grid cols="grid-cols-1 md:grid-cols-2" className="mt-6">
             {product.features.map((feature) => (
               <Card key={feature} title={feature.split("：")[0]} description={feature.split("：")[1] ?? ""} />

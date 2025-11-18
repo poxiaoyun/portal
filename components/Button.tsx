@@ -10,9 +10,9 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-brand text-white hover:bg-brand-light focus-visible:outline-brand-light",
+        default: "bg-brand text-white hover:bg-brand-light focus-visible:outline-brand-light shadow-lg shadow-brand/30",
         secondary:
-          "bg-white/10 text-white hover:bg-white/20 focus-visible:outline-white/60 border border-white/20",
+          "bg-white/80 backdrop-blur-sm text-slate-900 hover:bg-white focus-visible:outline-slate-400 border border-slate-200/80 shadow-md",
         ghost: "bg-transparent text-brand hover:bg-brand/10 focus-visible:outline-brand/40"
       },
       size: {
@@ -51,7 +51,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp className={cn(buttonVariants({ variant, size, loading, className }))} ref={ref} {...props}>
         {loading && (
-          <span className="mr-2 inline-flex h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" aria-hidden="true" />
+          <span className="mr-2 inline-flex h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" aria-hidden="true" />
         )}
         {children}
       </Comp>

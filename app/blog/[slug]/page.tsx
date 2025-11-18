@@ -53,19 +53,19 @@ export default function BlogPostPage({ params }: { params: Params }) {
   if (!post) {
     return (
       <div className="space-y-4">
-        <h1 className="text-3xl font-semibold text-white">文章不存在</h1>
+        <h1 className="text-3xl font-semibold text-slate-900">文章不存在</h1>
       </div>
     );
   }
   return (
     <article className="space-y-6">
-      <p className="text-xs uppercase tracking-[0.4em] text-brand-light">Insights</p>
-      <h1 className="text-4xl font-semibold text-white">{post.title}</h1>
-      <p className="text-slate-300">{post.date}</p>
-      <Image src={post.image} alt={post.title} width={800} height={420} className="rounded-3xl border border-white/10" />
-      <div className="prose prose-invert max-w-none">
+      <p className="text-xs uppercase tracking-[0.4em] text-brand">Insights</p>
+      <h1 className="text-4xl font-semibold text-slate-900">{post.title}</h1>
+      <p className="text-slate-600">{post.date}</p>
+      <Image src={post.image} alt={post.title} width={800} height={420} className="rounded-3xl border border-slate-200/50" />
+      <div className="prose prose-slate max-w-none">
         {post.content.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
+          <p key={paragraph} className="text-slate-700">{paragraph}</p>
         ))}
       </div>
     </article>

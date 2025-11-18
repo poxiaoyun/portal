@@ -30,20 +30,20 @@ export default function BlogPage() {
   return (
     <div className="space-y-8">
       <header className="space-y-4">
-        <p className="text-sm uppercase tracking-[0.4em] text-brand-light">Resources</p>
-        <h1 className="text-4xl font-semibold text-white">博客 / 资源</h1>
-        <p className="text-slate-200/80">精选技术洞察、案例与白皮书，帮助团队快速掌握云原生与 AI 智算的最佳实践。</p>
+        <p className="text-sm uppercase tracking-[0.4em] text-brand">Resources</p>
+        <h1 className="text-4xl font-semibold text-slate-900">博客 / 资源</h1>
+        <p className="text-slate-700">精选技术洞察、案例与白皮书，帮助团队快速掌握云原生与 AI 智算的最佳实践。</p>
       </header>
       <div className="grid gap-6 md:grid-cols-2">
         {posts.map((post) => (
-          <Link key={post.slug} href={`/blog/${post.slug}`} className="rounded-3xl border border-white/10 bg-white/5 p-4 transition hover:-translate-y-1">
+          <Link key={post.slug} href={`/blog/${post.slug}`} className="rounded-3xl border border-white/60 bg-white/70 backdrop-blur-xl backdrop-saturate-150 p-4 transition hover:-translate-y-1 hover:shadow-xl shadow-lg">
             <Image src={post.image} alt={post.title} width={800} height={420} className="rounded-2xl" />
             <div className="mt-4 space-y-2">
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500">
                 {post.date} · {post.readingTime}
               </p>
-              <h2 className="text-2xl font-semibold text-white">{post.title}</h2>
-              <p className="text-sm text-slate-200/80">{post.excerpt}</p>
+              <h2 className="text-2xl font-semibold text-slate-900">{post.title}</h2>
+              <p className="text-sm text-slate-700">{post.excerpt}</p>
             </div>
           </Link>
         ))}

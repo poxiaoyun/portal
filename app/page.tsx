@@ -85,35 +85,35 @@ export default function HomePage() {
         description="专注自研开源产品、混合云与 AI 智算平台，为企业提供覆盖容器云、混合云、智算云及 AI 能力的全栈解决方案。"
         ctaPrimary={{ label: "预约演示", href: "/contact" }}
         ctaSecondary={{ label: "了解产品矩阵", href: "/products" }}
-        badge={<span className="inline-flex items-center rounded-full bg-brand/15 px-3 py-1 text-xs text-brand-light">原生无界 · 破晓时刻</span>}
+        badge={<span className="inline-flex items-center rounded-full bg-brand/10 px-3 py-1 text-xs text-brand font-medium">原生无界 · 破晓时刻</span>}
       />
 
       <section className="grid gap-8 lg:grid-cols-2">
         <div className="space-y-4">
-          <p className="text-sm uppercase tracking-[0.4em] text-brand-light">About us</p>
-          <h2 className="text-3xl font-semibold text-white">技术驱动，服务企业级云与 AI</h2>
-          <p className="text-slate-200/80">
+          <p className="text-sm uppercase tracking-[0.4em] text-brand">About us</p>
+          <h2 className="text-3xl font-semibold text-slate-900">技术驱动，服务企业级云与 AI</h2>
+          <p className="text-slate-700">
             成都破晓石科技有限公司专注云原生与 AI 智算领域，聚焦核心场景：混合云基础设施、AI 模型全生命周期治理、开源生态落地。
             依托自主可控的产品体系，帮助企业在安全合规的前提下实现资源统一调度、业务敏捷迭代与智能创新。
           </p>
           <div className="grid gap-4 sm:grid-cols-3">
             <div>
-              <p className="text-3xl font-bold text-brand-light">5x</p>
-              <p className="text-sm text-slate-300">算力利用率提升</p>
+              <p className="text-3xl font-bold text-brand">5x</p>
+              <p className="text-sm text-slate-600">算力利用率提升</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-brand-light">30+</p>
-              <p className="text-sm text-slate-300">行业解决方案</p>
+              <p className="text-3xl font-bold text-brand">30+</p>
+              <p className="text-sm text-slate-600">行业解决方案</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-brand-light">100%</p>
-              <p className="text-sm text-slate-300">国产化适配覆盖</p>
+              <p className="text-3xl font-bold text-brand">100%</p>
+              <p className="text-sm text-slate-600">国产化适配覆盖</p>
             </div>
           </div>
         </div>
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
-          <h3 className="text-xl font-semibold text-white">核心优势</h3>
-          <ul className="mt-4 space-y-3 text-sm text-slate-200">
+        <div className="rounded-3xl border border-white/60 bg-white/70 backdrop-blur-xl backdrop-saturate-150 p-6 shadow-lg">
+          <h3 className="text-xl font-semibold text-slate-900">核心优势</h3>
+          <ul className="mt-4 space-y-3 text-sm text-slate-700">
             <li>稳定：原生节点部署，支持数千节点并发运行。</li>
             <li>安全：企业级虚拟化技术与自动负载均衡，消除单点故障。</li>
             <li>AI 能力：大模型训练 / 调优 / 推理一体化，兼容国产与国际算力平台。</li>
@@ -124,8 +124,8 @@ export default function HomePage() {
       <section>
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.4em] text-brand-light">Products</p>
-            <h2 className="text-3xl font-semibold text-white">产品矩阵</h2>
+            <p className="text-sm uppercase tracking-[0.4em] text-brand">Products</p>
+            <h2 className="text-3xl font-semibold text-slate-900">产品矩阵</h2>
           </div>
           <Button variant="secondary" asChild>
             <Link href="/products">查看全部</Link>
@@ -134,7 +134,7 @@ export default function HomePage() {
         <Grid>
           {productHighlights.map((product) => (
             <Card key={product.title} title={product.title} description={product.description}>
-              <ul className="space-y-1 text-xs text-slate-200/90">
+              <ul className="space-y-1 text-xs text-slate-700">
                 {product.bullets.map((item) => (
                   <li key={item}>• {item}</li>
                 ))}
@@ -147,8 +147,8 @@ export default function HomePage() {
       <section>
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.4em] text-brand-light">Solutions</p>
-            <h2 className="text-3xl font-semibold text-white">解决方案</h2>
+            <p className="text-sm uppercase tracking-[0.4em] text-brand">Solutions</p>
+            <h2 className="text-3xl font-semibold text-slate-900">解决方案</h2>
           </div>
           <Button variant="secondary" asChild>
             <Link href="/solutions">深入了解</Link>
@@ -157,20 +157,20 @@ export default function HomePage() {
         <Grid cols="grid-cols-1 md:grid-cols-3">
           {solutions.map((item) => (
             <Card key={item.title} title={item.title}>
-              <p className="text-xs text-slate-300">痛点：{item.pain}</p>
-              <p className="text-xs text-slate-300">方案：{item.solution}</p>
-              <p className="text-xs text-emerald-300">价值：{item.value}</p>
+              <p className="text-xs text-slate-600">痛点：{item.pain}</p>
+              <p className="text-xs text-slate-600">方案：{item.solution}</p>
+              <p className="text-xs text-emerald-600 font-medium">价值：{item.value}</p>
             </Card>
           ))}
         </Grid>
       </section>
 
       <section>
-        <p className="text-sm uppercase tracking-[0.4em] text-brand-light">Partners</p>
-        <h2 className="text-3xl font-semibold text-white">生态合作</h2>
-        <div className="mt-6 grid grid-cols-2 gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 sm:grid-cols-3 lg:grid-cols-6">
+        <p className="text-sm uppercase tracking-[0.4em] text-brand">Partners</p>
+        <h2 className="text-3xl font-semibold text-slate-900">生态合作</h2>
+        <div className="mt-6 grid grid-cols-2 gap-4 rounded-3xl border border-white/60 bg-white/70 backdrop-blur-xl backdrop-saturate-150 p-6 shadow-lg sm:grid-cols-3 lg:grid-cols-6">
           {partners.map((partner) => (
-            <div key={partner.logo} className="flex h-20 items-center justify-center rounded-2xl bg-slate-900/40 p-4">
+            <div key={partner.logo} className="flex h-20 items-center justify-center rounded-2xl bg-white/80 backdrop-blur-sm p-4 border border-slate-200/50">
               <Image src={partner.logo} alt={partner.name} width={140} height={60} />
             </div>
           ))}
@@ -178,8 +178,8 @@ export default function HomePage() {
       </section>
 
       <section>
-        <p className="text-sm uppercase tracking-[0.4em] text-brand-light">Testimonials</p>
-        <h2 className="text-3xl font-semibold text-white">客户评价</h2>
+        <p className="text-sm uppercase tracking-[0.4em] text-brand">Testimonials</p>
+        <h2 className="text-3xl font-semibold text-slate-900">客户评价</h2>
         <Grid cols="grid-cols-1 md:grid-cols-3" className="mt-6">
           {testimonials.map((item) => (
             <Card key={item.author} title={item.author} description={item.content} />
@@ -187,9 +187,9 @@ export default function HomePage() {
         </Grid>
       </section>
 
-      <section className="rounded-3xl border border-brand/20 bg-brand/10 p-10 text-center">
-        <h2 className="text-3xl font-semibold text-white">准备好共建原生无界的云与 AI 基座？</h2>
-        <p className="mt-4 text-slate-200/80">访问我们的 GitHub，或与顾问团队预约一场深入交流。</p>
+      <section className="rounded-3xl border border-brand/30 bg-brand/10 backdrop-blur-xl backdrop-saturate-150 p-10 text-center shadow-xl">
+        <h2 className="text-3xl font-semibold text-slate-900">准备好共建原生无界的云与 AI 基座？</h2>
+        <p className="mt-4 text-slate-700">访问我们的 GitHub，或与顾问团队预约一场深入交流。</p>
         <div className="mt-6 flex flex-wrap justify-center gap-4">
           <Button asChild>
             <a href="https://github.com/poxiaoyun" target="_blank" rel="noreferrer">

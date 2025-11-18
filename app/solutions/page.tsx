@@ -32,16 +32,16 @@ export default function SolutionsPage() {
   return (
     <div className="space-y-10">
       <header className="space-y-4">
-        <p className="text-sm uppercase tracking-[0.4em] text-brand-light">Solutions</p>
-        <h1 className="text-4xl font-semibold text-white">行业解决方案</h1>
-        <p className="text-slate-200/80">从底层基础设施到 AI 业务场景，形成可复制、可运营的数智化方法论。</p>
+        <p className="text-sm uppercase tracking-[0.4em] text-brand">Solutions</p>
+        <h1 className="text-4xl font-semibold text-slate-900">行业解决方案</h1>
+        <p className="text-slate-700">从底层基础设施到 AI 业务场景，形成可复制、可运营的数智化方法论。</p>
       </header>
       <Grid cols="grid-cols-1 md:grid-cols-3">
         {solutionBlocks.map((block) => (
           <Card key={block.title} title={block.title}>
-            <p className="text-xs text-slate-300">痛点：{block.pains.join(" / ")}</p>
-            <p className="text-xs text-slate-300">方案：{block.plan}</p>
-            <p className="text-xs text-emerald-300">价值：{block.value}</p>
+            <p className="text-xs text-slate-600">痛点：{block.pains.join(" / ")}</p>
+            <p className="text-xs text-slate-600">方案：{block.plan}</p>
+            <p className="text-xs text-emerald-600 font-medium">价值：{block.value}</p>
           </Card>
         ))}
       </Grid>

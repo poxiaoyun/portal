@@ -13,17 +13,17 @@
 }
 
 body {
-  @apply bg-slate-950 text-slate-50 antialiased;
+  @apply bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 text-slate-900 antialiased;
   font-feature-settings: "ss01" on, "cv02" on;
   font-family: var(--font-inter), "SF Pro Display", "PingFang SC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background-image: radial-gradient(
       circle at top,
-      rgba(15, 118, 255, 0.18),
+      rgba(10, 124, 255, 0.08),
       transparent 45%
     ),
     radial-gradient(
       circle at 20% 20%,
-      rgba(10, 124, 255, 0.08),
+      rgba(10, 124, 255, 0.05),
       transparent 30%
     );
   min-height: 100vh;
@@ -36,20 +36,21 @@ a {
 .card-glow {
   background: linear-gradient(
       120deg,
-      rgba(255, 255, 255, 0.06),
-      rgba(10, 124, 255, 0.12)
-    ),
-    rgba(4, 10, 25, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 80px rgba(4, 19, 45, 0.65);
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0.5)
+    );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(10, 124, 255, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .grid-pattern {
   background-image: linear-gradient(
-      rgba(255, 255, 255, 0.05) 1px,
+      rgba(10, 124, 255, 0.08) 1px,
       transparent 1px
     ),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(10, 124, 255, 0.08) 1px, transparent 1px);
   background-size: 40px 40px;
   mask-image: radial-gradient(circle, #000, rgba(0, 0, 0, 0));
 }

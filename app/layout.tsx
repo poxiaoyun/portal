@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-CN" className={inter.variable}>
-      <body className="min-h-screen bg-slate-950 text-white font-sans">
+      <body className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 text-slate-900 font-sans">
         <Navbar />
         <main className="container py-12">{children}</main>
         <Footer />
