@@ -45,7 +45,7 @@ a:hover {
 
 .site-main {
   flex: 1;
-  padding: 64px 0;
+  padding: 0 0 64px;
 }
 
 .card-glow {
