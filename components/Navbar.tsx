@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/Button";
+import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/", label: "首页" },
@@ -17,9 +19,20 @@ const links = [
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="navbar">
+    <header className={cn("navbar", { "navbar--scrolled": scrolled })}>
       <div className="navbar__inner">
         <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
           <div>
