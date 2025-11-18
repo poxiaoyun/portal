@@ -1,3 +1,4 @@
+import { Avatar, Card, Space, Typography } from "antd";
 import Image from "next/image";
 
 interface TeamMemberCardProps {
@@ -9,16 +10,18 @@ interface TeamMemberCardProps {
 
 export function TeamMemberCard({ name, role, bio, avatar }: TeamMemberCardProps) {
   return (
-    <div className="card-glow p-6">
-      <div className="mb-4 flex items-center gap-4">
-        <Image src={avatar} alt={name} width={64} height={64} className="rounded-lg object-cover" />
-        <div>
-          <p className="text-base font-semibold text-slate-900">{name}</p>
-          <p className="text-sm text-slate-600">{role}</p>
-        </div>
-      </div>
-      <p className="text-sm leading-relaxed text-slate-600">{bio}</p>
-    </div>
+    <Card bordered={false} style={{ borderRadius: 16, boxShadow: "0 12px 24px rgba(15,23,42,0.08)" }}>
+      <Space align="center" size={16}>
+        <Avatar size={64} src={<Image src={avatar} alt={name} width={64} height={64} />} />
+        <Space direction="vertical" size={0}>
+          <Typography.Text strong>{name}</Typography.Text>
+          <Typography.Text type="secondary">{role}</Typography.Text>
+        </Space>
+      </Space>
+      <Typography.Paragraph style={{ marginTop: 16 }} type="secondary">
+        {bio}
+      </Typography.Paragraph>
+    </Card>
   );
 }
 

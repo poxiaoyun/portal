@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
+import { Card as AntCard, Space, Typography } from "antd";
+import type { ReactNode } from "react";
 
 interface CardProps {
   title: string;
@@ -11,16 +11,20 @@ interface CardProps {
 
 export function Card({ title, description, icon, children, className }: CardProps) {
   return (
-    <div className={cn("card-glow relative overflow-hidden p-6", className)}>
-      {icon && (
-        <div className="mb-3 flex items-center gap-2 text-brand">
-          {icon}
-        </div>
-      )}
-      <h3 className="text-base font-semibold text-slate-900 mb-2">{title}</h3>
-      {description && <p className="text-sm text-slate-600 leading-relaxed mb-4">{description}</p>}
-      {children && <div className="space-y-2 text-sm text-slate-600">{children}</div>}
-    </div>
+    <AntCard hoverable className={className} style={{ borderRadius: 16 }}>
+      <Space direction="vertical" size={12} style={{ width: "100%" }}>
+        {icon && <div>{icon}</div>}
+        <Typography.Title level={4} style={{ margin: 0 }}>
+          {title}
+        </Typography.Title>
+        {description && (
+          <Typography.Paragraph type="secondary" style={{ marginBottom: 0 }}>
+            {description}
+          </Typography.Paragraph>
+        )}
+        {children}
+      </Space>
+    </AntCard>
   );
 }
 

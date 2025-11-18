@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { TeamMemberCard } from "@/components/TeamMemberCard";
-import { Grid } from "@/components/Grid";
+import { Typography, Row, Col, Card as AntCard, Timeline } from "antd";
 
 export const metadata: Metadata = {
   title: "关于我们",
@@ -37,56 +37,57 @@ const timeline = [
 
 export default function AboutPage() {
   return (
-    <div className="container space-y-16 py-12">
-      <header className="mx-auto max-w-3xl text-center">
-        <p className="mb-3 text-sm font-medium uppercase tracking-wider text-slate-500">About</p>
-        <h1 className="mb-4 text-4xl font-bold text-slate-900 lg:text-5xl">以技术驱动成长</h1>
-        <p className="text-lg leading-relaxed text-slate-600">
-          成都破晓石科技有限公司（Chengdu Poxiaoshi Technology Co., Ltd.）致力于云原生、开源产品与 AI 智算平台的自主研发。
-          我们为企业提供覆盖容器云、混合云、AI 智算云及 AI 能力应用的全栈解决方案，帮助客户打造弹性、安全、可信赖的数字底座。
-        </p>
+    <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px" }}>
+      <header style={{ textAlign: "center", marginBottom: 48 }}>
+        <Typography.Title level={1}>以技术驱动成长</Typography.Title>
+        <Typography.Paragraph style={{ fontSize: 18, color: "var(--text-secondary)" }}>
+          成都破晓石科技有限公司致力于云原生、开源产品与 AI 智算平台的自主研发。我们为企业提供覆盖容器云、混合云、AI 智算云及 AI 能力应用的全栈解决方案。
+        </Typography.Paragraph>
       </header>
 
-      <section className="grid gap-6 lg:grid-cols-2">
-        <div className="card-glow p-8">
-          <h2 className="mb-4 text-2xl font-bold text-slate-900">使命与愿景</h2>
-          <p className="mb-4 text-slate-600">以云原生为统一基座，打造面向未来的 AI 原生基础设施。</p>
-          <ul className="space-y-2 text-sm leading-relaxed text-slate-600">
-            <li>使命：让企业以最短路径拥抱云原生与 AI。</li>
-            <li>愿景：成为企业数智化进程中的长期技术伙伴。</li>
-            <li>价值观：开放、可信、共创，持续投入开源生态。</li>
-          </ul>
-        </div>
-        <div className="card-glow p-8">
-          <h2 className="mb-4 text-2xl font-bold text-slate-900">开源生态</h2>
-          <p className="mb-4 text-slate-600">KubeGems 等自研开源项目已在多个行业落地，构建完善的社区、培训与联合创新机制。</p>
-          <ul className="space-y-2 text-sm leading-relaxed text-slate-600">
-            <li>GitHub：<a href="https://github.com/poxiaoyun" className="text-slate-900 hover:underline font-medium">https://github.com/poxiaoyun</a></li>
-            <li>贡献指南：欢迎 Issue、PR、企业共建计划。</li>
-            <li>社区活动：线上技术直播、线下工作坊、联合黑客松。</li>
-          </ul>
-        </div>
-      </section>
+      <Row gutter={24} style={{ marginBottom: 48 }}>
+        <Col xs={24} md={12}>
+          <AntCard bordered={false} style={{ borderRadius: 16, boxShadow: "0 12px 24px rgba(15,23,42,0.08)" }}>
+            <Typography.Title level={3}>使命与愿景</Typography.Title>
+            <Typography.Paragraph type="secondary">
+              以云原生为统一基座，打造面向未来的 AI 原生基础设施。使命：让企业以最短路径拥抱云原生与 AI；愿景：成为企业数智化进程中的长期技术伙伴。
+            </Typography.Paragraph>
+          </AntCard>
+        </Col>
+        <Col xs={24} md={12}>
+          <AntCard bordered={false} style={{ borderRadius: 16, boxShadow: "0 12px 24px rgba(15,23,42,0.08)" }}>
+            <Typography.Title level={3}>开源生态</Typography.Title>
+            <Typography.Paragraph type="secondary">
+              KubeGems 等自研开源项目已在多个行业落地，构建完善的社区、培训与联合创新机制。GitHub：github.com/poxiaoyun。
+            </Typography.Paragraph>
+          </AntCard>
+        </Col>
+      </Row>
 
-      <section>
-        <h2 className="mb-8 text-center text-3xl font-bold text-slate-900">核心团队</h2>
-        <Grid cols="grid-cols-1 md:grid-cols-3" className="gap-6">
+      <section style={{ marginBottom: 48 }}>
+        <Typography.Title level={2} style={{ textAlign: "center", marginBottom: 24 }}>
+          核心团队
+        </Typography.Title>
+        <Row gutter={[24, 24]}>
           {team.map((member) => (
-            <TeamMemberCard key={member.name} {...member} />
+            <Col xs={24} md={8} key={member.name}>
+              <TeamMemberCard {...member} />
+            </Col>
           ))}
-        </Grid>
+        </Row>
       </section>
 
       <section>
-        <h2 className="mb-8 text-center text-3xl font-bold text-slate-900">发展历程</h2>
-        <div className="mx-auto max-w-2xl space-y-4">
-          {timeline.map((item) => (
-            <div key={item.year} className="card-glow flex items-start gap-6 p-6">
-              <div className="text-2xl font-bold text-slate-900">{item.year}</div>
-              <p className="flex-1 text-slate-600">{item.event}</p>
-            </div>
-          ))}
-        </div>
+        <Typography.Title level={2} style={{ textAlign: "center", marginBottom: 24 }}>
+          发展历程
+        </Typography.Title>
+        <Timeline
+          items={timeline.map((item) => ({
+            color: "blue",
+            label: item.year,
+            children: item.event
+          }))}
+        />
       </section>
     </div>
   );

@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
+import "@lobehub/ui/style";
+import "antd/dist/reset.css";
 import "@/styles/globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Inter } from "next/font/google";
+import { ThemeProvider } from "@lobehub/ui";
+import { ConfigProvider, App as AntdApp, theme as antdTheme } from "antd";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -34,10 +38,25 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-CN" className={inter.variable}>
-      <body className="min-h-screen bg-white text-slate-900 font-sans">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+      <body className="site-shell">
+        <ThemeProvider>
+          <ConfigProvider
+            theme={{
+              algorithm: antdTheme.defaultAlgorithm,
+              token: {
+                colorPrimary: "#0a7cff",
+                fontFamily: "var(--font-inter)",
+                borderRadius: 12
+              }
+            }}
+          >
+            <AntdApp>
+              <Navbar />
+              <main className="site-main">{children}</main>
+              <Footer />
+            </AntdApp>
+          </ConfigProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

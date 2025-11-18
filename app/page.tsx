@@ -1,9 +1,8 @@
 import { Hero } from "@/components/Hero";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
-import { Grid } from "@/components/Grid";
 import Image from "next/image";
-import Link from "next/link";
+import { Tag, Typography, Row, Col, Statistic, Space } from "antd";
 
 const productHighlights = [
   {
@@ -78,147 +77,138 @@ const testimonials = [
 
 export default function HomePage() {
   return (
-    <div className="space-y-24">
+    <>
       <Hero
         title="云原生与 AI 智算，一体化企业级底座"
         subtitle="Chengdu Poxiaoshi Technology Co., Ltd."
         description="专注自研开源产品、混合云与 AI 智算平台，为企业提供覆盖容器云、混合云、智算云及 AI 能力的全栈解决方案。"
         ctaPrimary={{ label: "预约演示", href: "/contact" }}
         ctaSecondary={{ label: "了解产品矩阵", href: "/products" }}
-        badge={<span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">原生无界 · 破晓时刻</span>}
+        badge={<Tag color="blue">原生无界 · 破晓时刻</Tag>}
       />
 
-      <section className="container">
-        <div className="mx-auto max-w-4xl text-center mb-16">
-          <p className="mb-3 text-sm font-medium uppercase tracking-wider text-slate-500">About us</p>
-          <h2 className="mb-4 text-3xl font-bold text-slate-900 lg:text-4xl">技术驱动，服务企业级云与 AI</h2>
-          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-600">
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px" }}>
+        <div style={{ textAlign: "center", marginBottom: 48 }}>
+          <Typography.Title level={2}>技术驱动，服务企业级云与 AI</Typography.Title>
+          <Typography.Paragraph style={{ fontSize: 18, color: "var(--text-secondary)" }}>
             成都破晓石科技有限公司专注云原生与 AI 智算领域，聚焦核心场景：混合云基础设施、AI 模型全生命周期治理、开源生态落地。
             依托自主可控的产品体系，帮助企业在安全合规的前提下实现资源统一调度、业务敏捷迭代与智能创新。
-          </p>
+          </Typography.Paragraph>
         </div>
-        <div className="grid gap-6 md:grid-cols-3 mb-16">
-          <div className="text-center">
-            <p className="mb-2 text-4xl font-bold text-slate-900">5x</p>
-            <p className="text-sm text-slate-600">算力利用率提升</p>
-          </div>
-          <div className="text-center">
-            <p className="mb-2 text-4xl font-bold text-slate-900">30+</p>
-            <p className="text-sm text-slate-600">行业解决方案</p>
-          </div>
-          <div className="text-center">
-            <p className="mb-2 text-4xl font-bold text-slate-900">100%</p>
-            <p className="text-sm text-slate-600">国产化适配覆盖</p>
-          </div>
-        </div>
-        <div className="mx-auto max-w-3xl">
-          <div className="card-glow p-8">
-            <h3 className="mb-4 text-xl font-semibold text-slate-900">核心优势</h3>
-            <ul className="space-y-3 text-sm leading-relaxed text-slate-600">
-              <li className="flex items-start gap-3">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400" />
-                <span>稳定：原生节点部署，支持数千节点并发运行。</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400" />
-                <span>安全：企业级虚拟化技术与自动负载均衡，消除单点故障。</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400" />
-                <span>AI 能力：大模型训练 / 调优 / 推理一体化，兼容国产与国际算力平台。</span>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <Row gutter={32}>
+          <Col xs={24} md={8}>
+            <Statistic title="算力利用率提升" value="5x" valueStyle={{ fontSize: 48 }} />
+          </Col>
+          <Col xs={24} md={8}>
+            <Statistic title="行业解决方案" value={30} suffix="+" valueStyle={{ fontSize: 48 }} />
+          </Col>
+          <Col xs={24} md={8}>
+            <Statistic title="国产化适配覆盖" value="100%" valueStyle={{ fontSize: 48 }} />
+          </Col>
+        </Row>
       </section>
 
-      <section className="container">
-        <div className="mb-12 text-center">
-          <p className="mb-3 text-sm font-medium uppercase tracking-wider text-slate-500">Products</p>
-          <h2 className="mb-4 text-3xl font-bold text-slate-900 lg:text-4xl">产品矩阵</h2>
-          <div className="mt-6">
-            <Button variant="ghost" asChild>
-              <Link href="/products">查看全部 →</Link>
-            </Button>
-          </div>
-        </div>
-        <Grid>
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 24px" }}>
+        <Typography.Title level={2} style={{ textAlign: "center", marginBottom: 24 }}>
+          产品矩阵
+        </Typography.Title>
+        <Row gutter={[24, 24]}>
           {productHighlights.map((product) => (
-            <Card key={product.title} title={product.title} description={product.description}>
-              <ul className="space-y-1 text-xs text-slate-700">
-                {product.bullets.map((item) => (
-                  <li key={item}>• {item}</li>
-                ))}
-              </ul>
-            </Card>
+            <Col xs={24} md={8} key={product.title}>
+              <Card title={product.title} description={product.description}>
+                <Space direction="vertical" size={6}>
+                  {product.bullets.map((item) => (
+                    <Typography.Text key={item} type="secondary">
+                      • {item}
+                    </Typography.Text>
+                  ))}
+                </Space>
+              </Card>
+            </Col>
           ))}
-        </Grid>
+        </Row>
+        <div style={{ textAlign: "center", marginTop: 24 }}>
+          <Button type="link" href="/products">
+            查看全部 →
+          </Button>
+        </div>
       </section>
 
-      <section className="container">
-        <div className="mb-12 text-center">
-          <p className="mb-3 text-sm font-medium uppercase tracking-wider text-slate-500">Solutions</p>
-          <h2 className="mb-4 text-3xl font-bold text-slate-900 lg:text-4xl">解决方案</h2>
-          <div className="mt-6">
-            <Button variant="ghost" asChild>
-              <Link href="/solutions">深入了解 →</Link>
-            </Button>
-          </div>
-        </div>
-        <Grid cols="grid-cols-1 md:grid-cols-3">
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 24px" }}>
+        <Typography.Title level={2} style={{ textAlign: "center", marginBottom: 24 }}>
+          解决方案
+        </Typography.Title>
+        <Row gutter={[24, 24]}>
           {solutions.map((item) => (
-            <Card key={item.title} title={item.title}>
-              <p className="text-xs text-slate-600">痛点：{item.pain}</p>
-              <p className="text-xs text-slate-600">方案：{item.solution}</p>
-              <p className="text-xs text-emerald-600 font-medium">价值：{item.value}</p>
-            </Card>
+            <Col xs={24} md={8} key={item.title}>
+              <Card title={item.title}>
+                <Typography.Paragraph type="secondary">痛点：{item.pain}</Typography.Paragraph>
+                <Typography.Paragraph type="secondary">方案：{item.solution}</Typography.Paragraph>
+                <Typography.Text strong>价值：{item.value}</Typography.Text>
+              </Card>
+            </Col>
           ))}
-        </Grid>
+        </Row>
+        <div style={{ textAlign: "center", marginTop: 24 }}>
+          <Button type="link" href="/solutions">
+            深入了解 →
+          </Button>
+        </div>
       </section>
 
-      <section className="container">
-        <div className="mb-12 text-center">
-          <p className="mb-3 text-sm font-medium uppercase tracking-wider text-slate-500">Partners</p>
-          <h2 className="mb-4 text-3xl font-bold text-slate-900 lg:text-4xl">生态合作</h2>
-        </div>
-        <div className="card-glow grid grid-cols-2 gap-4 p-8 sm:grid-cols-3 lg:grid-cols-6">
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 24px" }}>
+        <Typography.Title level={2} style={{ textAlign: "center", marginBottom: 24 }}>
+          生态合作
+        </Typography.Title>
+        <Row gutter={[16, 16]}>
           {partners.map((partner) => (
-            <div key={partner.logo} className="flex h-20 items-center justify-center rounded-lg bg-slate-50 p-4">
-              <Image src={partner.logo} alt={partner.name} width={140} height={60} className="opacity-60 hover:opacity-100 transition-opacity" />
-            </div>
+            <Col xs={12} sm={8} md={6} lg={4} key={partner.logo}>
+              <div
+                style={{
+                  borderRadius: 12,
+                  background: "#fff",
+                  boxShadow: "0 12px 24px rgba(15,23,42,0.08)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: 96
+                }}
+              >
+                <Image src={partner.logo} alt={partner.name} width={120} height={50} style={{ objectFit: "contain", opacity: 0.7 }} />
+              </div>
+            </Col>
           ))}
-        </div>
+        </Row>
       </section>
 
-      <section className="container">
-        <div className="mb-12 text-center">
-          <p className="mb-3 text-sm font-medium uppercase tracking-wider text-slate-500">Testimonials</p>
-          <h2 className="mb-4 text-3xl font-bold text-slate-900 lg:text-4xl">客户评价</h2>
-        </div>
-        <Grid cols="grid-cols-1 md:grid-cols-3" className="mt-6">
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 24px" }}>
+        <Typography.Title level={2} style={{ textAlign: "center", marginBottom: 24 }}>
+          客户评价
+        </Typography.Title>
+        <Row gutter={[24, 24]}>
           {testimonials.map((item) => (
-            <Card key={item.author} title={item.author} description={item.content} />
+            <Col xs={24} md={8} key={item.author}>
+              <Card title={item.author} description={item.content} />
+            </Col>
           ))}
-        </Grid>
+        </Row>
       </section>
 
-      <section className="container">
-        <div className="card-glow mx-auto max-w-3xl p-12 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-slate-900">准备好共建原生无界的云与 AI 基座？</h2>
-          <p className="mb-8 text-lg text-slate-600">访问我们的 GitHub，或与顾问团队预约一场深入交流。</p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" asChild>
-              <a href="https://github.com/poxiaoyun" target="_blank" rel="noreferrer">
-                访问 GitHub
-              </a>
+      <section style={{ maxWidth: 800, margin: "0 auto", padding: "60px 24px" }}>
+        <div className="card-glow" style={{ padding: 48, textAlign: "center" }}>
+          <Typography.Title level={2}>准备好共建原生无界的云与 AI 基座？</Typography.Title>
+          <Typography.Paragraph type="secondary">访问我们的 GitHub，或与顾问团队预约一场深入交流。</Typography.Paragraph>
+          <Space size="large" style={{ marginTop: 24 }}>
+            <Button type="primary" size="large" href="https://github.com/poxiaoyun" target="_blank" rel="noreferrer">
+              访问 GitHub
             </Button>
-            <Button variant="secondary" size="lg" asChild>
-              <Link href="/contact">立即联系</Link>
+            <Button type="default" size="large" href="/contact">
+              立即联系
             </Button>
-          </div>
+          </Space>
         </div>
       </section>
-    </div>
+    </>
   );
 }
 

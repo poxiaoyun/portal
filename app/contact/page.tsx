@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
+import { Typography, Row, Col, Card } from "antd";
 
 export const metadata: Metadata = {
   title: "联系我们",
@@ -9,33 +10,29 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="container space-y-16 py-12">
-      <header className="mx-auto max-w-3xl text-center">
-        <p className="mb-3 text-sm font-medium uppercase tracking-wider text-slate-500">Contact</p>
-        <h1 className="mb-4 text-4xl font-bold text-slate-900 lg:text-5xl">与我们对话未来云与 AI</h1>
-        <p className="text-lg leading-relaxed text-slate-600">
+    <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px" }}>
+      <header style={{ textAlign: "center", marginBottom: 48 }}>
+        <Typography.Title level={1}>与我们对话未来云与 AI</Typography.Title>
+        <Typography.Paragraph style={{ fontSize: 18, color: "var(--text-secondary)" }}>
           填写需求表单或通过邮箱、电话与我们联系，团队将在 1 个工作日内回复。欢迎预约线下 Workshop 或线上方案评审。
-        </p>
+        </Typography.Paragraph>
       </header>
-      <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-        <ContactForm />
-        <div className="card-glow space-y-8 p-8">
-          <div>
-            <h2 className="mb-4 text-xl font-semibold text-slate-900">联系方式</h2>
-            <ul className="space-y-3 text-sm text-slate-600">
-              <li>邮箱：support@xiaoshiai.cn</li>
-              <li>地址：四川省成都市高新区长虹科技大厦A座1403</li>
-              <li>GitHub：<a href="https://github.com/poxiaoyun" className="text-slate-900 hover:underline">github.com/poxiaoyun</a></li>
-            </ul>
-          </div>
-          <div>
-            <h2 className="mb-4 text-xl font-semibold text-slate-900">地图</h2>
-            <div className="overflow-hidden rounded-lg border border-slate-200">
-              <Image src="/images/map-placeholder.png" alt="Map placeholder" width={800} height={450} />
+      <Row gutter={32}>
+        <Col xs={24} md={14}>
+          <ContactForm />
+        </Col>
+        <Col xs={24} md={10}>
+          <Card bordered={false} style={{ borderRadius: 16, boxShadow: "0 12px 24px rgba(15,23,42,0.08)" }}>
+            <Typography.Title level={4}>联系方式</Typography.Title>
+            <Typography.Paragraph type="secondary">邮箱：support@xiaoshiai.cn</Typography.Paragraph>
+            <Typography.Paragraph type="secondary">地址：四川省成都市高新区长虹科技大厦A座1403</Typography.Paragraph>
+            <Typography.Paragraph type="secondary">GitHub：github.com/poxiaoyun</Typography.Paragraph>
+            <div style={{ marginTop: 24 }}>
+              <Image src="/images/map-placeholder.png" alt="Map placeholder" width={600} height={360} style={{ borderRadius: 12 }} />
             </div>
-          </div>
-        </div>
-      </div>
+          </Card>
+        </Col>
+      </Row>
     </div>
   );
 }

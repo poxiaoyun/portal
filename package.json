@@ -9,7 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@lobehub/ui": "^2.16.2",
     "@radix-ui/react-slot": "^1.0.2",
+    "@ant-design/icons": "^5.5.2",
+    "antd": "^5.20.2",
+    "antd-style": "^3.6.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-react": "^0.451.0",

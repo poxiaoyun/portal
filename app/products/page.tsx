@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Card } from "@/components/Card";
-import { Grid } from "@/components/Grid";
+import { Typography, Row, Col } from "antd";
 
 export const metadata: Metadata = {
   title: "产品矩阵",
@@ -48,26 +48,29 @@ const products = [
 
 export default function ProductsPage() {
   return (
-    <div className="container space-y-16 py-12">
-      <header className="mx-auto max-w-3xl text-center">
-        <p className="mb-3 text-sm font-medium uppercase tracking-wider text-slate-500">Products</p>
-        <h1 className="mb-4 text-4xl font-bold text-slate-900 lg:text-5xl">全栈产品矩阵</h1>
-        <p className="text-lg leading-relaxed text-slate-600">以云原生为统一基座，面向不同阶段的企业提供从基础设施到 AI 智算的产品组合。</p>
+    <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px" }}>
+      <header style={{ textAlign: "center", marginBottom: 48 }}>
+        <Typography.Title level={1}>全栈产品矩阵</Typography.Title>
+        <Typography.Paragraph style={{ fontSize: 18, color: "var(--text-secondary)" }}>
+          以云原生为统一基座，面向不同阶段的企业提供从基础设施到 AI 智算的产品组合。
+        </Typography.Paragraph>
       </header>
 
-      <div className="space-y-12">
-        {products.map((product) => (
-          <section key={product.title} className="card-glow p-8">
-            <h2 className="mb-3 text-2xl font-bold text-slate-900">{product.title}</h2>
-            <p className="mb-6 text-slate-600">{product.intro}</p>
-            <Grid cols="grid-cols-1 md:grid-cols-2" className="gap-4">
+      {products.map((product) => (
+        <section key={product.title} style={{ marginBottom: 48 }}>
+          <div className="card-glow" style={{ padding: 32 }}>
+            <Typography.Title level={2}>{product.title}</Typography.Title>
+            <Typography.Paragraph type="secondary">{product.intro}</Typography.Paragraph>
+            <Row gutter={[16, 16]}>
               {product.features.map((feature) => (
-                <Card key={feature} title={feature.split("：")[0]} description={feature.split("：")[1] ?? ""} />
+                <Col xs={24} md={12} key={feature}>
+                  <Card title={feature.split("：")[0]} description={feature.split("：")[1] ?? ""} />
+                </Col>
               ))}
-            </Grid>
-          </section>
-        ))}
-      </div>
+            </Row>
+          </div>
+        </section>
+      ))}
     </div>
   );
 }

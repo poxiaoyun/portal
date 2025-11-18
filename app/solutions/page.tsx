@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Card } from "@/components/Card";
-import { Grid } from "@/components/Grid";
+import { Typography, Row, Col } from "antd";
 
 export const metadata: Metadata = {
   title: "解决方案",
@@ -30,21 +30,24 @@ const solutionBlocks = [
 
 export default function SolutionsPage() {
   return (
-    <div className="container space-y-16 py-12">
-      <header className="mx-auto max-w-3xl text-center">
-        <p className="mb-3 text-sm font-medium uppercase tracking-wider text-slate-500">Solutions</p>
-        <h1 className="mb-4 text-4xl font-bold text-slate-900 lg:text-5xl">行业解决方案</h1>
-        <p className="text-lg leading-relaxed text-slate-600">从底层基础设施到 AI 业务场景，形成可复制、可运营的数智化方法论。</p>
+    <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px" }}>
+      <header style={{ textAlign: "center", marginBottom: 48 }}>
+        <Typography.Title level={1}>行业解决方案</Typography.Title>
+        <Typography.Paragraph style={{ fontSize: 18, color: "var(--text-secondary)" }}>
+          从底层基础设施到 AI 业务场景，形成可复制、可运营的数智化方法论。
+        </Typography.Paragraph>
       </header>
-      <Grid cols="grid-cols-1 md:grid-cols-3" className="gap-6">
+      <Row gutter={[24, 24]}>
         {solutionBlocks.map((block) => (
-          <Card key={block.title} title={block.title}>
-            <p className="mb-2 text-sm text-slate-600">痛点：{block.pains.join(" / ")}</p>
-            <p className="mb-2 text-sm text-slate-600">方案：{block.plan}</p>
-            <p className="text-sm font-medium text-slate-900">价值：{block.value}</p>
-          </Card>
+          <Col xs={24} md={8} key={block.title}>
+            <Card title={block.title}>
+              <Typography.Paragraph type="secondary">痛点：{block.pains.join(" / ")}</Typography.Paragraph>
+              <Typography.Paragraph type="secondary">方案：{block.plan}</Typography.Paragraph>
+              <Typography.Text strong>价值：{block.value}</Typography.Text>
+            </Card>
+          </Col>
         ))}
-      </Grid>
+      </Row>
     </div>
   );
 }

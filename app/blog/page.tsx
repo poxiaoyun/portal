@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { Card, Typography, Row, Col } from "antd";
 
 export const metadata: Metadata = {
   title: "博客与资源",
@@ -28,26 +29,32 @@ const posts = [
 
 export default function BlogPage() {
   return (
-    <div className="container space-y-16 py-12">
-      <header className="mx-auto max-w-3xl text-center">
-        <p className="mb-3 text-sm font-medium uppercase tracking-wider text-slate-500">Resources</p>
-        <h1 className="mb-4 text-4xl font-bold text-slate-900 lg:text-5xl">博客 / 资源</h1>
-        <p className="text-lg leading-relaxed text-slate-600">精选技术洞察、案例与白皮书，帮助团队快速掌握云原生与 AI 智算的最佳实践。</p>
+    <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px" }}>
+      <header style={{ textAlign: "center", marginBottom: 48 }}>
+        <Typography.Title level={1}>博客 / 资源</Typography.Title>
+        <Typography.Paragraph style={{ fontSize: 18, color: "var(--text-secondary)" }}>
+          精选技术洞察、案例与白皮书，帮助团队快速掌握云原生与 AI 智算的最佳实践。
+        </Typography.Paragraph>
       </header>
-      <div className="grid gap-6 md:grid-cols-2">
+      <Row gutter={[24, 24]}>
         {posts.map((post) => (
-          <Link key={post.slug} href={`/blog/${post.slug}`} className="card-glow overflow-hidden transition-all hover:-translate-y-1">
-            <Image src={post.image} alt={post.title} width={800} height={420} className="w-full" />
-            <div className="p-6">
-              <p className="mb-2 text-xs text-slate-500">
-                {post.date} · {post.readingTime}
-              </p>
-              <h2 className="mb-2 text-xl font-semibold text-slate-900">{post.title}</h2>
-              <p className="text-sm leading-relaxed text-slate-600">{post.excerpt}</p>
-            </div>
-          </Link>
+          <Col xs={24} md={12} key={post.slug}>
+            <Link href={`/blog/${post.slug}`} style={{ textDecoration: "none" }}>
+              <Card
+                hoverable
+                cover={<Image src={post.image} alt={post.title} width={800} height={420} style={{ width: "100%" }} />}
+                style={{ borderRadius: 16 }}
+              >
+                <Typography.Text type="secondary">
+                  {post.date} · {post.readingTime}
+                </Typography.Text>
+                <Typography.Title level={3}>{post.title}</Typography.Title>
+                <Typography.Paragraph type="secondary">{post.excerpt}</Typography.Paragraph>
+              </Card>
+            </Link>
+          </Col>
         ))}
-      </div>
+      </Row>
     </div>
   );
 }

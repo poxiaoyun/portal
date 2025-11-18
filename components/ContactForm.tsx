@@ -1,98 +1,81 @@
 "use client";
 
-import { Button } from "@/components/Button";
-import { cn, sanitizeInput } from "@/lib/utils";
-import { z } from "zod";
 import { useState } from "react";
+import { Form, Input, message, Row, Col } from "antd";
+import { Button } from "@/components/Button";
+import { sanitizeInput } from "@/lib/utils";
 
-const schema = z.object({
-  name: z.string().min(2),
-  company: z.string().min(2),
-  email: z.string().email(),
-  phone: z.string().min(6),
-  message: z.string().min(10)
-});
+export function ContactForm() {
+  const [loading, setLoading] = useState(false);
+  const [form] = Form.useForm();
 
-export function ContactForm({ className }: { className?: string }) {
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [error, setError] = useState<string | null>(null);
-
-  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setError(null);
-    setStatus("loading");
-
-    const formData = new FormData(event.currentTarget);
-    const payload = {
-      name: sanitizeInput(formData.get("name") as string),
-      company: sanitizeInput(formData.get("company") as string),
-      email: sanitizeInput(formData.get("email") as string),
-      phone: sanitizeInput(formData.get("phone") as string),
-      message: sanitizeInput(formData.get("message") as string)
-    };
-
-    const parseResult = schema.safeParse(payload);
-    if (!parseResult.success) {
-      setStatus("error");
-      setError("请完整填写表单并确保格式正确。");
-      return;
-    }
+  const handleSubmit = async (values: Record<string, string>) => {
+    setLoading(true);
+    try {
+      const payload = Object.fromEntries(
+        Object.entries(values).map(([key, value]) => [key, sanitizeInput(value)])
+      );
 
     const response = await fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(parseResult.data)
+        body: JSON.stringify(payload)
     });
 
-    if (response.ok) {
-      setStatus("success");
-      event.currentTarget.reset();
-    } else {
-      setStatus("error");
-      setError("提交失败，请稍后再试。");
-    }
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      message.success("提交成功，我们会尽快联系您。");
+      form.resetFields();
+    } catch (error) {
+      console.error(error);
+      message.error("提交失败，请稍后再试。");
+    } finally {
+      setLoading(false);
   }
+  };
 
   return (
-    <form onSubmit={onSubmit} className={cn("card-glow space-y-5 p-6", className)}>
-      <div>
-        <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-900">
-          姓名 *
-        </label>
-        <input id="name" name="name" required className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-200" />
-      </div>
-      <div>
-        <label htmlFor="company" className="mb-2 block text-sm font-medium text-slate-900">
-          公司 *
-        </label>
-        <input id="company" name="company" required className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-200" />
-      </div>
-      <div className="grid gap-5 md:grid-cols-2">
-        <div>
-          <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-900">
-            邮箱 *
-          </label>
-          <input id="email" name="email" type="email" required className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-200" />
-        </div>
-        <div>
-          <label htmlFor="phone" className="mb-2 block text-sm font-medium text-slate-900">
-            电话 *
-          </label>
-          <input id="phone" name="phone" required className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-200" />
-        </div>
-      </div>
-      <div>
-        <label htmlFor="message" className="mb-2 block text-sm font-medium text-slate-900">
-          需求描述 *
-        </label>
-        <textarea id="message" name="message" rows={4} required className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-200" />
-      </div>
-      {error && <p className="text-sm text-red-400">{error}</p>}
-      {status === "success" && <p className="text-sm text-emerald-400">提交成功，我们会尽快联系您。</p>}
-      <Button type="submit" loading={status === "loading"} className="w-full">
+    <Form
+      form={form}
+      layout="vertical"
+      onFinish={handleSubmit}
+      className="card-glow"
+      style={{ padding: 32 }}
+      size="large"
+    >
+      <Form.Item name="name" label="姓名" rules={[{ required: true, message: "请输入姓名" }]}>
+        <Input placeholder="如：李雷" />
+      </Form.Item>
+
+      <Form.Item name="company" label="公司" rules={[{ required: true, message: "请输入公司名称" }]}>
+        <Input placeholder="如：成都破晓石科技有限公司" />
+      </Form.Item>
+
+      <Row gutter={16}>
+        <Col xs={24} md={12}>
+          <Form.Item name="email" label="邮箱" rules={[{ required: true, type: "email", message: "请输入有效邮箱" }]}>
+            <Input placeholder="name@example.com" />
+          </Form.Item>
+        </Col>
+        <Col xs={24} md={12}>
+          <Form.Item name="phone" label="电话" rules={[{ required: true, message: "请输入联系电话" }]}>
+            <Input placeholder="如：138****8888" />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Form.Item name="message" label="需求描述" rules={[{ required: true, message: "请填写需求描述" }]}>
+        <Input.TextArea rows={4} placeholder="请描述您的云原生 / AI 相关诉求" />
+      </Form.Item>
+
+      <Form.Item>
+        <Button type="primary" htmlType="submit" loading={loading} style={{ width: "100%" }}>
         提交
       </Button>
-    </form>
+      </Form.Item>
+    </Form>
   );
 }
 

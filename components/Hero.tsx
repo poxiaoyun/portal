@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/Button";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import { ReactNode } from "react";
 
 interface HeroProps {
@@ -25,12 +24,12 @@ export function Hero({ title, subtitle, description, ctaPrimary, ctaSecondary, b
           <h1 className="mb-6 text-5xl font-bold tracking-tight text-slate-900 lg:text-6xl">{title}</h1>
           <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-slate-600">{description}</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" asChild>
-              <Link href={ctaPrimary.href}>{ctaPrimary.label}</Link>
+            <Button type="primary" size="large" href={ctaPrimary.href}>
+              {ctaPrimary.label}
             </Button>
             {ctaSecondary && (
-              <Button variant="secondary" size="lg" asChild>
-                <Link href={ctaSecondary.href}>{ctaSecondary.label}</Link>
+              <Button type="default" size="large" href={ctaSecondary.href}>
+                {ctaSecondary.label}
               </Button>
             )}
           </div>
