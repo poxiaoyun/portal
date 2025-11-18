@@ -6,7 +6,7 @@ export function Footer() {
   const year = new Date().getFullYear();
   return (
     <Layout.Footer style={{ background: "#fff", borderTop: "1px solid rgba(15,23,42,0.08)" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1400, margin: "0 auto" }}>
         <Row gutter={[32, 24]}>
           <Col xs={24} md={12} lg={10}>
             <Typography.Title level={5}>成都破晓石科技有限公司</Typography.Title>

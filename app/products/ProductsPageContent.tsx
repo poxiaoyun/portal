@@ -44,7 +44,7 @@ const products = [
 
 export function ProductsPageContent() {
   return (
-    <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px" }}>
+    <div style={{ maxWidth: 1400, margin: "0 auto", padding: "80px 24px" }}>
       <header style={{ textAlign: "center", marginBottom: 48 }}>
         <Typography.Title level={1}>全栈产品矩阵</Typography.Title>
         <Typography.Paragraph style={{ fontSize: 18, color: "var(--text-secondary)" }}>

@@ -4,23 +4,59 @@ import { Hero } from "@/components/Hero";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import Image from "next/image";
-import { Tag, Typography, Row, Col, Statistic, Space } from "antd";
+import { Tag, Typography, Row, Col, Space } from "antd";
+import { SpotlightCard } from "@lobehub/ui/awesome";
 
-const productHighlights = [
+interface ProductHighlight {
+  logo?: string;
+  name: string;
+  badge: string;
+  tagline: string;
+  description: string;
+}
+
+const productHighlights: ProductHighlight[] = [
   {
-    title: "XAMP 混合云管理平台",
-    description: "基于 XHCMP 智能多云网络，统一管理 Kubernetes、vCenter、华为云等环境。",
-    bullets: ["全域连接编排", "智能算力调度", "一键多云纳管", "可观测与审计", "多租户隔离", "弹性计费模型"]
+    logo: "/images/nav/logo.png",
+    name: "XAMP",
+    badge: "多云纳管",
+    tagline: "基于Mesh网络的多云纳管平台",
+    description: "XHCMP端到端智能连接的多云管理平台，帮助企业实现多云互联、应用管理、计量计费等场景。"
   },
   {
-    title: "XPAI 智算平台",
-    description: "覆盖模型开发、训练、部署、运维的全流程工具集。",
-    bullets: ["算力池统一调度", "数据资产治理", "模型版本管理", "流水线自动化", "推理服务路由", "监控与预警"]
+    logo: "/images/nav/logo.png",
+    name: "XPAI",
+    badge: "AI智算",
+    tagline: "现代化AI训推一体平台",
+    description: "XPAI 企业级的 AI 训推一体化平台，广泛用于 AI 场景下的模型开发、训练，模型推理全流程。"
   },
   {
-    title: "KubeGems 开源产品",
-    description: "赋能企业自研云平台，实现弹性、安全、可信赖的生产级云原生体系。",
-    bullets: ["多集群管理", "应用市场", "SLO/SLA 保障", "服务网格集成", "安全策略控制", "企业级支持"]
+    logo: "/images/nav/logo.png",
+    name: "魔哈·Moha",
+    badge: "AI资产",
+    tagline: "私有化AI模型、数据集仓库",
+    description: "魔哈·Moha 是私有化AI模型、数据集仓库，帮助企业实现AI模型、数据集的私有化管理。"
+  },
+  {
+    logo: "/images/nav/logo.png",
+    name: "KubeGems",
+    badge: "容器云",
+    tagline: "云原生开源容器应用管理平台",
+    description: "KubeGems 是一款功能强大的开源容器管理平台，具备多集群、容器应用的统一管理、调度、监控等能力。"
+  },
+  {
+    logo: "/images/nav/logo.png",
+    name: "AI Router",
+    badge: "API 网关",
+    tagline: "功能强大的 AI API 网关",
+    description: "AI Router 是一款高性能的 AI API 访问控制网关，提供企业级权限治理、限流、审计与可观测能力"
+  },
+  {
+    logo: "/images/nav/logo.png",
+    name: "ChatBox",
+    badge: "AI 应用",
+    tagline: "功能强大的多模态模型体验平台",
+    description: "ChatBox 是一款功能强大的多模态模型体验平台，提供企业级权限治理、限流、审计与可观测能力"
   }
 ];
 
@@ -81,39 +117,54 @@ export default function HomePage() {
   return (
     <>
       <Hero
-        title="为 AI 云原生时代创造好基座"
+        title="为 AI 云原生时代创造好内核"
         description="专注云原生开源、混合云与 AI 智算平台，为企业提供覆盖容器云、混合云、智算云及 AI 能力的全栈解决方案。"
         ctaPrimary={{ label: "预约演示", href: "/contact" }}
         badge={<Tag color="black">网站由 AI 智能体驱动</Tag>}
       />
 
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 24px" }}>
+      <section style={{ maxWidth: 1400, margin: "0 auto", padding: "40px 24px" }}>
         <Typography.Title level={2} style={{ textAlign: "center", marginBottom: 24 }}>
           产品矩阵
         </Typography.Title>
-        <Row gutter={[24, 24]}>
-          {productHighlights.map((product) => (
-            <Col xs={24} md={8} key={product.title}>
-              <Card title={product.title} description={product.description}>
-                <Space direction="vertical" size={6}>
-                {product.bullets.map((item) => (
-                    <Typography.Text key={item} type="secondary">
-                      • {item}
-                    </Typography.Text>
-                ))}
-                </Space>
-            </Card>
-            </Col>
-          ))}
-        </Row>
-        <div style={{ textAlign: "center", marginTop: 24 }}>
+        <SpotlightCard
+          items={productHighlights}
+          columns={4}
+          gap="1.5rem"
+          size={1400}
+          borderRadius={20}
+          maxItemWidth={320}
+          renderItem={(product) => (
+            <div className="product-card">
+              <div className="product-card__top">
+                <span className="product-card__badge">{product.badge}</span>
+                <div className="product-card__logo">
+                  {product.logo ? (
+                    <Image src={product.logo} alt={`${product.name} logo`} width={64} height={64} style={{ objectFit: "contain" }} />
+                  ) : (
+                    <span>{product.name.charAt(0)}</span>
+                  )}
+                </div>
+                <Typography.Text className="product-card__tagline" type="secondary">
+                  {product.tagline}
+                </Typography.Text>
+              </div>
+              <div className="product-card__bottom">
+                <Typography.Paragraph className="product-card__description">
+                  {product.description}
+                </Typography.Paragraph>
+              </div>
+            </div>
+          )}
+        />
+        <div style={{ textAlign: "center", marginTop: 32 }}>
           <Button type="link" href="/products">
             查看全部 →
           </Button>
         </div>
       </section>
 
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 24px" }}>
+      <section style={{ maxWidth: 1400, margin: "0 auto", padding: "40px 24px" }}>
         <Typography.Title level={2} style={{ textAlign: "center", marginBottom: 24 }}>
           解决方案
         </Typography.Title>
@@ -135,7 +186,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 24px" }}>
+      <section style={{ maxWidth: 1400, margin: "0 auto", padding: "40px 24px" }}>
         <Typography.Title level={2} style={{ textAlign: "center", marginBottom: 24 }}>
           生态合作
         </Typography.Title>
@@ -160,7 +211,7 @@ export default function HomePage() {
         </Row>
       </section>
 
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 24px" }}>
+      <section style={{ maxWidth: 1400, margin: "0 auto", padding: "40px 24px" }}>
         <Typography.Title level={2} style={{ textAlign: "center", marginBottom: 24 }}>
           客户评价
         </Typography.Title>

@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 
 interface HeroProps {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   description: string;
   ctaPrimary: { label: string; href: string };
   ctaSecondary?: { label: string; href: string };
@@ -26,7 +26,7 @@ export function Hero({ title, subtitle, description, ctaPrimary, ctaSecondary, b
       <div className="container py-12 lg:py-20">
         <div className="mx-auto max-w-4xl text-center">
           {badge && <div className="mb-6">{badge}</div>}
-          <p className="mb-4 text-sm font-medium uppercase tracking-wider text-slate-500">{subtitle}</p>
+          {subtitle && <p className="mb-4 text-sm font-medium uppercase tracking-wider text-slate-500">{subtitle}</p>}
           <h1 className="mb-6 text-5xl font-bold tracking-tight text-slate-900 lg:text-6xl">{title}</h1>
           <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-slate-600">{description}</p>
           <div className="flex flex-wrap justify-center gap-4">
