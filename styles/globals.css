@@ -11,6 +11,34 @@
   --card-radius: 16px;
 }
 
+@keyframes gradient-shift {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: -100% 50%;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    #1e3a8a,
+    #3b82f6,
+    #06b6d4,
+    #10b981,
+    #6366f1,
+    #8b5cf6,
+    #1e3a8a
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 20s ease infinite;
+  display: inline-block;
+}
+
 *,
 *::before,
 *::after {

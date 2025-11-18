@@ -117,7 +117,7 @@ export default function HomePage() {
   return (
     <>
       <Hero
-        title="为 AI 云原生时代创造好内核"
+        title="为 AI 云原生创造好内核"
         description="专注云原生开源、混合云与 AI 智算平台，为企业提供覆盖容器云、混合云、智算云及 AI 能力的全栈解决方案。"
         ctaPrimary={{ label: "预约演示", href: "/contact" }}
         badge={<Tag color="black">网站由 AI 智能体驱动</Tag>}
@@ -130,10 +130,10 @@ export default function HomePage() {
         <SpotlightCard
           items={productHighlights}
           columns={4}
-          gap="1.5rem"
+          gap="2rem"
           size={1400}
           borderRadius={20}
-          maxItemWidth={320}
+          maxItemWidth={300}
           renderItem={(product) => (
             <div className="product-card">
               <div className="product-card__top">

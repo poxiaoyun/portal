@@ -19,18 +19,38 @@ export function Hero({ title, subtitle, description, ctaPrimary, ctaSecondary, b
   return (
     <AuroraBackground
       className={cn("relative overflow-hidden", className)}
-      paddingInline={24}
-      paddingBlock={80}
-      style={{ width: "100%" }}
+      paddingInline={0}
+      paddingBlock={120}
+      style={{ width: "100vw", marginLeft: "calc(-50vw + 50%)" }}
     >
-      <div className="container py-12 lg:py-20">
-        <div className="mx-auto max-w-4xl text-center">
-          {badge && <div className="mb-6">{badge}</div>}
-          {subtitle && <p className="mb-4 text-sm font-medium uppercase tracking-wider text-slate-500">{subtitle}</p>}
-          <h1 className="mb-6 text-5xl font-bold tracking-tight text-slate-900 lg:text-6xl">{title}</h1>
-          <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-slate-600">{description}</p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button type="primary" size="large" href={ctaPrimary.href}>
+      <div className="container py-16 lg:py-28 px-6">
+        <div className="mx-auto max-w-5xl text-center">
+          {badge && <div className="mb-8">{badge}</div>}
+          {subtitle && <p className="mb-6 text-base font-medium uppercase tracking-wider text-slate-500">{subtitle}</p>}
+          <h1 className="mb-8 text-6xl font-bold tracking-tight text-slate-900 lg:text-7xl">
+            {title.includes("内核") ? (
+              <>
+                {title.split("内核")[0]}
+                <span className="gradient-text">内核</span>
+                {title.split("内核")[1]}
+              </>
+            ) : (
+              title
+            )}
+          </h1>
+          <p className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed text-slate-600">{description}</p>
+          <div className="flex flex-wrap justify-center gap-6">
+            <Button 
+              type="primary" 
+              size="large" 
+              href={ctaPrimary.href}
+              style={{ 
+                height: 50, 
+                fontSize: 18, 
+                padding: "0 32px",
+                fontWeight: 600
+              }}
+            >
               {ctaPrimary.label}
             </Button>
             {ctaSecondary && (
