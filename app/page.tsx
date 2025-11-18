@@ -81,8 +81,7 @@ export default function HomePage() {
   return (
     <>
       <Hero
-        title="云原生与 AI 智算，一体化企业级底座"
-        subtitle="Chengdu Poxiaoshi Technology Co., Ltd."
+        title="为 AI 云原生时代创造好基座"
         description="专注自研开源产品、混合云与 AI 智算平台，为企业提供覆盖容器云、混合云、智算云及 AI 能力的全栈解决方案。"
         ctaPrimary={{ label: "预约演示", href: "/contact" }}
         ctaSecondary={{ label: "了解产品矩阵", href: "/products" }}
