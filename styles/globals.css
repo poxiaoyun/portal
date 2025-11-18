@@ -84,7 +84,8 @@ a:hover {
   height: 72px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  gap: 24px;
 }
 
 .navbar__desktop {
