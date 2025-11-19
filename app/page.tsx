@@ -10,6 +10,9 @@ import { Tag, Typography, Row, Col, Space } from "antd";
 import { SpotlightCard } from "@lobehub/ui/awesome";
 import { products } from "@/data/products";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH?.replace(/\/$/, "") || "";
+const withBasePath = (path: string) => `${basePath}${path}`;
+
 const partners = [
   { name: "anton", logo: "/images/partner/anton.png" },
   { name: "basra", logo: "/images/partner/basra-oil-company.png" },
@@ -100,7 +103,7 @@ export default function HomePage() {
                 <div className="product-card__logo">
                   {product.logo ? (
                     <img 
-                      src={product.logo} 
+                      src={withBasePath(product.logo)} 
                       style={{ objectFit: "contain" ,height: '80px',width: '160px'}} 
                     />
                   ) : (
@@ -149,7 +152,7 @@ export default function HomePage() {
                   className="scenario-card__image" 
                   style={{ 
                     backgroundImage: scenario.image 
-                      ? `url(${scenario.image})`
+                      ? `url(${withBasePath(scenario.image)})`
                       : "none",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
