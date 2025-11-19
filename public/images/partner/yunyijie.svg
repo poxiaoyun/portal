@@ -1,0 +1,8 @@
+<svg width="320" height="120" viewBox="0 0 320 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="120" rx="18" fill="#F1FBFF"/>
+  <circle cx="60" cy="60" r="26" fill="#26C6DA" opacity="0.25"/>
+  <path d="M44 73C48 80 57 84 66 81C75 78 81 69 80 60C79 51 72 44 64 42" stroke="#26C6DA" stroke-width="6" stroke-linecap="round"/>
+  <path d="M58 50C52 51 48 55 47 61C46 67 49 72 55 74" stroke="#26C6DA" stroke-width="6" stroke-linecap="round"/>
+  <text x="120" y="70" fill="#0A2142" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="600">YUNYIJIE</text>
+</svg>
+

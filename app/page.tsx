@@ -25,8 +25,8 @@ const partners = [
   { name: "西南交通大学", logo: "/images/partner/swjtu.png" },
   { name: "万物智联", logo: "/images/partner/wanwuzhilian.png" },
   { name: "达闼机器人", logo: "/images/partner/cloudminds.png" },
-  { name: "津安达", logo: "/images/partner/jianzanda.png" },
-  { name: "云易捷", logo: "/images/partner/yunyijie.png" }
+  { name: "津安达", logo: "/images/partner/jianzanda.svg" },
+  { name: "云易捷", logo: "/images/partner/yunyijie.svg" }
 ];
 
 const scenarios = [
