@@ -4,61 +4,10 @@ import { Hero } from "@/components/Hero";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import Image from "next/image";
+import Link from "next/link";
 import { Tag, Typography, Row, Col, Space } from "antd";
 import { SpotlightCard } from "@lobehub/ui/awesome";
-
-interface ProductHighlight {
-  logo?: string;
-  name: string;
-  badge: string;
-  tagline: string;
-  description: string;
-}
-
-const productHighlights: ProductHighlight[] = [
-  {
-    logo: "/images/nav/logo.png",
-    name: "XAMP",
-    badge: "多云纳管",
-    tagline: "基于Mesh网络的多云纳管平台",
-    description: "XHCMP端到端智能连接的多云管理平台，帮助企业实现多云互联、应用管理、计量计费等场景。"
-  },
-  {
-    logo: "/images/nav/logo.png",
-    name: "XPAI",
-    badge: "AI智算",
-    tagline: "现代化AI训推一体平台",
-    description: "XPAI 企业级的 AI 训推一体化平台，广泛用于 AI 场景下的模型开发、训练，模型推理全流程。"
-  },
-  {
-    logo: "/images/nav/logo.png",
-    name: "魔哈·Moha",
-    badge: "AI资产",
-    tagline: "私有化AI模型、数据集仓库",
-    description: "魔哈·Moha 是私有化AI模型、数据集仓库，帮助企业实现AI模型、数据集的私有化管理。"
-  },
-  {
-    logo: "/images/nav/logo.png",
-    name: "KubeGems",
-    badge: "容器云",
-    tagline: "云原生开源容器应用管理平台",
-    description: "KubeGems 是一款功能强大的开源容器管理平台，具备多集群、容器应用的统一管理、调度、监控等能力。"
-  },
-  {
-    logo: "/images/nav/logo.png",
-    name: "AI Router",
-    badge: "API 网关",
-    tagline: "功能强大的 AI API 网关",
-    description: "AI Router 是一款高性能的 AI API 访问控制网关，提供企业级权限治理、限流、审计与可观测能力"
-  },
-  {
-    logo: "/images/nav/logo.png",
-    name: "ChatBox",
-    badge: "AI 应用",
-    tagline: "功能强大的多模态模型体验平台",
-    description: "ChatBox 是一款功能强大的多模态模型体验平台，提供企业级权限治理、限流、审计与可观测能力"
-  }
-];
+import { products } from "@/data/products";
 
 const solutions = [
   {
@@ -69,7 +18,7 @@ const solutions = [
   },
   {
     title: "AI 智算平台",
-    pain: "训练、调优、上线流程割裂，算力与数据无法高效协同。",
+    pain: "训练、调优、上线MCP ，算力与数据无法高效协同。",
     solution: "XPAI 智算平台提供模型全生命周期管理与算力自治调度。",
     value: "算力利用率提升 5 倍，AI 项目从研发到上线缩短 60%。"
   },
@@ -128,19 +77,23 @@ export default function HomePage() {
           产品矩阵
         </Typography.Title>
         <SpotlightCard
-          items={productHighlights}
+          items={products}
           columns={4}
           gap="2rem"
           size={1400}
           borderRadius={20}
           maxItemWidth={300}
           renderItem={(product) => (
+            <Link href={`/products/${product.id}`} style={{ textDecoration: "none", color: "inherit" }}>
             <div className="product-card">
               <div className="product-card__top">
                 <span className="product-card__badge">{product.badge}</span>
                 <div className="product-card__logo">
                   {product.logo ? (
-                    <Image src={product.logo} alt={`${product.name} logo`} width={64} height={64} style={{ objectFit: "contain" }} />
+                    <img 
+                      src={product.logo} 
+                      style={{ objectFit: "contain" ,height: '80px',width: '160px'}} 
+                    />
                   ) : (
                     <span>{product.name.charAt(0)}</span>
                   )}
@@ -155,6 +108,8 @@ export default function HomePage() {
                 </Typography.Paragraph>
               </div>
             </div>
+
+            </Link>
           )}
         />
         <div style={{ textAlign: "center", marginTop: 32 }}>
