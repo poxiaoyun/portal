@@ -349,3 +349,72 @@ a:hover {
   }
 }
 
+.scenario-container {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.scenario-card {
+  height: 450px;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+  cursor: pointer;
+  position: relative;
+}
+
+.scenario-card--expanded {
+  flex: 1 1 50%;
+  min-width: 50%;
+  max-width: 50%;
+}
+
+.scenario-card--collapsed {
+  flex: 1 1 15%;
+  min-width: 15%;
+  max-width: 15%;
+}
+
+.scenario-card__image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 24px;
+}
+
+.scenario-card__content {
+  width: 100%;
+  z-index: 2;
+  position: relative;
+}
+
+.scenario-card__image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .scenario-container {
+    flex-direction: column;
+  }
+  
+  .scenario-card--expanded,
+  .scenario-card--collapsed {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+}
+

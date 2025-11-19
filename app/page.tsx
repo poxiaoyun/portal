@@ -1,68 +1,77 @@
 "use client";
 
+import { useState } from "react";
 import { Hero } from "@/components/Hero";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { Tag, Typography, Row, Col, Space } from "antd";
 import { SpotlightCard } from "@lobehub/ui/awesome";
 import { products } from "@/data/products";
 
-const solutions = [
-  {
-    title: "云原生架构",
-    pain: "多集群、跨云资源分散，交付效率与可观测性不足。",
-    solution: "基于 XAMP + KubeGems 的统一控制平面，实现多云一体化调度与应用交付。",
-    value: "交付周期缩短 40%，资源利用率提升至 85%。"
-  },
-  {
-    title: "AI 智算平台",
-    pain: "训练、调优、上线MCP ，算力与数据无法高效协同。",
-    solution: "XPAI 智算平台提供模型全生命周期管理与算力自治调度。",
-    value: "算力利用率提升 5 倍，AI 项目从研发到上线缩短 60%。"
-  },
-  {
-    title: "企业数字化转型",
-    pain: "业务系统烟囱林立，缺乏统一的数据与智能中台。",
-    solution: "提供云原生底座 + AI 赋能的业务中台架构，构建可持续演进的数智底座。",
-    value: "IT 成本可控、数据驱动决策、打造敏捷业务闭环。"
-  }
-];
-
 const partners = [
-  { name: "anton", logo: "/images/partner/anton.svg" },
-  { name: "basra", logo: "/images/partner/basra-oil-company.svg" },
-  { name: "中国移动", logo: "/images/partner/china-mobile.svg" },
-  { name: "云控智行", logo: "/images/partner/yunkong.svg" },
-  { name: "派兹", logo: "/images/partner/paizi.svg" },
-  { name: "英伟达", logo: "/images/partner/nvidia.svg" },
-  { name: "中国地震台网中心", logo: "/images/partner/cese.svg" },
-  { name: "西南财经大学", logo: "/images/partner/swufe.svg" },
-  { name: "西南交通大学", logo: "/images/partner/swjtu.svg" },
-  { name: "万物智联", logo: "/images/partner/wanwuzhilian.svg" },
-  { name: "达闼机器人", logo: "/images/partner/cloudminds.svg" },
-  { name: "津安达", logo: "/images/partner/jianzanda.svg" },
-  { name: "云易捷", logo: "/images/partner/yunyijie.svg" }
+  { name: "anton", logo: "/images/partner/anton.png" },
+  { name: "basra", logo: "/images/partner/basra-oil-company.png" },
+  { name: "中国移动", logo: "/images/partner/china-mobile.png" },
+  { name: "云控智行", logo: "/images/partner/yunkong.png" },
+  { name: "派兹", logo: "/images/partner/paizi.png" },
+  { name: "英伟达", logo: "/images/partner/nvidia.png" },
+  { name: "中国地震台网中心", logo: "/images/partner/cenc.png" },
+  { name: "西南财经大学", logo: "/images/partner/swufe.png" },
+  { name: "西南交通大学", logo: "/images/partner/swjtu.png" },
+  { name: "万物智联", logo: "/images/partner/wanwuzhilian.png" },
+  { name: "达闼机器人", logo: "/images/partner/cloudminds.png" },
+  { name: "津安达", logo: "/images/partner/jianzanda.png" },
+  { name: "云易捷", logo: "/images/partner/yunyijie.png" }
 ];
 
-const testimonials = [
+const scenarios = [
   {
-    author: "Zeng Jun · 客户研发经理",
-    content:
-      "他们在定制开发上非常专业，沟通顺畅、响应快。我们提出新需求都能被迅速理解并落地，节省了大量协作成本。"
+    id: 0,
+    title: "混合云",
+    description: "统一管理多云资源，实现跨云应用部署与数据同步",
+    image: "/images/scenarios/hybrid-cloud.jpg",
+    gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    hasButton: true
   },
   {
-    author: "某运营商用户",
-    content: "团队专业、响应及时，AI 领域实力深厚。无论遇到何种问题，都能第一时间跟进并解决。"
+    id: 1,
+    title: "智算中心",
+    description: "实现智算中心的高效运行，提高计算资源利用率",
+    image: "/images/scenarios/intelligent-computing.jpg",
+    gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+    hasButton: true
   },
   {
-    author: "某海外客户技术总监",
-    content: "平台让我们的云原生架构更稳定灵活，资源调度、服务弹性全面升级，关键场景得到明显优化。"
+    id: 2,
+    title: "教育行业",
+    description: "统一管理多云资源，实现跨云应用部署与数据同步",
+    image: "/images/scenarios/education.jpg",
+    gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+    hasButton: true
+  },
+  {
+    id: 3,
+    title: "能源制造",
+    description: "实现能源行业的数字化转型，提高生产效率和能源利用率",
+    image: "/images/scenarios/energy-manufacturing.webp",
+    gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+    hasButton: true
+  },
+  {
+    id: 4,
+    title: "AI 应用",
+    description: "实现AI应用的快速开发与部署，提高开发效率和部署效率",
+    image: "/images/scenarios/ai-application.jpg",
+    gradient: "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
+    hasButton: true
   }
 ];
 
 export default function HomePage() {
+  const [expandedScenario, setExpandedScenario] = useState(0);
+
   return (
     <>
       <Hero
@@ -83,7 +92,7 @@ export default function HomePage() {
           size={1400}
           borderRadius={20}
           maxItemWidth={300}
-          renderItem={(product) => (
+          renderItem={(product: any) => (
             <Link href={`/products/${product.id}`} style={{ textDecoration: "none", color: "inherit" }}>
             <div className="product-card">
               <div className="product-card__top">
@@ -112,87 +121,175 @@ export default function HomePage() {
             </Link>
           )}
         />
-        <div style={{ textAlign: "center", marginTop: 32 }}>
-          <Button type="link" href="/products">
-            查看全部 →
-          </Button>
-        </div>
       </section>
 
       <section style={{ maxWidth: 1400, margin: "0 auto", padding: "40px 24px" }}>
-        <Typography.Title level={2} style={{ textAlign: "center", marginBottom: 24 }}>
-          解决方案
+        <Typography.Title level={2} style={{ textAlign: "center", marginBottom: 12 }}>
+          应用场景
         </Typography.Title>
-        <Row gutter={[24, 24]}>
-          {solutions.map((item) => (
-            <Col xs={24} md={8} key={item.title}>
-              <Card title={item.title}>
-                <Typography.Paragraph type="secondary">痛点：{item.pain}</Typography.Paragraph>
-                <Typography.Paragraph type="secondary">方案：{item.solution}</Typography.Paragraph>
-                <Typography.Text strong>价值：{item.value}</Typography.Text>
-            </Card>
-            </Col>
-          ))}
-        </Row>
-        <div style={{ textAlign: "center", marginTop: 24 }}>
-          <Button type="link" href="/solutions">
-            深入了解 →
-          </Button>
-        </div>
-      </section>
-
-      <section style={{ maxWidth: 1400, margin: "0 auto", padding: "40px 24px" }}>
-        <Typography.Title level={2} style={{ textAlign: "center", marginBottom: 24 }}>
-          生态合作
-        </Typography.Title>
-        <Row gutter={[16, 16]}>
-          {partners.map((partner) => (
-            <Col xs={12} sm={8} md={6} lg={4} key={partner.logo}>
+        <Typography.Paragraph style={{ textAlign: "center", fontSize: 16, color: "var(--text-secondary)", marginBottom: 32 }}>
+          针对行业特征及细分业务场景深度定制，打造一站式解决方案
+        </Typography.Paragraph>
+        <div className="scenario-container">
+          {scenarios.map((scenario) => {
+            const isExpanded = expandedScenario === scenario.id;
+            return (
               <div
+                key={scenario.id}
+                className={`scenario-card ${isExpanded ? "scenario-card--expanded" : "scenario-card--collapsed"}`}
+                onMouseEnter={() => setExpandedScenario(scenario.id)}
                 style={{
-                  borderRadius: 12,
-                  background: "#fff",
-                  boxShadow: "0 12px 24px rgba(15,23,42,0.08)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: 96
+                  flex: isExpanded ? "1 1 58%" : "1 1 10%",
+                  minWidth: isExpanded ? "58%" : "10%",
+                  maxWidth: isExpanded ? "58%" : "10%",
+                  transition: "flex 0.5s ease, min-width 0.5s ease, max-width 0.5s ease"
                 }}
               >
-                <Image src={partner.logo} alt={partner.name} width={120} height={50} style={{ objectFit: "contain", opacity: 0.7 }} />
-            </div>
-            </Col>
-          ))}
-        </Row>
-      </section>
-
-      <section style={{ maxWidth: 1400, margin: "0 auto", padding: "40px 24px" }}>
-        <Typography.Title level={2} style={{ textAlign: "center", marginBottom: 24 }}>
-          客户评价
-        </Typography.Title>
-        <Row gutter={[24, 24]}>
-          {testimonials.map((item) => (
-            <Col xs={24} md={8} key={item.author}>
-              <Card title={item.author} description={item.content} />
-            </Col>
-          ))}
-        </Row>
-      </section>
-
-      <section style={{ maxWidth: 800, margin: "0 auto", padding: "60px 24px" }}>
-        <div className="card-glow" style={{ padding: 48, textAlign: "center" }}>
-          <Typography.Title level={2}>准备好共建原生无界的云与 AI 基座？</Typography.Title>
-          <Typography.Paragraph type="secondary">访问我们的 GitHub，或与顾问团队预约一场深入交流。</Typography.Paragraph>
-          <Space size="large" style={{ marginTop: 24 }}>
-            <Button type="primary" size="large" href="https://github.com/poxiaoyun" target="_blank" rel="noreferrer">
-              访问 GitHub
-          </Button>
-            <Button type="default" size="large" href="/contact">
-              立即联系
-          </Button>
-          </Space>
+                <div 
+                  className="scenario-card__image" 
+                  style={{ 
+                    backgroundImage: scenario.image 
+                      ? `url(${scenario.image})`
+                      : "none",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundColor: scenario.image ? "transparent" : "#f0f0f0"
+                  }}
+                >
+                  <div className="scenario-card__content">
+                    <Typography.Title 
+                      level={isExpanded ? 3 : 4} 
+                      style={{ 
+                        color: "#fff",
+                        marginBottom: isExpanded && scenario.description ? 12 : 0,
+                        transition: "all 0.3s ease"
+                      }}
+                    >
+                      {scenario.title}
+                    </Typography.Title>
+                    {isExpanded && scenario.description && (
+                      <Typography.Paragraph 
+                        style={{ 
+                          color: "#fff", 
+                          marginBottom: 16, 
+                          fontSize: 14,
+                          opacity: isExpanded ? 1 : 0,
+                          transition: "opacity 0.3s ease"
+                        }}
+                      >
+                        {scenario.description}
+                      </Typography.Paragraph>
+                    )}
+                    {isExpanded && scenario.hasButton && (
+                      <Button 
+                        type="primary" 
+                        size="small" 
+                        href="/solutions" 
+                        style={{ 
+                          background: "transparent", 
+                          borderColor: "#fff",
+                          color: "#fff",
+                          opacity: isExpanded ? 1 : 0,
+                          transition: "opacity 0.3s ease"
+                        }}
+                      >
+                        了解更多 →
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
+
+      <div style={{ background: "#fff", width: "100%" }}>
+        <section style={{ maxWidth: 1400, margin: "0 auto", padding: "40px 24px" }}>
+          <Typography.Title level={2} style={{ textAlign: "center", marginBottom: 24 }}>
+            典型客户
+          </Typography.Title>
+          <Row gutter={[16, 16]}>
+            {partners.map((partner) => (
+              <Col xs={12} sm={8} md={6} lg={4} key={partner.logo}>
+                <div
+                  style={{
+                    borderRadius: 8,
+                    background: "#fff",
+                    border: "1px solid rgba(15, 23, 42, 0.12)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: 140,
+                    padding: "16px"
+                  }}
+                >
+                  <Image 
+                    src={partner.logo} 
+                    alt={partner.name} 
+                    width={200} 
+                    height={100} 
+                    style={{ 
+                      objectFit: "contain", 
+                      opacity: 0.8,
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      width: "auto",
+                      height: "auto"
+                    }} 
+                  />
+                </div>
+              </Col>
+            ))}
+          </Row>
+        </section>
+
+        <section
+          style={{
+            width: "100%",
+            margin: 0,
+            padding: "80px 0 0",
+            background: "#f5f7fb"
+          }}
+        >
+          <div
+            style={{
+              maxWidth: 900,
+              margin: "0 auto",
+              textAlign: "center",
+              padding: "48px 32px",
+              background: "rgba(255, 255, 255, 0.4)",
+              borderRadius: 28,
+              border: "1px solid rgba(255,255,255,0.6)",
+              boxShadow: "0 15px 40px rgba(10,124,255,0.15)",
+              color: "#0f172a",
+              backdropFilter: "blur(18px)",
+              WebkitBackdropFilter: "blur(18px)"
+            }}
+          >
+            <Typography.Title level={2} style={{ color: "#0f172a" }}>
+              即刻开启您的云原生与 AI 之旅？
+            </Typography.Title>
+            <Typography.Paragraph style={{ color: "rgba(15,23,42,0.7)", fontSize: 18 }}>
+              联系我们专家团开展一场深入交流。
+            </Typography.Paragraph>
+            <Space size="large" style={{ marginTop: 24 }}>
+              <Button
+                type="default"
+                size="large"
+                href="/contact"
+                style={{
+                  background: "transparent",
+                  borderColor: "rgba(15,23,42,0.2)",
+                  color: "#0f172a"
+                }}
+              >
+                预约咨询 
+            </Button>
+            </Space>
+          </div>
+        </section>
+      </div>
     </>
   );
 }

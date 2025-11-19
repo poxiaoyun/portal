@@ -8,15 +8,14 @@ import { Button } from "@/components/Button";
 import { cn } from "@/lib/utils";
 import Logo from "@/public/images/nav/logo.png";
 import { products } from "@/data/products";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Phone } from "lucide-react";
 
 const links = [
   { href: "/", label: "首页" },
   { href: "/products", label: "产品", hasDropdown: true },
-  { href: "/solutions", label: "解决方案" },
-  { href: "/about", label: "关于我们" },
-  { href: "/blog", label: "博客/资源" },
-  { href: "/contact", label: "联系我们" }
+  { href: "/solutions", label: "案例中心" },
+  { href: "/blog", label: "公司动态" },
+  { href: "/about", label: "关于我们" }
 ];
 
 export function Navbar() {
@@ -149,6 +148,30 @@ export function Navbar() {
           </nav>
         </div>
         <div className="navbar__actions">
+          <Link
+            href="/contact"
+            className="navbar__desktopCta"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: 40,
+              height: 40,
+              borderRadius: "8px",
+              background: "transparent",
+              color: "var(--text-primary)",
+              textDecoration: "none",
+              transition: "background-color 0.3s ease"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(15,23,42,0.08)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+            }}
+          >
+            <Phone size={20} />
+          </Link>
           <Button
             className="navbar__desktopCta"
             type="default"
@@ -217,6 +240,25 @@ export function Navbar() {
                 )}
               </div>
             ))}
+          <Link
+            href="/contact"
+            onClick={() => setOpen(false)}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 8,
+              marginBottom: 12,
+              padding: "8px 16px",
+              borderRadius: "8px",
+              background: "rgba(15,23,42,0.06)",
+              color: "var(--text-primary)",
+              textDecoration: "none"
+            }}
+          >
+            <Phone size={18} />
+            <span>联系我们</span>
+          </Link>
           <Button
             type="default"
             href="https://github.com/poxiaoyun"
