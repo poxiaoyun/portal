@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
-const repoName = process.env.NEXT_PUBLIC_BASE_PATH || process.env.GITHUB_REPOSITORY?.split("/")[1] || "";
-const isGitHubPages = process.env.GITHUB_PAGES === "true" || !!process.env.NEXT_PUBLIC_BASE_PATH;
+const rawBasePath = process.env.NEXT_PUBLIC_BASE_PATH?.trim() || "";
+const normalizedBasePath =
+  rawBasePath === ""
+    ? ""
+    : `/${rawBasePath.replace(/^\/|\/$/g, "")}`;
+const isGitHubPages = normalizedBasePath !== "";
 
 const nextConfig = {
   reactStrictMode: true,
@@ -9,8 +13,8 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  basePath: isGitHubPages ? `/${repoName}` : undefined,
-  assetPrefix: isGitHubPages ? `/${repoName}/` : undefined,
+  basePath: isGitHubPages ? normalizedBasePath : undefined,
+  assetPrefix: isGitHubPages ? `${normalizedBasePath}/` : undefined,
   trailingSlash: true
 };
 
