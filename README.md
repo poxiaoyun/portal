@@ -59,6 +59,11 @@ pnpm dev       # http://localhost:3000
 2. 将 `.next`, `package.json`, `node_modules` 上传至服务器
 3. `pnpm start`（默认端口 3000，可使用 `PORT` 环境变量）
 
+### Docker
+1. 构建镜像（在仓库根目录）：`docker build -t chengdu-site:latest .`
+2. 运行容器：`docker run -d -p 3000:80 --name chengdu-site chengdu-site:latest`
+3. 网站将通过 `http://localhost:3000` 访问（容器内由 Nginx 提供静态文件）
+
 ## 地图与图像占位
 - `public/images/map-placeholder.png` 用于联系页地图
 - `public/images/partner/*.svg` 用于合作伙伴 Logo
