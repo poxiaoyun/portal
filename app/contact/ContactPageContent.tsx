@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
 import { Typography, Row, Col, Card } from "antd";
+import { withBasePath } from "@/lib/withBasePath";
 
 export function ContactPageContent() {
   return (
@@ -24,7 +25,7 @@ export function ContactPageContent() {
             <Typography.Paragraph type="secondary">地址：四川省成都市高新区长虹科技大厦A座1403</Typography.Paragraph>
             <Typography.Paragraph type="secondary">GitHub：github.com/poxiaoyun</Typography.Paragraph>
             <div style={{ marginTop: 24 }}>
-              <Image src="/images/map-placeholder.png" alt="Map placeholder" width={600} height={360} style={{ borderRadius: 12 }} />
+              <Image src={withBasePath("/images/map-placeholder.png")} alt="Map placeholder" width={600} height={360} style={{ borderRadius: 12 }} unoptimized />
             </div>
           </Card>
         </Col>

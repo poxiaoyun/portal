@@ -9,9 +9,7 @@ import Image from "next/image";
 import { Tag, Typography, Row, Col, Space } from "antd";
 import { SpotlightCard } from "@lobehub/ui/awesome";
 import { products } from "@/data/products";
-
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH?.replace(/\/$/, "") || "";
-const withBasePath = (path: string) => `${basePath}${path}`;
+import { withBasePath } from "@/lib/withBasePath";
 
 const partners = [
   { name: "anton", logo: "/images/partner/anton.png" },
@@ -228,7 +226,7 @@ export default function HomePage() {
                   }}
                 >
                   <Image 
-                    src={partner.logo} 
+                    src={withBasePath(partner.logo)} 
                     alt={partner.name} 
                     width={200} 
                     height={100} 
@@ -240,6 +238,7 @@ export default function HomePage() {
                       width: "auto",
                       height: "auto"
                     }} 
+                    unoptimized
                   />
                 </div>
               </Col>
