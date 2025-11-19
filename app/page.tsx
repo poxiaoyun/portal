@@ -47,7 +47,7 @@ const scenarios = [
   {
     id: 2,
     title: "教育行业",
-    description: "统一管理多云资源，实现跨云应用部署与数据同步",
+    description: "实现教育行业的数字化转型，提高教学效率和教学质量",
     image: "/images/scenarios/education.jpg",
     gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
     hasButton: true

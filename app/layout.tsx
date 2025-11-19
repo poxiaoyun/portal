@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-CN" className={inter.variable}>
-      <body className="site-shell">
+      <body className="site-shell critical-shell">
         <AntdProvider>
           <Navbar />
           <main className="site-main">{children}</main>
