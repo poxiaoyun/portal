@@ -13,6 +13,7 @@ import { products } from "@/data/products";
 import type { OpenSourceProject } from "@/data/openSourceProjects";
 import { openSourceProjects } from "@/data/openSourceProjects";
 import { ChevronDown, Phone } from "lucide-react";
+import { withBasePath } from "@/lib/withBasePath";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -174,11 +175,12 @@ export function Navbar() {
                             <>
                               <div className="navbar__dropdownItemIcon">
                                 <Image
-                                  src={item.logo}
+                                  src={withBasePath(item.logo)}
                                   alt={`${item.name} logo`}
                                   width={32}
                                   height={32}
                                   style={{ objectFit: "contain" }}
+                                  unoptimized
                                 />
                               </div>
                               <div className="navbar__dropdownItemContent">
@@ -341,11 +343,12 @@ export function Navbar() {
                       const content = (
                         <>
                           <Image
-                            src={item.logo}
+                            src={withBasePath(item.logo)}
                             alt={`${item.name} logo`}
                             width={24}
                             height={24}
                             style={{ objectFit: "contain" }}
+                            unoptimized
                           />
                           <div>
                             <div style={{ fontWeight: 500 }}>{item.name}</div>
