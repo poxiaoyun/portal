@@ -114,9 +114,13 @@ export default function HomePage() {
                     <span className="product-card__badge">{product.badge}</span>
                     <div className="product-card__logo">
                       {product.logo ? (
-                        <img 
-                          src={withBasePath(product.logo)} 
-                          style={{ objectFit: "contain" ,height: '80px',width: '160px'}} 
+                        <Image
+                          src={withBasePath(product.logo)}
+                          alt={`${product.name} logo`}
+                          width={160}
+                          height={80}
+                          style={{ objectFit: "contain" }}
+                          unoptimized
                         />
                       ) : (
                         <span>{product.name.charAt(0)}</span>

@@ -126,6 +126,7 @@ export function Navbar() {
                 if (!dropdown) {
                   return null;
                 }
+                const dropdownBasePath = dropdown.basePath ?? "";
                 return (
                   <div
                     key={link.href}
@@ -139,8 +140,8 @@ export function Navbar() {
                       style={{
                         border: "none",
                         cursor: "pointer",
-                        color: pathname?.startsWith(dropdown.basePath) ? "var(--text-primary)" : "var(--text-secondary)",
-                        fontWeight: pathname?.startsWith(dropdown.basePath) ? 600 : 400,
+                        color: pathname?.startsWith(dropdownBasePath) ? "var(--text-primary)" : "var(--text-secondary)",
+                        fontWeight: pathname?.startsWith(dropdownBasePath) ? 600 : 400,
                         fontFamily: "inherit",
                         fontSize: "18px",
                         marginLeft: "12px",
