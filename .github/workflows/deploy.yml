@@ -38,7 +38,7 @@ jobs:
       - name: Build project
         run: |
           export GITHUB_PAGES=true
-          export NEXT_PUBLIC_BASE_PATH=/portal
+          export NEXT_PUBLIC_BASE_PATH=/
           pnpm run build
 
       - name: Upload GitHub Pages artifact
