@@ -10,20 +10,20 @@ import Logo from "@/public/images/nav/logo.png";
 import { products } from "@/data/products";
 import { ChevronDown, Phone } from "lucide-react";
 
-const links = [
-  { href: "/", label: "首页" },
-  { href: "/products", label: "产品", hasDropdown: true },
-  { href: "/solutions", label: "案例中心" },
-  { href: "/blog", label: "公司动态" },
-  { href: "/about", label: "关于我们" }
-];
-
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
   const productsDropdownRef = useRef<HTMLDivElement>(null);
+  const defaultProductHref = products.length ? `/products/${products[0].id}` : "/";
+  const links = [
+    { href: "/", label: "首页" },
+    { href: defaultProductHref, label: "产品", hasDropdown: true },
+    { href: "/solutions", label: "案例中心" },
+    { href: "/blog", label: "公司动态" },
+    { href: "/about", label: "关于我们" }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -131,14 +131,15 @@ export function Navbar() {
                   </div>
                 );
               }
+              const isActive = link.hasDropdown ? pathname?.startsWith("/products") : pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
                   className="navbar__link"
                   style={{
-                    color: pathname === link.href ? "var(--text-primary)" : "var(--text-secondary)",
-                    fontWeight: pathname === link.href ? 600 : 400
+                    color: isActive ? "var(--text-primary)" : "var(--text-secondary)",
+                    fontWeight: isActive ? 600 : 400
                   }}
                 >
                   {link.label}
@@ -193,7 +194,9 @@ export function Navbar() {
       </div>
       {open && (
         <div className="navbar__mobileMenu">
-            {links.map((link) => (
+            {links.map((link) => {
+              const isActive = link.hasDropdown ? pathname?.startsWith("/products") : pathname === link.href;
+              return (
               <div key={link.href}>
                 <Link
                   href={link.href}
@@ -202,7 +205,7 @@ export function Navbar() {
                   style={{
                     display: "block",
                     marginBottom: 12,
-                    color: pathname === link.href ? "var(--text-primary)" : "var(--text-secondary)"
+                      color: isActive ? "var(--text-primary)" : "var(--text-secondary)"
                   }}
                 >
                   {link.label}
@@ -239,7 +242,8 @@ export function Navbar() {
                   </div>
                 )}
               </div>
-            ))}
+              );
+            })}
           <Link
             href="/contact"
             onClick={() => setOpen(false)}

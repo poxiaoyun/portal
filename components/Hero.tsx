@@ -13,15 +13,32 @@ interface HeroProps {
   ctaSecondary?: { label: string; href: string };
   badge?: ReactNode;
   className?: string;
+  auroraColors?: {
+    baseColor?: string;
+    highlightColor?: string;
+  };
 }
 
-export function Hero({ title, subtitle, description, ctaPrimary, ctaSecondary, badge, className }: HeroProps) {
+export function Hero({ title, subtitle, description, ctaPrimary, ctaSecondary, badge, className, auroraColors }: HeroProps) {
+  const customStyle = auroraColors 
+    ? {
+        width: "100vw",
+        marginLeft: "calc(-50vw + 50%)",
+        ...(auroraColors.baseColor && {
+          "--aurora-base": auroraColors.baseColor,
+        }),
+        ...(auroraColors.highlightColor && {
+          "--aurora-highlight": auroraColors.highlightColor,
+        }),
+      } as React.CSSProperties
+    : { width: "100vw", marginLeft: "calc(-50vw + 50%)" };
+
   return (
     <AuroraBackground
       className={cn("relative overflow-hidden", className)}
       paddingInline={0}
       paddingBlock={120}
-      style={{ width: "100vw", marginLeft: "calc(-50vw + 50%)" }}
+      style={customStyle}
     >
       <div className="container py-16 lg:py-28 px-6">
         <div className="mx-auto max-w-5xl text-center">
@@ -33,6 +50,11 @@ export function Hero({ title, subtitle, description, ctaPrimary, ctaSecondary, b
                 {title.split("内核")[0]}
                 <span className="gradient-text">内核</span>
                 {title.split("内核")[1]}
+              </>
+            ) : title.includes("Rune") ? (
+              <>
+                <span className="gradient-text">Rune</span>
+                {title.split("Rune")[1]}
               </>
             ) : (
               title
@@ -48,7 +70,10 @@ export function Hero({ title, subtitle, description, ctaPrimary, ctaSecondary, b
                 height: 50, 
                 fontSize: 18, 
                 padding: "0 32px",
-                fontWeight: 600
+                fontWeight: 600,
+                background: "transparent",
+                border: "1px solid rgba(15, 23, 42, 0.2)",
+                color: "#0f172a"
               }}
             >
               {ctaPrimary.label}

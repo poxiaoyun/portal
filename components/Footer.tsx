@@ -37,14 +37,14 @@ export function Footer() {
               <Space>
                 <MailOutlined style={{ color: subtleColor }} />
                 <Typography.Paragraph type="secondary" style={{ marginBottom: 0 }}>
-                  邮箱  support@xiaoshiai.cn
-                </Typography.Paragraph>
+              邮箱  support@xiaoshiai.cn
+            </Typography.Paragraph>
               </Space>
               <Space>
                 <EnvironmentOutlined style={{ color: subtleColor }} />
                 <Typography.Paragraph type="secondary" style={{ marginBottom: 0 }}>
-                  地址  四川省成都市高新区长虹科技大厦A座1403
-                </Typography.Paragraph>
+              地址  四川省成都市高新区长虹科技大厦A座1403
+            </Typography.Paragraph>
               </Space>
             </Space>
           </Col>
