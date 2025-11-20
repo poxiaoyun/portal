@@ -9,6 +9,7 @@ import Image from "next/image";
 import { Tag, Typography, Row, Col, Space } from "antd";
 import { SpotlightCard } from "@lobehub/ui/awesome";
 import { products } from "@/data/products";
+import { openSourceProjects } from "@/data/openSourceProjects";
 import { withBasePath } from "@/lib/withBasePath";
 
 const partners = [
@@ -72,6 +73,16 @@ const scenarios = [
 
 export default function HomePage() {
   const [expandedScenario, setExpandedScenario] = useState(0);
+  const productMatrixItems = (() => {
+    const items = [...products];
+    const mohaIndex = items.findIndex((item) => item.id === "moha");
+    if (mohaIndex >= 0) {
+      items.splice(mohaIndex + 1, 0, ...openSourceProjects);
+    } else {
+      items.push(...openSourceProjects);
+    }
+    return items;
+  })();
 
   return (
     <>
@@ -79,7 +90,7 @@ export default function HomePage() {
         title="为 AI 云原生创造好内核"
         description="专注云原生开源、混合云与 AI 智算平台，为企业提供覆盖容器云、混合云、智算云及 AI 能力的全栈解决方案。"
         ctaPrimary={{ label: "预约演示", href: "/contact" }}
-        badge={<Tag color="black">网站由 AI 智能体驱动</Tag>}
+        badge={<Tag color="black">Powered by GPT-5.1</Tag>}
       />
 
       <section style={{ maxWidth: 1400, margin: "0 auto", padding: "40px 24px" }}>
@@ -87,39 +98,56 @@ export default function HomePage() {
           产品矩阵
         </Typography.Title>
         <SpotlightCard
-          items={products}
+          items={productMatrixItems}
           columns={4}
           gap="2rem"
           size={1400}
           borderRadius={20}
           maxItemWidth={300}
           renderItem={(product: any) => (
-            <Link href={`/products/${product.id}`} style={{ textDecoration: "none", color: "inherit" }}>
-            <div className="product-card">
-              <div className="product-card__top">
-                <span className="product-card__badge">{product.badge}</span>
-                <div className="product-card__logo">
-                  {product.logo ? (
-                    <img 
-                      src={withBasePath(product.logo)} 
-                      style={{ objectFit: "contain" ,height: '80px',width: '160px'}} 
-                    />
-                  ) : (
-                    <span>{product.name.charAt(0)}</span>
-                  )}
+            (() => {
+              const isExternal = Boolean("externalUrl" in product && product.externalUrl);
+              const href = isExternal ? product.externalUrl : `/products/${product.id}`;
+              const card = (
+                <div className="product-card">
+                  <div className="product-card__top">
+                    <span className="product-card__badge">{product.badge}</span>
+                    <div className="product-card__logo">
+                      {product.logo ? (
+                        <img 
+                          src={withBasePath(product.logo)} 
+                          style={{ objectFit: "contain" ,height: '80px',width: '160px'}} 
+                        />
+                      ) : (
+                        <span>{product.name.charAt(0)}</span>
+                      )}
+                    </div>
+                    <Typography.Text className="product-card__tagline" type="secondary">
+                      {product.tagline}
+                    </Typography.Text>
+                  </div>
+                  <div className="product-card__bottom">
+                    <Typography.Paragraph className="product-card__description">
+                      {product.description}
+                    </Typography.Paragraph>
+                  </div>
                 </div>
-                <Typography.Text className="product-card__tagline" type="secondary">
-                  {product.tagline}
-                </Typography.Text>
-              </div>
-              <div className="product-card__bottom">
-                <Typography.Paragraph className="product-card__description">
-                  {product.description}
-                </Typography.Paragraph>
-              </div>
-            </div>
+              );
 
-            </Link>
+              if (isExternal) {
+                return (
+                  <a href={href} target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "inherit" }}>
+                    {card}
+                  </a>
+                );
+              }
+
+              return (
+                <Link href={href} style={{ textDecoration: "none", color: "inherit" }}>
+                  {card}
+                </Link>
+              );
+            })()
           )}
         />
       </section>

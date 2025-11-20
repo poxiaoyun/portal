@@ -56,6 +56,30 @@ export function Hero({ title, subtitle, description, ctaPrimary, ctaSecondary, b
                 <span className="gradient-text">Rune</span>
                 {title.split("Rune")[1]}
               </>
+            ) : title.includes("XMCP") ? (
+              <>
+                {title.split("XMCP")[0]}
+                <span className="gradient-text">XMCP</span>
+                {title.split("XMCP")[1]}
+              </>
+            ) : title.includes("XCMP") ? (
+              <>
+                {title.split("XCMP")[0]}
+                <span className="gradient-text">XCMP</span>
+                {title.split("XCMP")[1]}
+              </>
+            ) : title.includes("魔哈") ? (
+              (() => {
+                const [before, ...rest] = title.split("魔哈");
+                const after = rest.join("魔哈");
+                return (
+                  <>
+                    {before}
+                    <span className="gradient-text">魔哈</span>
+                    {after}
+                  </>
+                );
+              })()
             ) : (
               title
             )}

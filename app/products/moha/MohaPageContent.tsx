@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Hero } from "@/components/Hero";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
@@ -9,41 +10,42 @@ import Image from "next/image";
 import { withBasePath } from "@/lib/withBasePath";
 import { Lock, Database, Shield, Settings, Server, Layers, Key, BarChart, Cloud, Zap, FileLock } from "lucide-react";
 
+type ProductFeature = {
+  title: string;
+  description: string;
+  images: string | string[];
+  icon?: typeof Lock;
+  iconColor?: string;
+  iconBg?: string;
+  titleColor?: string;
+};
+
 export function MohaPageContent() {
   const product = getProductById("moha");
 
-  const productFeatures = [
+  const productFeatures: ProductFeature[] = [
     {
       title: "私有化存储",
       description: "支持数据加密，帮助企业实现模型、数据集的私有化管理与安全存储。提供完整的存储生命周期管理，支持多种存储后端，确保数据安全可靠。",
-      image: "/images/products/rune/model-engineering.jpg",
+      images: "/images/products/moha/private.png",
       icon: Lock,
       iconColor: "#0a7cff",
       iconBg: "rgba(10, 124, 255, 0.1)",
       titleColor: "#0a7cff"
     },
     {
-      title: "模型仓库管理",
-      description: "统一的模型版本管理、元数据管理、模型注册中心，支持模型生命周期全流程管理。提供模型搜索、分类、标签等丰富的管理功能。",
-      image: "/images/products/rune/model-management.jpg",
+      title: "模型与数据集管理",
+      description: "兼容 Transformer 生态，统一的模型版本、元数据管理，结合数据集的版本控制，实现模型与数据集的一体化仓库管理。支持全生命周期追踪、搜索分类、标签治理与协同发布，确保资产一致可控。",
+      images: ["/images/products/moha/models.png", "/images/products/moha/models2.png"],
       icon: Database,
       iconColor: "#06b6d4",
       iconBg: "rgba(6, 182, 212, 0.1)",
       titleColor: "#06b6d4"
     },
     {
-      title: "数据集管理",
-      description: "强大的数据集管理能力，支持数据集的版本控制、标注管理、数据预处理等功能。提供数据集的完整生命周期管理。",
-      image: "/images/products/rune/model-inference.jpg",
-      icon: Layers,
-      iconColor: "#f59e0b",
-      iconBg: "rgba(245, 158, 11, 0.1)",
-      titleColor: "#f59e0b"
-    },
-    {
       title: "安全加密",
       description: "企业级安全加密能力，支持数据加密存储、传输加密、访问控制等多层安全防护。确保AI资产的安全性和合规性。",
-      image: "/images/products/rune/multi-tenant.jpg",
+      images: "/images/products/moha/security.jpg",
       icon: Shield,
       iconColor: "#10b981",
       iconBg: "rgba(16, 185, 129, 0.1)",
@@ -209,23 +211,7 @@ export function MohaPageContent() {
                   backgroundColor: "#f5f7fb"
                 }}
               >
-                <Image
-                  src={withBasePath(feature.image)}
-                  alt={feature.title}
-                  fill
-                  style={{
-                    objectFit: "cover"
-                  }}
-                  unoptimized
-                  onError={(e) => {
-                    // 如果图片加载失败，显示占位符
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = "none";
-                    if (target.parentElement) {
-                      target.parentElement.style.background = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
-                    }
-                  }}
-                />
+                <FeatureImage images={feature.images} alt={feature.title} />
               </div>
             </div>
           ))}
@@ -411,6 +397,174 @@ export function MohaPageContent() {
         </section>
       </div>
     </>
+  );
+}
+
+function FeatureImage({ images, alt }: { images: string | string[]; alt: string }) {
+  const imageList = useMemo(() => (Array.isArray(images) ? images : [images]), [images]);
+  const hasMultiple = imageList.length > 1;
+  const extendedImages = useMemo(() => {
+    if (!hasMultiple) {
+      return imageList;
+    }
+    return [imageList[imageList.length - 1], ...imageList, imageList[0]];
+  }, [imageList, hasMultiple]);
+  const [currentIndex, setCurrentIndex] = useState(hasMultiple ? 1 : 0);
+  const [isInstant, setIsInstant] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    setCurrentIndex(hasMultiple ? 1 : 0);
+  }, [hasMultiple, imageList]);
+
+  const goToNext = useCallback(() => {
+    if (!hasMultiple) return;
+    setCurrentIndex((prev) => prev + 1);
+  }, [hasMultiple]);
+
+  const goToPrev = useCallback(() => {
+    if (!hasMultiple) return;
+    setCurrentIndex((prev) => prev - 1);
+  }, [hasMultiple]);
+
+  useEffect(() => {
+    if (!hasMultiple || isHovered) {
+      return;
+    }
+    const stayDuration = 5000;
+    const animationDuration = 1000;
+    const interval = setInterval(goToNext, stayDuration + animationDuration);
+
+    return () => clearInterval(interval);
+  }, [goToNext, hasMultiple, isHovered]);
+
+  useEffect(() => {
+    if (!hasMultiple) {
+      return;
+    }
+    const animationDuration = 1000;
+    if (currentIndex === extendedImages.length - 1) {
+      const timeout = setTimeout(() => {
+        setIsInstant(true);
+        setCurrentIndex(1);
+      }, animationDuration);
+      return () => clearTimeout(timeout);
+    }
+    if (currentIndex === 0) {
+      const timeout = setTimeout(() => {
+        setIsInstant(true);
+        setCurrentIndex(extendedImages.length - 2);
+      }, animationDuration);
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, extendedImages.length, hasMultiple]);
+
+  useEffect(() => {
+    if (isInstant) {
+      const raf = requestAnimationFrame(() => {
+        setIsInstant(false);
+      });
+      return () => cancelAnimationFrame(raf);
+    }
+  }, [isInstant]);
+
+  return (
+    <div
+      style={{ position: "absolute", inset: 0 }}
+      onMouseEnter={() => hasMultiple && setIsHovered(true)}
+      onMouseLeave={() => hasMultiple && setIsHovered(false)}
+    >
+      <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
+        <div
+          style={{
+            display: "flex",
+            height: "100%",
+            transform: `translateX(-${currentIndex * 100}%)`,
+            transition: hasMultiple ? (isInstant ? "none" : "transform 1s ease") : "none"
+          }}
+        >
+          {extendedImages.map((src, index) => (
+            <div key={`${src}-${index}`} style={{ position: "relative", width: "100%", flex: "0 0 100%", flexShrink: 0 }}>
+              <Image
+                src={withBasePath(src)}
+                alt={alt}
+                fill
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "left top"
+                }}
+                unoptimized
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = "none";
+                  if (target.parentElement) {
+                    target.parentElement.style.background = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+                  }
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      {hasMultiple && (
+        <>
+          <button
+            type="button"
+            aria-label="上一张"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              goToPrev();
+            }}
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: 24,
+              transform: "translateY(-50%)",
+              width: 44,
+              height: 44,
+              borderRadius: "50%",
+              border: "1px solid rgba(255,255,255,0.6)",
+              background: "rgba(15,23,42,0.35)",
+              color: "#fff",
+              backdropFilter: "blur(6px)",
+              cursor: "pointer",
+              opacity: isHovered ? 1 : 0,
+              transition: "opacity 0.2s ease"
+            }}
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            aria-label="下一张"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              goToNext();
+            }}
+            style={{
+              position: "absolute",
+              top: "50%",
+              right: 24,
+              transform: "translateY(-50%)",
+              width: 44,
+              height: 44,
+              borderRadius: "50%",
+              border: "1px solid rgba(255,255,255,0.6)",
+              background: "rgba(15,23,42,0.35)",
+              color: "#fff",
+              backdropFilter: "blur(6px)",
+              cursor: "pointer",
+              opacity: isHovered ? 1 : 0,
+              transition: "opacity 0.2s ease"
+            }}
+          >
+            ›
+          </button>
+        </>
+      )}
+    </div>
   );
 }
 

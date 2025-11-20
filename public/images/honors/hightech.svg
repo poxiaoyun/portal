@@ -1,0 +1,23 @@
+<svg width="640" height="420" viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="o1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop stop-color="#fbbf24" offset="0%"/>
+      <stop stop-color="#f97316" offset="100%"/>
+    </linearGradient>
+    <linearGradient id="o2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop stop-color="#fff7ed" offset="0%"/>
+      <stop stop-color="#ffedd5" offset="100%"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="420" rx="32" fill="url(#o2)"/>
+  <rect x="32" y="32" width="576" height="356" rx="30" fill="#fff" stroke="#fed7aa" stroke-width="2"/>
+  <path d="M160 300 L320 80 L480 300 Z" fill="url(#o1)" opacity="0.9"/>
+  <path d="M200 300 L320 140 L440 300 Z" fill="#fff1e6"/>
+  <circle cx="320" cy="200" r="40" fill="#fff7ed" stroke="#f97316" stroke-width="6"/>
+  <text x="80" y="110" font-size="48" font-weight="700" fill="#9a3412">High-Tech Enterprise</text>
+  <text x="80" y="150" font-size="26" fill="#c2410c">国家级高新技术企业</text>
+  <text x="80" y="340" font-size="20" fill="#9a3412">Chengdu Science & Technology Bureau · 2022</text>
+  <rect x="360" y="260" width="200" height="60" rx="999" fill="#fff" stroke="url(#o1)" stroke-width="3"/>
+  <text x="388" y="300" font-size="26" font-weight="600" fill="#c2410c">AI · Cloud Native</text>
+</svg>
+

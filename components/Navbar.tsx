@@ -4,10 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
+import type { RefObject } from "react";
 import { Button } from "@/components/Button";
 import { cn } from "@/lib/utils";
 import Logo from "@/public/images/nav/logo.png";
+import type { Product } from "@/data/products";
 import { products } from "@/data/products";
+import type { OpenSourceProject } from "@/data/openSourceProjects";
+import { openSourceProjects } from "@/data/openSourceProjects";
 import { ChevronDown, Phone } from "lucide-react";
 
 export function Navbar() {
@@ -15,14 +19,24 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
+  const [openSourceDropdownOpen, setOpenSourceDropdownOpen] = useState(false);
   const productsDropdownRef = useRef<HTMLDivElement>(null);
+  const openSourceDropdownRef = useRef<HTMLDivElement>(null);
   const defaultProductHref = products.length ? `/products/${products[0].id}` : "/";
+  const defaultOpenSourceHref = openSourceProjects.length ? openSourceProjects[0]?.externalUrl ?? "/" : "/";
   const links = [
     { href: "/", label: "首页" },
-    { href: defaultProductHref, label: "产品", hasDropdown: true },
+    { href: defaultProductHref, label: "产品", hasDropdown: true, dropdownKey: "products" },
     { href: "/solutions", label: "案例中心" },
     { href: "/blog", label: "公司动态" },
-    { href: "/about", label: "关于我们" }
+    { href: "/about", label: "关于我们" },
+    {
+      href: defaultOpenSourceHref,
+      label: "开源项目",
+      hasDropdown: true,
+      dropdownKey: "openSource",
+      external: Boolean(openSourceProjects[0]?.externalUrl)
+    }
   ];
 
   useEffect(() => {
@@ -37,19 +51,63 @@ export function Navbar() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (productsDropdownRef.current && !productsDropdownRef.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      const clickedInsideProducts = productsDropdownRef.current?.contains(target);
+      const clickedInsideOpenSource = openSourceDropdownRef.current?.contains(target);
+      if (!clickedInsideProducts && !clickedInsideOpenSource) {
         setProductsDropdownOpen(false);
+        setOpenSourceDropdownOpen(false);
       }
     };
 
-    if (productsDropdownOpen) {
+    if (productsDropdownOpen || openSourceDropdownOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [productsDropdownOpen]);
+  }, [productsDropdownOpen, openSourceDropdownOpen]);
+
+  type DropdownItem = Product | OpenSourceProject;
+  type DropdownConfig = {
+    isOpen: boolean;
+    setOpen: (value: boolean) => void;
+    ref: RefObject<HTMLDivElement>;
+    items: DropdownItem[];
+    basePath?: string;
+  };
+
+  const isExternalProject = (item: DropdownItem): item is OpenSourceProject & { externalUrl: string } => {
+    return "externalUrl" in item && Boolean(item.externalUrl);
+  };
+
+  const dropdownConfigs: Record<string, DropdownConfig> = {
+    products: {
+      isOpen: productsDropdownOpen,
+      setOpen: (value: boolean) => {
+        setProductsDropdownOpen(value);
+        if (value) {
+          setOpenSourceDropdownOpen(false);
+        }
+      },
+      ref: productsDropdownRef,
+      items: products,
+      basePath: "/products"
+    },
+    openSource: {
+      isOpen: openSourceDropdownOpen,
+      setOpen: (value: boolean) => {
+        setOpenSourceDropdownOpen(value);
+        if (value) {
+          setProductsDropdownOpen(false);
+        }
+      },
+      ref: openSourceDropdownRef,
+      items: openSourceProjects,
+      basePath: "/open-source"
+    }
+  };
 
   return (
     <header className={cn("navbar", { "navbar--scrolled": scrolled })}>
@@ -63,22 +121,26 @@ export function Navbar() {
           </Link>
           <nav className="navbar__desktop">
             {links.map((link) => {
-              if (link.hasDropdown) {
+              if (link.hasDropdown && link.dropdownKey) {
+                const dropdown = dropdownConfigs[link.dropdownKey];
+                if (!dropdown) {
+                  return null;
+                }
                 return (
                   <div
                     key={link.href}
-                    ref={productsDropdownRef}
+                    ref={dropdown.ref}
                     className="navbar__dropdown"
-                    onMouseLeave={() => setProductsDropdownOpen(false)}
+                    onMouseLeave={() => dropdown.setOpen(false)}
                   >
                     <button
-                      onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
+                      onClick={() => dropdown.setOpen(!dropdown.isOpen)}
                       className="navbar__link"
                       style={{
                         border: "none",
                         cursor: "pointer",
-                        color: pathname?.startsWith("/products") ? "var(--text-primary)" : "var(--text-secondary)",
-                        fontWeight: pathname?.startsWith("/products") ? 600 : 400,
+                        color: pathname?.startsWith(dropdown.basePath) ? "var(--text-primary)" : "var(--text-secondary)",
+                        fontWeight: pathname?.startsWith(dropdown.basePath) ? 600 : 400,
                         fontFamily: "inherit",
                         fontSize: "18px",
                         marginLeft: "12px",
@@ -95,53 +157,90 @@ export function Navbar() {
                         size={16} 
                         style={{ 
                           transition: "transform 0.2s",
-                          transform: productsDropdownOpen ? "rotate(180deg)" : "rotate(0deg)"
+                          transform: dropdown.isOpen ? "rotate(180deg)" : "rotate(0deg)"
                         }} 
                       />
                     </button>
-                    {productsDropdownOpen && (
+                    {dropdown.isOpen && dropdown.items.length > 0 && (
                       <div 
                         className="navbar__dropdownMenu"
-                        onMouseEnter={() => setProductsDropdownOpen(true)}
+                        onMouseEnter={() => dropdown.setOpen(true)}
                       >
-                        {products.map((product) => (
-                          <Link
-                            key={product.id}
-                            href={`/products/${product.id}`}
-                            className="navbar__dropdownItem"
-                            onClick={() => setProductsDropdownOpen(false)}
-                          >
-                            <div className="navbar__dropdownItemIcon">
-                              <Image
-                                src={product.logo}
-                                alt={`${product.name} logo`}
-                                width={32}
-                                height={32}
-                                style={{ objectFit: "contain" }}
-                              />
-                            </div>
-                            <div className="navbar__dropdownItemContent">
-                              <div className="navbar__dropdownItemName">{product.name}</div>
-                              <div className="navbar__dropdownItemTagline">{product.description}</div>
-                            </div>
-                          </Link>
-                        ))}
+                        {dropdown.items.map((item) => {
+                          const isExternal = isExternalProject(item);
+                          const href = isExternal ? item.externalUrl : `${dropdown.basePath}/${item.id}`;
+                          const content = (
+                            <>
+                              <div className="navbar__dropdownItemIcon">
+                                <Image
+                                  src={item.logo}
+                                  alt={`${item.name} logo`}
+                                  width={32}
+                                  height={32}
+                                  style={{ objectFit: "contain" }}
+                                />
+                              </div>
+                              <div className="navbar__dropdownItemContent">
+                                <div className="navbar__dropdownItemName">{item.name}</div>
+                                <div className="navbar__dropdownItemTagline">{item.description}</div>
+                              </div>
+                            </>
+                          );
+                          if (!href) {
+                            return null;
+                          }
+                          return isExternal ? (
+                            <a
+                              key={item.id}
+                              href={href}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="navbar__dropdownItem"
+                              onClick={() => dropdown.setOpen(false)}
+                            >
+                              {content}
+                            </a>
+                          ) : (
+                            <Link
+                              key={item.id}
+                              href={href}
+                              className="navbar__dropdownItem"
+                              onClick={() => dropdown.setOpen(false)}
+                            >
+                              {content}
+                            </Link>
+                          );
+                        })}
                       </div>
                     )}
                   </div>
                 );
               }
-              const isActive = link.hasDropdown ? pathname?.startsWith("/products") : pathname === link.href;
+              const isActive = link.hasDropdown
+                ? pathname?.startsWith(link.dropdownKey === "openSource" ? "/open-source" : "/products")
+                : pathname === link.href;
+              const isExternal = Boolean(link.external);
+              const linkStyle = {
+                color: isActive ? "var(--text-primary)" : "var(--text-secondary)",
+                fontWeight: isActive ? 600 : 400,
+                textDecoration: "none"
+              } as const;
+              if (isExternal) {
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="navbar__link"
+                    style={linkStyle}
+                  >
+                    {link.label}
+                  </a>
+                );
+              }
               return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="navbar__link"
-                  style={{
-                    color: isActive ? "var(--text-primary)" : "var(--text-secondary)",
-                    fontWeight: isActive ? 600 : 400
-                  }}
-                >
+                <Link key={link.href} href={link.href} className="navbar__link" style={linkStyle}>
                   {link.label}
                 </Link>
               );
@@ -195,50 +294,95 @@ export function Navbar() {
       {open && (
         <div className="navbar__mobileMenu">
             {links.map((link) => {
-              const isActive = link.hasDropdown ? pathname?.startsWith("/products") : pathname === link.href;
+              const dropdown = link.hasDropdown && link.dropdownKey ? dropdownConfigs[link.dropdownKey] : null;
+              const basePath = dropdown?.basePath;
+              const isActive = link.hasDropdown ? pathname?.startsWith(basePath || "") : pathname === link.href;
+              const isExternalTopLink = Boolean(link.external);
               return (
               <div key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="navbar__link"
-                  style={{
-                    display: "block",
-                    marginBottom: 12,
+                {isExternalTopLink ? (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => setOpen(false)}
+                    className="navbar__link"
+                    style={{
+                      display: "block",
+                      marginBottom: 12,
                       color: isActive ? "var(--text-primary)" : "var(--text-secondary)"
-                  }}
-                >
-                  {link.label}
-                </Link>
-                {link.hasDropdown && (
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="navbar__link"
+                    style={{
+                      display: "block",
+                      marginBottom: 12,
+                        color: isActive ? "var(--text-primary)" : "var(--text-secondary)"
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                )}
+                {link.hasDropdown && dropdown && dropdown.items.length > 0 && (
                   <div style={{ marginLeft: 16, marginBottom: 12 }}>
-                    {products.map((product) => (
-                      <Link
-                        key={product.id}
-                        href={`/products/${product.id}`}
-                        onClick={() => setOpen(false)}
-                        className="navbar__link"
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 8,
-                          marginBottom: 8,
-                          color: pathname === `/products/${product.id}` ? "var(--text-primary)" : "var(--text-secondary)"
-                        }}
-                      >
-                        <Image
-                          src={product.logo}
-                          alt={`${product.name} logo`}
-                          width={24}
-                          height={24}
-                          style={{ objectFit: "contain" }}
-                        />
-                        <div>
-                          <div style={{ fontWeight: 500 }}>{product.name}</div>
-                          <div style={{ fontSize: 12, color: "var(--text-secondary)" }}>{product.description}</div>
-                        </div>
-                      </Link>
-                    ))}
+                    {dropdown.items.map((item) => {
+                      const isExternal = isExternalProject(item);
+                      const href = isExternal ? item.externalUrl : `${dropdown.basePath}/${item.id}`;
+                      if (!href) {
+                        return null;
+                      }
+                      const content = (
+                        <>
+                          <Image
+                            src={item.logo}
+                            alt={`${item.name} logo`}
+                            width={24}
+                            height={24}
+                            style={{ objectFit: "contain" }}
+                          />
+                          <div>
+                            <div style={{ fontWeight: 500 }}>{item.name}</div>
+                            <div style={{ fontSize: 12, color: "var(--text-secondary)" }}>{item.description}</div>
+                          </div>
+                        </>
+                      );
+                      const commonStyle = {
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 8,
+                        marginBottom: 8,
+                        color: pathname === `${dropdown.basePath}/${item.id}` ? "var(--text-primary)" : "var(--text-secondary)"
+                      } as const;
+                      return isExternal ? (
+                        <a
+                          key={item.id}
+                          href={href}
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={() => setOpen(false)}
+                          className="navbar__link"
+                          style={commonStyle}
+                        >
+                          {content}
+                        </a>
+                      ) : (
+                        <Link
+                          key={item.id}
+                          href={href}
+                          onClick={() => setOpen(false)}
+                          className="navbar__link"
+                          style={commonStyle}
+                        >
+                          {content}
+                        </Link>
+                      );
+                    })}
                   </div>
                 )}
               </div>

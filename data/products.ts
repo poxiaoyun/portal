@@ -33,14 +33,6 @@ export const products: Product[] = [
     description: "Moha 提供私有化的AI资产仓库服务，支持数据加密，帮助企业实现模型、数据集的私有化管理与安全存储。"
   },
   {
-    id: "kubegems",
-    logo: "/images/nav/kubegems-logo.svg",
-    name: "KubeGems · 开源容器云",
-    badge: "容器云",
-    tagline: "云原生开源容器应用管理平台",
-    description: "KubeGems 一款功能强大的开源容器管理平台，具备多集群、容器应用的统一管理、编排、可观测性等能力。"
-  },
-  {
     id: "ai-router",
     logo: "/images/nav/logo.png",
     name: "MAPI · 智能 AI 网关",

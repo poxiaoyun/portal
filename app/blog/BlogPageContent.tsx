@@ -3,25 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Card, Typography, Row, Col } from "antd";
-
-const posts = [
-  {
-    slug: "cloud-native-observability",
-    title: "构建可观测的云原生基础设施",
-    excerpt: "从多集群到服务网格，如何通过统一的指标、日志与追踪体系打造企业级可观测能力。",
-    date: "2025-01-15",
-    readingTime: "8 min",
-    image: "/images/blog/cloud-native.svg"
-  },
-  {
-    slug: "ai-platform-landing",
-    title: "AI 智算平台落地的关键要素",
-    excerpt: "以 XPAI 为例，分享模型生命周期治理、算力调度与 FinOps 的实践方法。",
-    date: "2025-02-02",
-    readingTime: "10 min",
-    image: "/images/blog/ai-platform.svg"
-  }
-];
+import { blogPosts } from "@/data/blogPosts";
 
 export function BlogPageContent() {
   return (
@@ -33,7 +15,7 @@ export function BlogPageContent() {
         </Typography.Paragraph>
       </header>
       <Row gutter={[24, 24]}>
-        {posts.map((post) => (
+        {blogPosts.map((post) => (
           <Col xs={24} md={12} key={post.slug}>
             <Link href={`/blog/${post.slug}`} style={{ textDecoration: "none" }}>
               <Card
