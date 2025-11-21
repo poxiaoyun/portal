@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { BlogPageContent } from "./BlogPageContent";
+import { NewsList } from "./NewsList";
+import { getNewsPosts } from "@/lib/news";
 
 export const metadata: Metadata = {
   title: "公司动态",
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
-  return <BlogPageContent />;
+  const posts = getNewsPosts();
+  return <NewsList posts={posts} />;
 }
 
