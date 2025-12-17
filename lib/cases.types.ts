@@ -41,13 +41,14 @@ export interface CasePost {
   advantages?: CaseAdvantage[];
 }
 
-export type IndustryKey = 'all' | 'energy' | 'manufacturing' | 'education' | 'operator';
+export type IndustryKey = 'all' | 'energy' | 'manufacturing' | 'education' | 'operator' | 'transportation';
 
 export const industryMap: Record<string, { key: IndustryKey; label: string }> = {
   energy: { key: 'energy', label: '能源' },
   manufacturing: { key: 'manufacturing', label: '制造设计' },
   education: { key: 'education', label: '高校' },
   operator: { key: 'operator', label: '运营商' },
+  transportation: { key: 'transportation', label: '交通' },
 };
 
 export const industryTabs: { key: IndustryKey; label: string }[] = [
@@ -56,4 +57,5 @@ export const industryTabs: { key: IndustryKey; label: string }[] = [
   { key: 'manufacturing', label: '制造设计' },
   { key: 'education', label: '高校' },
   { key: 'operator', label: '运营商' },
+  { key: 'transportation', label: '交通' },
 ];

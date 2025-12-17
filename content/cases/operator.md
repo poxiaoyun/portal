@@ -1,11 +1,11 @@
 ---
-title: "某运营商 AI 基础设施建设"
+title: "智算平台"
 date: "2025-11-08"
 coverImage: "/images/cases/operator-ai.jpg"
 excerpt: "为某大型通信运营商构建企业级 AI 基础设施平台，支撑智能客服、网络优化、业务预测等多场景 AI 应用。"
 industry: "operator"
 industryLabel: "运营商"
-customer: "某运营商"
+customer: "类型"
 goal: "AI 基础设施"
 tags: ["运营商", "AI 基础设施", "智能客服", "网络优化"]
 

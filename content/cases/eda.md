@@ -1,11 +1,11 @@
 ---
-title: "派兹互联 PCB 设计 AI 赋能"
+title: "电路设计"
 date: "2025-09-15"
-coverImage: "/images/cases/paizi-pcb.jpg"
-excerpt: "为派兹互联提供 AI 智算平台，赋能 PCB 电路板设计流程，通过 AI 辅助设计大幅提升研发效率。"
+coverImage: "/images/cases/eda.jpg"
+excerpt: "赋能 PCB 电路板设计流程，通过 AI 辅助设计大幅提升研发效率。"
 industry: "manufacturing"
-industryLabel: "制造设计"
-customer: "派兹互联"
+industryLabel: "制造"
+customer: "类型"
 goal: "赋能 PCB 设计 AI，提高效率"
 tags: ["AI 智算", "PCB 设计", "智能制造", "研发提效"]
 

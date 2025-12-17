@@ -10,6 +10,59 @@ import type { CasePost, IndustryKey } from './cases.types';
 
 const casesDirectory = path.join(process.cwd(), 'content/cases');
 
+function normalizeDate(value: unknown): string {
+  if (!value) return '';
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    return value.toISOString().slice(0, 10);
+  }
+  if (typeof value === 'string') {
+    return value;
+  }
+  return String(value);
+}
+
+function normalizeStringArray(value: unknown): string[] {
+  if (!value) return [];
+  if (Array.isArray(value)) {
+    return value
+      .map((v) => (typeof v === 'string' ? v : String(v)))
+      .filter((v) => v.trim().length > 0);
+  }
+  if (typeof value === 'string') {
+    return value
+      .split(',')
+      .map((v) => v.trim())
+      .filter(Boolean);
+  }
+  return [String(value)].filter(Boolean);
+}
+
+function normalizeFrontMatter(
+  slug: string,
+  content: string,
+  data: Record<string, unknown>
+): CasePost {
+  const tags = normalizeStringArray(data.tags);
+
+  return {
+    slug,
+    content,
+    title: typeof data.title === 'string' ? data.title : slug,
+    date: normalizeDate(data.date),
+    coverImage: typeof data.coverImage === 'string' ? data.coverImage : '',
+    excerpt: typeof data.excerpt === 'string' ? data.excerpt : '',
+    industry: typeof data.industry === 'string' ? data.industry : 'all',
+    industryLabel: typeof data.industryLabel === 'string' ? data.industryLabel : '',
+    customer: typeof data.customer === 'string' ? data.customer : '',
+    goal: typeof data.goal === 'string' ? data.goal : '',
+    tags,
+    challenges: Array.isArray(data.challenges) ? (data.challenges as any) : [],
+    solutions: Array.isArray(data.solutions) ? (data.solutions as any) : [],
+    results: Array.isArray(data.results) ? (data.results as any) : [],
+    advantages: Array.isArray(data.advantages) ? (data.advantages as any) : [],
+  };
+}
+
 export function getCasePosts(): CasePost[] {
   // Ensure directory exists
   if (!fs.existsSync(casesDirectory)) {
@@ -25,15 +78,19 @@ export function getCasePosts(): CasePost[] {
       const fileContents = fs.readFileSync(fullPath, 'utf8');
       const { data, content } = matter(fileContents);
 
-      return {
+      return normalizeFrontMatter(
         slug,
         content,
-        ...(data as Omit<CasePost, 'slug' | 'content'>),
-      };
+        (data || {}) as Record<string, unknown>
+      );
     });
 
   // Sort cases by date (newest first)
-  return allCases.sort((a, b) => (a.date < b.date ? 1 : -1));
+  return allCases.sort((a, b) => {
+    const aTime = a.date ? new Date(a.date).getTime() : 0;
+    const bTime = b.date ? new Date(b.date).getTime() : 0;
+    return bTime - aTime;
+  });
 }
 
 export function getCasePost(slug: string): CasePost | null {
@@ -46,11 +103,7 @@ export function getCasePost(slug: string): CasePost | null {
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
 
-  return {
-    slug,
-    content,
-    ...(data as Omit<CasePost, 'slug' | 'content'>),
-  };
+  return normalizeFrontMatter(slug, content, (data || {}) as Record<string, unknown>);
 }
 
 export function getCasesByIndustry(industry: IndustryKey): CasePost[] {

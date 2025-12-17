@@ -232,22 +232,24 @@ export default function CaseDetailPage({ params }: { params: Params }) {
       )}
 
       {/* Tags */}
-      <section className="py-8 bg-white border-t border-slate-200">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto flex items-center gap-4 flex-wrap">
-            <span className="text-slate-500 text-sm">相关标签：</span>
-            {casePost.tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-3 py-1 rounded-full text-sm"
-                style={{ background: "#f0f5ff", color: "#0a7cff" }}
-              >
-                {tag}
-              </span>
-            ))}
+      {casePost.tags && casePost.tags.length > 0 && (
+        <section className="py-8 bg-white border-t border-slate-200">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto flex items-center gap-4 flex-wrap">
+              <span className="text-slate-500 text-sm">相关标签：</span>
+              {casePost.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1 rounded-full text-sm"
+                  style={{ background: "#f0f5ff", color: "#0a7cff" }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* CTA Section */}
       <section

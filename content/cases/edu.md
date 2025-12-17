@@ -1,11 +1,11 @@
 ---
-title: "西安交大教学算力管理平台"
+title: "高校科研"
 date: "2025-05-20"
 coverImage: "/images/cases/xjtu-edu.jpg"
 excerpt: "为西安交通大学构建统一的教学算力管理平台，支撑 AI 课程教学和科研实验，实现算力资源的高效共享。"
 industry: "education"
-industryLabel: "高校"
-customer: "西安交通大学"
+industryLabel: "科研"
+customer: "类型"
 goal: "教学、算力管理"
 tags: ["高校", "算力共享", "AI 教学", "科研平台"]
 

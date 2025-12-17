@@ -1,11 +1,11 @@
 ---
-title: "马基努油田 IT 信息化转型"
+title: "石油油田"
 date: "2025-07-24"
-coverImage: "/images/cases/majnoon-oil.jpg"
+coverImage: "/images/cases/oil.jpg"
 excerpt: "为伊拉克马基努油田提供全面的 IT 信息化转型解决方案，构建智慧油田数字化底座，实现生产运营的智能化管理。"
 industry: "energy"
 industryLabel: "能源"
-customer: "马基努油田"
+customer: "类型"
 goal: "IT 信息化转型"
 tags: ["混合云", "数字化转型", "智慧油田", "边缘计算"]
 
