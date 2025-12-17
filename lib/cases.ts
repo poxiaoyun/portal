@@ -10,6 +10,33 @@ import type { CasePost, IndustryKey } from './cases.types';
 
 const casesDirectory = path.join(process.cwd(), 'content/cases');
 
+function sanitizeMarkdownFileContents(input: string): string {
+  return input.replace(/\u0000/g, '').replace(/\r\n/g, '\n');
+}
+
+function parseMatterWithFallback(fileContents: string) {
+  const sanitized = sanitizeMarkdownFileContents(fileContents);
+
+  try {
+    return matter(sanitized);
+  } catch (error) {
+    // YAML is strict: tabs are invalid indentation. Some editors may insert tabs.
+    // Attempt a conservative fix: replace tabs with spaces *only* inside front matter.
+    if (sanitized.startsWith('---')) {
+      const match = sanitized.match(/^---\s*\n([\s\S]*?)\n---\s*\n?/);
+      if (match) {
+        const frontMatter = match[1];
+        const rest = sanitized.slice(match[0].length);
+        const fixedFrontMatter = frontMatter.replace(/\t/g, '  ');
+        const fixed = `---\n${fixedFrontMatter}\n---\n${rest}`;
+        return matter(fixed);
+      }
+    }
+
+    throw error;
+  }
+}
+
 function normalizeDate(value: unknown): string {
   if (!value) return '';
   if (value instanceof Date && !Number.isNaN(value.getTime())) {
@@ -76,7 +103,7 @@ export function getCasePosts(): CasePost[] {
       const slug = fileName.replace(/\.md$/, '');
       const fullPath = path.join(casesDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data, content } = matter(fileContents);
+      const { data, content } = parseMatterWithFallback(fileContents);
 
       return normalizeFrontMatter(
         slug,
@@ -101,7 +128,7 @@ export function getCasePost(slug: string): CasePost | null {
   }
 
   const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const { data, content } = matter(fileContents);
+  const { data, content } = parseMatterWithFallback(fileContents);
 
   return normalizeFrontMatter(slug, content, (data || {}) as Record<string, unknown>);
 }
