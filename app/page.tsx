@@ -90,7 +90,7 @@ export default function HomePage() {
         title="为 AI 云原生创造好内核"
         description="专注云原生开源、混合云与 AI 智算平台，为企业提供覆盖容器云、混合云、智算云及 AI 能力的全栈解决方案。"
         ctaPrimary={{ label: "预约演示", href: "/contact" }}
-        badge={<Tag color="black">Powered by GPT-5.1</Tag>}
+        badge={<Tag color="black">Powered by Github Copilot</Tag>}
       />
 
       <section style={{ maxWidth: 1400, margin: "0 auto", padding: "40px 24px" }}>
