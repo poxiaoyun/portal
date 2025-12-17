@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCasePost, getCasePosts } from "@/lib/cases";
-import { ArrowLeft, Download, MessageCircle } from "lucide-react";
+import { ArrowLeft, MessageCircle } from "lucide-react";
 
 type Params = { slug: string };
 
@@ -43,14 +43,15 @@ export default function CaseDetailPage({ params }: { params: Params }) {
       <section
         className="relative w-full py-20 md:py-28"
         style={{
-          background: "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)",
+          background:
+            "linear-gradient(135deg, rgb(var(--brand-rgb) / 0.10) 0%, rgb(var(--brand-rgb) / 0.04) 60%, rgb(var(--brand-rgb) / 0.08) 100%)",
         }}
       >
         {/* Back Button */}
         <div className="absolute top-6 left-6 z-10">
           <Link
             href="/cases"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white/80 hover:bg-white/20 hover:text-white transition-all text-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-sm text-slate-700 hover:bg-white/80 transition-all text-sm border border-slate-200"
           >
             <ArrowLeft size={16} />
             <span>返回案例中心</span>
@@ -59,21 +60,13 @@ export default function CaseDetailPage({ params }: { params: Params }) {
 
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            {/* Industry Badge */}
-            <span
-              className="inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-6"
-              style={{ background: "rgba(10, 124, 255, 0.2)", color: "#60a5fa" }}
-            >
-              {casePost.industryLabel}
-            </span>
-
             {/* Title */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
               {casePost.title}
             </h1>
 
             {/* Excerpt */}
-            <p className="text-lg md:text-xl text-slate-300 mb-8 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed max-w-3xl mx-auto">
               {casePost.excerpt}
             </p>
 
@@ -87,34 +80,6 @@ export default function CaseDetailPage({ params }: { params: Params }) {
                 <MessageCircle size={18} />
                 咨询专家
               </Link>
-              <button
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all border border-white/30 text-white hover:bg-white/10"
-              >
-                <Download size={18} />
-                资料下载
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Customer Info Bar */}
-      <section className="bg-white border-b border-slate-200">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto py-6 flex items-center justify-center gap-8 md:gap-16 flex-wrap text-center">
-            <div>
-              <p className="text-sm text-slate-500 mb-1">客户</p>
-              <p className="font-semibold text-slate-900">{casePost.customer}</p>
-            </div>
-            <div className="w-px h-10 bg-slate-200 hidden md:block" />
-            <div>
-              <p className="text-sm text-slate-500 mb-1">行业</p>
-              <p className="font-semibold text-slate-900">{casePost.industryLabel}</p>
-            </div>
-            <div className="w-px h-10 bg-slate-200 hidden md:block" />
-            <div>
-              <p className="text-sm text-slate-500 mb-1">项目目标</p>
-              <p className="font-semibold text-slate-900">{casePost.goal}</p>
             </div>
           </div>
         </div>
@@ -299,15 +264,16 @@ export default function CaseDetailPage({ params }: { params: Params }) {
       <section
         className="py-20"
         style={{
-          background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+          background:
+            "linear-gradient(135deg, rgb(var(--brand-rgb) / 0.10) 0%, rgb(var(--brand-rgb) / 0.04) 60%, rgb(var(--brand-rgb) / 0.08) 100%)",
         }}
       >
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
               立刻开启数智化转型
             </h2>
-            <p className="text-slate-300 mb-8">
+            <p className="text-slate-600 mb-8">
               强大、全面、专业的云原生与 AI 智算服务，加速业务创新之旅！
             </p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
@@ -320,7 +286,7 @@ export default function CaseDetailPage({ params }: { params: Params }) {
               </Link>
               <Link
                 href="/cases"
-                className="inline-flex items-center gap-2 px-8 py-3 rounded-lg font-medium transition-all border border-white/30 text-white hover:bg-white/10"
+                className="inline-flex items-center gap-2 px-8 py-3 rounded-lg font-medium transition-all border border-slate-300 text-slate-700 hover:bg-white/60"
               >
                 查看更多案例
               </Link>

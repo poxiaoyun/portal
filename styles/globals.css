@@ -5,6 +5,7 @@
 :root {
   color-scheme: light;
   --brand: #0a7cff;
+  --brand-rgb: 10 124 255;
   --bg-page: #f5f7fb;
   --text-primary: #0f172a;
   --text-secondary: #475467;
