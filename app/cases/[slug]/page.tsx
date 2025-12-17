@@ -97,7 +97,7 @@ export default function CaseDetailPage({ params }: { params: Params }) {
       {casePost.challenges && casePost.challenges.length > 0 && (
         <section className="py-16 md:py-24 bg-slate-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-7xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-slate-900 text-center mb-12">
                 挑战和痛点
               </h2>
@@ -131,7 +131,7 @@ export default function CaseDetailPage({ params }: { params: Params }) {
       {casePost.solutions && casePost.solutions.length > 0 && (
         <section className="py-16 md:py-24 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-7xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-slate-900 text-center mb-12">
                 解决方案
               </h2>
@@ -175,7 +175,7 @@ export default function CaseDetailPage({ params }: { params: Params }) {
       {casePost.results && casePost.results.length > 0 && (
         <section className="py-16 md:py-24 bg-slate-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-7xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-slate-900 text-center mb-12">
                 项目成效
               </h2>
@@ -204,7 +204,7 @@ export default function CaseDetailPage({ params }: { params: Params }) {
       {casePost.advantages && casePost.advantages.length > 0 && (
         <section className="py-16 md:py-24 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-7xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-slate-900 text-center mb-12">
                 方案优势
               </h2>
@@ -232,24 +232,22 @@ export default function CaseDetailPage({ params }: { params: Params }) {
       )}
 
       {/* Tags */}
-      {casePost.tags && casePost.tags.length > 0 && (
-        <section className="py-8 bg-white border-t border-slate-200">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto flex items-center gap-4 flex-wrap">
-              <span className="text-slate-500 text-sm">相关标签：</span>
-              {casePost.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 rounded-full text-sm"
-                  style={{ background: "#f0f5ff", color: "#0a7cff" }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+      <section className="py-8 bg-white border-t border-slate-200">
+        <div className="container mx-auto px-4">
+          <div className="max-w-7xl mx-auto flex items-center gap-4 flex-wrap">
+            <span className="text-slate-500 text-sm">相关标签：</span>
+            {casePost.tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-3 py-1 rounded-full text-sm"
+                style={{ background: "#f0f5ff", color: "#0a7cff" }}
+              >
+                {tag}
+              </span>
+            ))}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section
