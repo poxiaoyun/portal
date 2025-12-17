@@ -28,7 +28,7 @@ export function Navbar() {
   const links = [
     { href: "/", label: "首页" },
     { href: defaultProductHref, label: "产品", hasDropdown: true, dropdownKey: "products" },
-    { href: "/solutions", label: "案例中心" },
+    { href: "/cases", label: "案例中心" },
     { href: "/blog", label: "公司动态" },
     { href: "/about", label: "关于我们" },
     {
