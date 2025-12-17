@@ -39,34 +39,42 @@ export default function CaseDetailPage({ params }: { params: Params }) {
 
   return (
     <article>
-      {/* Hero Section */}
-      <section
-        className="relative w-full py-20 md:py-28"
-        style={{
-          background:
-            "linear-gradient(135deg, rgb(var(--brand-rgb) / 0.10) 0%, rgb(var(--brand-rgb) / 0.04) 60%, rgb(var(--brand-rgb) / 0.08) 100%)",
-        }}
-      >
+      {/* Hero Section with Cover Image Background */}
+      <section className="relative w-full py-24 md:py-32 min-h-[400px] md:min-h-[480px] flex items-center">
+        {/* Background Image */}
+        {casePost.coverImage && (
+          <Image
+            src={casePost.coverImage}
+            alt={casePost.title}
+            fill
+            style={{ objectFit: "cover" }}
+            priority
+            className="z-0"
+          />
+        )}
+        {/* Dark Overlay for contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70 z-[1]" />
+
         {/* Back Button */}
         <div className="absolute top-6 left-6 z-10">
           <Link
             href="/cases"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-sm text-slate-700 hover:bg-white/80 transition-all text-sm border border-slate-200"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/30 transition-all text-sm border border-white/30"
           >
             <ArrowLeft size={16} />
             <span>返回案例中心</span>
           </Link>
         </div>
 
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 relative z-[2]">
           <div className="max-w-4xl mx-auto text-center">
             {/* Title */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
               {casePost.title}
             </h1>
 
             {/* Excerpt */}
-            <p className="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto drop-shadow">
               {casePost.excerpt}
             </p>
 
@@ -74,7 +82,7 @@ export default function CaseDetailPage({ params }: { params: Params }) {
             <div className="flex items-center justify-center gap-4 flex-wrap">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-medium transition-all hover:opacity-90"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-medium transition-all hover:opacity-90 shadow-lg"
                 style={{ background: "var(--brand)" }}
               >
                 <MessageCircle size={18} />
@@ -217,25 +225,6 @@ export default function CaseDetailPage({ params }: { params: Params }) {
                     </p>
                   </div>
                 ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Cover Image Section */}
-      {casePost.coverImage && (
-        <section className="py-16 bg-slate-50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <div className="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl">
-                <Image
-                  src={casePost.coverImage}
-                  alt={casePost.title}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  priority
-                />
               </div>
             </div>
           </div>
