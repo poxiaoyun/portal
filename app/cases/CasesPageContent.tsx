@@ -4,8 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Typography, Tabs, Tag, Space } from "antd";
-import type { CasePost, IndustryKey } from "@/lib/cases";
-import { industryTabs } from "@/lib/cases";
+import type { CasePost, IndustryKey } from "@/lib/cases.types";
+import { industryTabs } from "@/lib/cases.types";
 
 interface CasesPageContentProps {
   cases: CasePost[];
