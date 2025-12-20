@@ -217,7 +217,7 @@ export default function HomePage() {
                       <Button 
                         type="primary" 
                         size="small" 
-                        href="/solutions" 
+                        href="/cases" 
                         style={{ 
                           background: "transparent", 
                           borderColor: "#fff",
