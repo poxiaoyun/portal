@@ -30,6 +30,7 @@ export function Navbar() {
     { href: defaultProductHref, label: "产品", hasDropdown: true, dropdownKey: "products" },
     { href: "/cases", label: "案例中心" },
     { href: "/blog", label: "公司动态" },
+    { href: "https://poxiaoyun.github.io/docs/", label: "文档中心", external: true },
     { href: "/about", label: "关于我们" },
     {
       href: defaultOpenSourceHref,
