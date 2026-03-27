@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { products } from "@/data/products";
-import { blogPosts } from "@/data/blogPosts";
+import { getNewsPosts } from "@/lib/news";
 
 interface RouteConfig {
   path: string;
@@ -12,6 +12,7 @@ interface RouteConfig {
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.poxiaoshi.com";
   const now = new Date();
+  const newsPosts = getNewsPosts();
 
   const staticRoutes: RouteConfig[] = [
     { path: "", priority: 1, changeFrequency: "weekly", lastModified: now },
@@ -28,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now
   }));
 
-  const blogRoutes: RouteConfig[] = blogPosts.map((post) => ({
+  const blogRoutes: RouteConfig[] = newsPosts.map((post) => ({
     path: `/blog/${post.slug}`,
     priority: 0.7,
     changeFrequency: "monthly",
