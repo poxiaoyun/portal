@@ -29,8 +29,9 @@ export function Navbar() {
     { href: "/", label: "首页" },
     { href: defaultProductHref, label: "产品", hasDropdown: true, dropdownKey: "products" },
     { href: "/cases", label: "案例中心" },
+    { href: "https://ppt.poxiaoshi.cn", label: "解决方案", external: true },
+    { href: "https://docs.poxiaoshi.cn", label: "文档中心", external: true },
     { href: "/blog", label: "公司动态" },
-    { href: "https://poxiaoyun.github.io/docs/", label: "文档中心", external: true },
     { href: "/about", label: "关于我们" },
     {
       href: defaultOpenSourceHref,
@@ -431,4 +432,3 @@ export function Navbar() {
     </header>
   );
 }
-
