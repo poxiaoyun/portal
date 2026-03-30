@@ -5,31 +5,68 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Inter } from "next/font/google";
 import { AntdProvider } from "@/components/AntdProvider";
+import { siteConfig } from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
-const baseDescription =
-  "成都破晓石科技有限公司专注云原生、混合云与 AI 智算领域，提供 XAMP 混合云平台、XPAI 智算平台与 KubeGems 开源方案。";
-
 export const metadata: Metadata = {
   title: {
-    default: "成都破晓石科技 | 原生无界·破晓时刻",
-    template: "%s | 成都破晓石科技"
+    default: siteConfig.title,
+    template: `%s | ${siteConfig.shortName}`
   },
-  description: baseDescription,
-  metadataBase: new URL("https://www.poxiaoshi.com"),
+  description: siteConfig.defaultDescription,
+  keywords: [...siteConfig.defaultKeywords],
+  metadataBase: new URL(siteConfig.url),
+  alternates: {
+    canonical: siteConfig.url
+  },
+  applicationName: siteConfig.shortName,
+  category: "technology",
+  classification: "云原生, 混合云, AI 智算, 企业数字化",
+  referrer: "origin-when-cross-origin",
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  authors: [{ name: siteConfig.name }],
+  formatDetection: {
+    email: false,
+    telephone: false,
+    address: false
+  },
   openGraph: {
-    title: "成都破晓石科技 | 原生无界·破晓时刻",
-    description: baseDescription,
+    title: siteConfig.title,
+    description: siteConfig.defaultDescription,
     type: "website",
-    url: "https://www.poxiaoshi.com",
-    images: [{ url: "/og.png", width: 1200, height: 630 }]
+    url: siteConfig.url,
+    siteName: siteConfig.shortName,
+    locale: siteConfig.locale,
+    images: [{ url: siteConfig.ogImage, width: 1200, height: 630 }]
   },
   twitter: {
     card: "summary_large_image",
-    title: "成都破晓石科技 | 原生无界·破晓时刻",
-    description: baseDescription,
-    images: ["/og.png"]
+    title: siteConfig.title,
+    description: siteConfig.defaultDescription,
+    images: [siteConfig.ogImage]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1
+    }
+  },
+  other: {
+    "geo.region": siteConfig.region,
+    "geo.placename": `${siteConfig.city}, China`,
+    ICBM: `${siteConfig.coordinates.latitude}, ${siteConfig.coordinates.longitude}`,
+    "distribution": "global",
+    "rating": "general",
+    "content-language": siteConfig.language,
+    "applicable-device": "pc,mobile"
   }
 };
 
@@ -46,4 +83,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-

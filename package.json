@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "seo:generate": "node scripts/generate-seo-files.mjs",
+    "dev": "npm run seo:generate && next dev",
+    "build": "npm run seo:generate && next build",
     "start": "next start",
     "lint": "next lint"
   },

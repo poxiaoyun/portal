@@ -1,3 +1,5 @@
+import { absoluteUrl, siteConfig } from "@/lib/site";
+
 interface SeoHeadProps {
   title: string;
   description: string;
@@ -9,10 +11,10 @@ export function SeoHead({ title, description, url, image = "/og.png" }: SeoHeadP
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "成都破晓石科技有限公司",
+    name: siteConfig.name,
     url,
-    sameAs: ["https://github.com/poxiaoyun"],
-    logo: "/og.png",
+    sameAs: [...siteConfig.socialProfiles],
+    logo: absoluteUrl(siteConfig.ogImage),
     description
   };
   return (
@@ -21,11 +23,10 @@ export function SeoHead({ title, description, url, image = "/og.png" }: SeoHeadP
       <meta name="description" content={description} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={image} />
+      <meta property="og:image" content={absoluteUrl(image)} />
       <meta property="og:url" content={url} />
       <meta name="twitter:card" content="summary_large_image" />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>
   );
 }
-

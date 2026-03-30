@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+Host: www.poxiaoshi.cn
+Sitemap: https://www.poxiaoshi.cn/sitemap.xml

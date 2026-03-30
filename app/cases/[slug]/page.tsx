@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCasePost, getCasePosts } from "@/lib/cases";
 import { ArrowLeft, MessageCircle } from "lucide-react";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 
 type Params = { slug: string };
 
@@ -19,13 +20,28 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const casePost = getCasePost(params.slug);
   if (!casePost) return { title: "案例未找到" };
+
+  const canonical = absoluteUrl(`/cases/${casePost.slug}`);
+
   return {
-    title: `${casePost.title} - 案例中心 - 晓石云`,
+    title: `${casePost.title} - 案例中心`,
     description: casePost.excerpt,
+    alternates: {
+      canonical
+    },
+    keywords: [...siteConfig.defaultKeywords, ...casePost.tags, casePost.industryLabel || "行业案例"],
     openGraph: {
       title: casePost.title,
       description: casePost.excerpt,
+      type: "article",
+      url: canonical,
       images: [{ url: casePost.coverImage }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: casePost.title,
+      description: casePost.excerpt,
+      images: [casePost.coverImage]
     },
   };
 }
@@ -37,8 +53,40 @@ export default function CaseDetailPage({ params }: { params: Params }) {
     return notFound();
   }
 
+  const caseJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: casePost.title,
+    description: casePost.excerpt,
+    image: casePost.coverImage ? [absoluteUrl(casePost.coverImage)] : undefined,
+    datePublished: casePost.date,
+    dateModified: casePost.date,
+    inLanguage: siteConfig.language,
+    mainEntityOfPage: absoluteUrl(`/cases/${casePost.slug}`),
+    about: [
+      casePost.industryLabel || casePost.industry,
+      ...casePost.tags
+    ],
+    author: {
+      "@type": "Organization",
+      name: siteConfig.name
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl(siteConfig.ogImage)
+      }
+    }
+  };
+
   return (
     <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseJsonLd) }}
+      />
       {/* Hero Section with Cover Image Background */}
       <section className="relative w-full py-24 md:py-32 min-h-[400px] md:min-h-[480px] flex items-center">
         {/* Background Image */}
