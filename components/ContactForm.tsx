@@ -1,39 +1,31 @@
 "use client";
 
-import { useState } from "react";
 import { Form, Input, message, Row, Col } from "antd";
 import { Button } from "@/components/Button";
-import { sanitizeInput } from "@/lib/utils";
+import { siteConfig } from "@/lib/site";
 
 export function ContactForm() {
-  const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
 
-  const handleSubmit = async (values: Record<string, string>) => {
-    setLoading(true);
-    try {
-      const payload = Object.fromEntries(
-        Object.entries(values).map(([key, value]) => [key, sanitizeInput(value)])
-      );
+  const handleSubmit = (values: Record<string, string>) => {
+    const subject = `官网合作咨询 - ${values.company} ${values.name}`;
+    const body = [
+      `姓名：${values.name}`,
+      `公司：${values.company}`,
+      `邮箱：${values.email}`,
+      `电话：${values.phone}`,
+      "",
+      "需求描述：",
+      values.message
+    ].join("\n");
 
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-    });
+    // 静态导出站点不支持 API 路由，通过 mailto 拉起用户邮件客户端发送
+    window.location.href = `mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      message.success("提交成功，我们会尽快联系您。");
-      form.resetFields();
-    } catch (error) {
-      console.error(error);
-      message.error("提交失败，请稍后再试。");
-    } finally {
-      setLoading(false);
-  }
+    message.success("已为您打开邮件客户端，请在邮件中确认发送。");
+    form.resetFields();
   };
 
   return (
@@ -71,11 +63,10 @@ export function ContactForm() {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit" loading={loading} style={{ width: "100%" }}>
-        提交
-      </Button>
+        <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
+          提交
+        </Button>
       </Form.Item>
     </Form>
   );
 }
-

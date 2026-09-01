@@ -21,26 +21,26 @@ pnpm dev       # http://localhost:3000
 - `pnpm lint`：运行 ESLint
 
 ## 结构概览
-- `app/`：使用 App Router 的页面、布局、API
+- `app/`：使用 App Router 的页面、布局
 - `components/`：复用组件（Navbar、Footer、Card、ContactForm 等）
 - `styles/`：全局样式、Tailwind 基础
 - `public/`：静态资源、logo/地图/og 占位
-- `data/contacts.json`：Contact API 追加写入的开发数据
-- `lib/`：工具方法（输入清洗、格式化）
+- `content/news`、`content/cases`：Markdown 内容（公司动态、客户案例）
+- `lib/`：工具方法（站点配置、SEO、内容加载、格式化）
 
 ## 环境变量
 当前示例未启用外部服务，如需接入第三方 API，请在 `.env.local` 中配置并在代码中引用 `process.env`。
 
-## Contact API
-- 路径：`POST /api/contact`
-- 请求体：`{ name, company, email, phone, message }`
-- 逻辑：基础清洗与校验 → 追加写入 `data/contacts.json` → 返回 `{ ok: true }`
-- 可根据实际需求替换为外部邮件/工单服务，只需在 `app/api/contact/route.ts` 中更新处理逻辑。
+## Contact 表单
+- 本站为纯静态导出（`output: "export"`），不支持 API 路由
+- 路径：联系页表单（`components/ContactForm.tsx`）
+- 逻辑：填写姓名/公司/邮箱/电话/需求描述 → 提交时通过 `mailto:` 拉起用户邮件客户端，收件人为 `support@xiaoshiai.cn`，内容自动拼接到邮件正文
+- 如需接入外部邮件/工单服务，只需在 `components/ContactForm.tsx` 中替换 `handleSubmit` 的实现
 
 ## 自定义与品牌替换
 - 文案：在 `app/` 页面或 `components/` 文案变量中直接修改
 - Logo/图片：替换 `public/images` 下占位图；Hero 背景可在 `styles/globals.css` 中调整渐变
-- SEO：在 `components/SeoHead.tsx` 与各页面 `metadata` 字段更新 title/description/og 信息
+- SEO：在 `lib/site.ts`（站点级配置）与各页面 `metadata` 字段更新 title/description/og 信息
 
 ## Lighthouse & 性能
 代码内包含基础动画与懒加载优化建议，若需进一步优化，可：
@@ -65,7 +65,7 @@ pnpm dev       # http://localhost:3000
 3. 网站将通过 `http://localhost:3000` 访问（容器内由 Nginx 提供静态文件）
 
 ## 地图与图像占位
-- `public/images/map-placeholder.png` 用于联系页地图
+- `public/images/map-placeholder.webp` 用于联系页地图
 - `public/images/partner/*.svg` 用于合作伙伴 Logo
 - `public/og.png` 作为默认分享图，可在设计完成后替换
 
