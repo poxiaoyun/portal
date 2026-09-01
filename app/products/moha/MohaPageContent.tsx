@@ -27,7 +27,7 @@ export function MohaPageContent() {
     {
       title: "私有化存储",
       description: "支持数据加密，帮助企业实现模型、数据集的私有化管理与安全存储。提供完整的存储生命周期管理，支持多种存储后端，确保数据安全可靠。",
-      images: "/images/products/moha/private.png",
+      images: "/images/products/moha/private.webp",
       icon: Lock,
       iconColor: "#0a7cff",
       iconBg: "rgba(10, 124, 255, 0.1)",
@@ -36,7 +36,7 @@ export function MohaPageContent() {
     {
       title: "模型与数据集管理",
       description: "兼容 Transformer 生态，统一的模型版本、元数据管理，结合数据集的版本控制，实现模型与数据集的一体化仓库管理。支持全生命周期追踪、搜索分类、标签治理与协同发布，确保资产一致可控。",
-      images: ["/images/products/moha/models.png", "/images/products/moha/models2.png"],
+      images: ["/images/products/moha/models.webp", "/images/products/moha/models2.webp"],
       icon: Database,
       iconColor: "#06b6d4",
       iconBg: "rgba(6, 182, 212, 0.1)",
@@ -45,7 +45,7 @@ export function MohaPageContent() {
     {
       title: "安全加密",
       description: "企业级安全加密能力，支持数据加密存储、传输加密、访问控制等多层安全防护。确保AI资产的安全性和合规性。",
-      images: "/images/products/moha/security.jpg",
+      images: "/images/products/moha/security.webp",
       icon: Shield,
       iconColor: "#10b981",
       iconBg: "rgba(16, 185, 129, 0.1)",

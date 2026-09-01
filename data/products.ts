@@ -10,7 +10,7 @@ export interface Product {
 export const products: Product[] = [
   {
     id: "xmcp",
-    logo: "/images/nav/xmcp-logo.png",
+    logo: "/images/nav/xmcp-logo.webp",
     name: "XMCP · 多云纳管",
     badge: "多云纳管",
     tagline: "基于Mesh网络的多云纳管平台",
@@ -18,7 +18,7 @@ export const products: Product[] = [
   },
   {
     id: "rune",
-    logo: "/images/nav/rune-logo.png",
+    logo: "/images/nav/rune-logo.webp",
     name: "Rune · AI智算平台",
     badge: "AI智算",
     tagline: "现代化AI训推一体平台",
@@ -34,7 +34,7 @@ export const products: Product[] = [
   },
   {
     id: "ai-router",
-    logo: "/images/nav/logo.png",
+    logo: "/images/nav/logo.webp",
     name: "MAPI · 智能 AI 网关",
     badge: "AI 网关",
     tagline: "功能强大的 AI API 网关",
@@ -42,7 +42,7 @@ export const products: Product[] = [
   },
   {
     id: "chatbox",
-    logo: "/images/nav/logo.png",
+    logo: "/images/nav/logo.webp",
     name: "ChatBox · 多模态模型体验平台",
     badge: "AI 应用",
     tagline: "功能强大的多模态模型体验平台",

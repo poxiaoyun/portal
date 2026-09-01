@@ -6,24 +6,24 @@ import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import Link from "next/link";
 import Image from "next/image";
-import { Tag, Typography, Row, Col, Space } from "antd";
+import { Typography, Row, Col, Space } from "antd";
 import { SpotlightCard } from "@lobehub/ui/awesome";
 import { products } from "@/data/products";
 import { openSourceProjects } from "@/data/openSourceProjects";
 import { withBasePath } from "@/lib/withBasePath";
 
 const partners = [
-  { name: "anton", logo: "/images/partner/anton.png" },
-  { name: "basra", logo: "/images/partner/basra-oil-company.png" },
-  { name: "中国移动", logo: "/images/partner/china-mobile.png" },
-  { name: "云控智行", logo: "/images/partner/yunkong.png" },
-  { name: "派兹", logo: "/images/partner/paizi.png" },
-  { name: "英伟达", logo: "/images/partner/nvidia.png" },
-  { name: "中国地震台网中心", logo: "/images/partner/cenc.png" },
-  { name: "西南财经大学", logo: "/images/partner/swufe.png" },
-  { name: "西南交通大学", logo: "/images/partner/swjtu.png" },
-  { name: "万物智联", logo: "/images/partner/wanwuzhilian.png" },
-  { name: "达闼机器人", logo: "/images/partner/cloudminds.png" },
+  { name: "anton", logo: "/images/partner/anton.webp" },
+  { name: "basra", logo: "/images/partner/basra-oil-company.webp" },
+  { name: "中国移动", logo: "/images/partner/china-mobile.webp" },
+  { name: "云控智行", logo: "/images/partner/yunkong.webp" },
+  { name: "派兹", logo: "/images/partner/paizi.webp" },
+  { name: "英伟达", logo: "/images/partner/nvidia.webp" },
+  { name: "中国地震台网中心", logo: "/images/partner/cenc.webp" },
+  { name: "西南财经大学", logo: "/images/partner/swufe.webp" },
+  { name: "西南交通大学", logo: "/images/partner/swjtu.webp" },
+  { name: "万物智联", logo: "/images/partner/wanwuzhilian.webp" },
+  { name: "达闼机器人", logo: "/images/partner/cloudminds.webp" },
   { name: "津安达", logo: "/images/partner/jianzanda.svg" },
   { name: "云易捷", logo: "/images/partner/yunyijie.svg" }
 ];
@@ -33,7 +33,7 @@ const scenarios = [
     id: 0,
     title: "混合云",
     description: "统一管理多云资源，实现跨云应用部署与数据同步",
-    image: "/images/scenarios/hybrid-cloud.jpg",
+    image: "/images/scenarios/hybrid-cloud.webp",
     gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
     hasButton: true
   },
@@ -41,7 +41,7 @@ const scenarios = [
     id: 1,
     title: "智算中心",
     description: "实现智算中心的高效运行，提高计算资源利用率",
-    image: "/images/scenarios/intelligent-computing.jpg",
+    image: "/images/scenarios/intelligent-computing.webp",
     gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
     hasButton: true
   },
@@ -49,7 +49,7 @@ const scenarios = [
     id: 2,
     title: "教育行业",
     description: "实现教育行业的数字化转型，提高教学效率和教学质量",
-    image: "/images/scenarios/education.jpg",
+    image: "/images/scenarios/education.webp",
     gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
     hasButton: true
   },
@@ -65,7 +65,7 @@ const scenarios = [
     id: 4,
     title: "AI 应用",
     description: "实现AI应用的快速开发与部署，提高开发效率和部署效率",
-    image: "/images/scenarios/ai-application.jpg",
+    image: "/images/scenarios/ai-application.webp",
     gradient: "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
     hasButton: true
   }
@@ -87,10 +87,9 @@ export default function HomePage() {
   return (
     <>
       <Hero
-        title="为 AI 云原生创造好内核"
+        title="智算为中心的 AI 原生云内核"
         description="专注云原生开源、混合云与 AI 智算平台，为企业提供覆盖容器云、混合云、智算云及 AI 能力的全栈解决方案。"
         ctaPrimary={{ label: "预约演示", href: "/contact" }}
-        badge={<Tag color="black">Powered by Codex</Tag>}
       />
 
       <section style={{ maxWidth: 1400, margin: "0 auto", padding: "40px 24px" }}>

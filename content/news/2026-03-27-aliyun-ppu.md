@@ -1,7 +1,7 @@
 ---
 title: "破晓石完成阿里云PPU适配"
 date: "2026-03-27"
-coverImage: "/images/news/20260327.jpg"
+coverImage: "/images/news/20260327.webp"
 excerpt: "破晓石完成阿里云 PPU 适配验证，进一步完善异构算力兼容能力，为企业在阿里云环境中部署 AI 智算与高性能推理服务提供更稳定的基础设施支撑。"
 ---
 
@@ -53,8 +53,8 @@ excerpt: "破晓石完成阿里云 PPU 适配验证，进一步完善异构算�
 
 | | | |
 | --- | --- | --- |
-| ![](/images/news/20260327-1.png)**Boss资源识别PPU设备** | ![](/images/news/20260327-2.png)**用户算力规格** | ![](/images/news/20260327-3.jpeg)**基于PPU的推理实例** |
-| ![](/images/news/20260327-4.jpeg)**推理详情** | ![](/images/news/20260327-5.jpeg)**运行终端** | ![](/images/news/20260327-6.png)**PPU大模型对话预览** 
+| ![](/images/news/20260327-1.webp)**Boss资源识别PPU设备** | ![](/images/news/20260327-2.webp)**用户算力规格** | ![](/images/news/20260327-3.webp)**基于PPU的推理实例** |
+| ![](/images/news/20260327-4.webp)**推理详情** | ![](/images/news/20260327-5.webp)**运行终端** | ![](/images/news/20260327-6.webp)**PPU大模型对话预览** |
 
 ## 面向未来的战略价值
 

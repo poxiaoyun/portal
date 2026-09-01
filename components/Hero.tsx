@@ -45,11 +45,11 @@ export function Hero({ title, subtitle, description, ctaPrimary, ctaSecondary, b
           {badge && <div className="mb-8">{badge}</div>}
           {subtitle && <p className="mb-6 text-base font-medium uppercase tracking-wider text-slate-500">{subtitle}</p>}
           <h1 className="mb-8 text-6xl font-bold tracking-tight text-slate-900 lg:text-7xl">
-            {title.includes("内核") ? (
+            {title.includes("云内核") ? (
               <>
-                {title.split("内核")[0]}
-                <span className="gradient-text">内核</span>
-                {title.split("内核")[1]}
+                {title.split("云内核")[0]}
+                <span className="gradient-text">云内核</span>
+                {title.split("云内核")[1]}
               </>
             ) : title.includes("Rune") ? (
               <>

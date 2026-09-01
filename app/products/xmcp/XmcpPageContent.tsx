@@ -18,7 +18,7 @@ export function XmcpPageContent() {
       {
         title: "多云互联",
         description: "自动识别与接入 Kubernetes、vCenter、OpenStack、华为云等多种云平台，采用零信任 Mesh 网络实现跨地域服务接入，构建安全可靠的云间基础设施互联。",
-        images: ["/images/products/xcmp/cluster1.png", "/images/products/xcmp/cluster2.png"],
+        images: ["/images/products/xcmp/cluster1.webp", "/images/products/xcmp/cluster2.webp"],
         icon: Cloud,
         iconColor: "#0a7cff",
         iconBg: "rgba(10, 124, 255, 0.1)",
@@ -27,7 +27,7 @@ export function XmcpPageContent() {
       {
         title: "应用市场",
         description: "支持应用模板的集中化管理与分发，提供应用打包、审核、发布、运维等全生命周期管理能力。提供 license 管理能力，支持商业应用管理。",
-        images: ["/images/products/xcmp/marketplace1.png", "/images/products/xcmp/marketplace2.png"],
+        images: ["/images/products/xcmp/marketplace1.webp", "/images/products/xcmp/marketplace2.webp"],
         icon: Network,
         iconColor: "#06b6d4",
         iconBg: "rgba(6, 182, 212, 0.1)",
@@ -36,7 +36,7 @@ export function XmcpPageContent() {
       {
         title: "数据服务",
         description: "提供包含 MySQL、Redis、MongoDB 和对象存储等多种数据库的SAAS服务，提供自动发现、集群管理、注册、监控、备份运维能力。",
-        images: ["/images/products/xcmp/database.png", "/images/products/xcmp/mysql-metrics.png"],
+        images: ["/images/products/xcmp/database.webp", "/images/products/xcmp/mysql-metrics.webp"],
         icon: Layers,
         iconColor: "#f59e0b",
         iconBg: "rgba(245, 158, 11, 0.1)",
@@ -45,7 +45,7 @@ export function XmcpPageContent() {
       {
         title: "计量计费",
         description: "多维度的资源使用统计和成本分析，支持按资源类型、租户、项目等维度进行计费。提供详细的账单和成本优化建议。",
-        images: ["/images/products/xcmp/metrics.png","/images/products/xcmp/bill.png"],
+        images: ["/images/products/xcmp/metrics.webp","/images/products/xcmp/bill.webp"],
         icon: BarChart,
         iconColor: "#10b981",
         iconBg: "rgba(16, 185, 129, 0.1)",

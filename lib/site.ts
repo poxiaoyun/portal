@@ -29,7 +29,7 @@ export const siteConfig = {
   region: "CN-SC",
   city: "Chengdu",
   address: {
-    streetAddress: "四川省成都市高新区长虹科技大厦A座1403",
+    streetAddress: "四川省成都市高新区银泰悦坊17号楼9层",
     addressLocality: "成都市",
     addressRegion: "四川省",
     postalCode: "610000",

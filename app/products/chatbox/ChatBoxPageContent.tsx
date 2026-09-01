@@ -16,7 +16,7 @@ export function ChatBoxPageContent() {
     {
       title: "多模态体验",
       description: "功能强大的多模态模型体验平台，支持文本、图像、语音、视频等多种模态交互。提供丰富的交互方式，满足不同场景下的模型体验需求。",
-      image: "/images/products/rune/model-engineering.jpg",
+      image: "/images/products/rune/model-engineering.webp",
       icon: MessageSquare,
       iconColor: "#0a7cff",
       iconBg: "rgba(10, 124, 255, 0.1)",
@@ -34,7 +34,7 @@ export function ChatBoxPageContent() {
     {
       title: "对话管理",
       description: "完善的对话管理功能，支持对话历史、对话导出、对话分享等。提供对话模板、快捷指令等提升使用效率的功能。",
-      image: "/images/products/rune/model-inference.jpg",
+      image: "/images/products/rune/model-inference.webp",
       icon: MessageSquare,
       iconColor: "#f59e0b",
       iconBg: "rgba(245, 158, 11, 0.1)",
@@ -43,7 +43,7 @@ export function ChatBoxPageContent() {
     {
       title: "企业级能力",
       description: "提供企业级权限治理、限流、审计与可观测能力。支持多租户管理、角色权限控制、使用统计等功能。",
-      image: "/images/products/rune/multi-tenant.jpg",
+      image: "/images/products/rune/multi-tenant.webp",
       icon: Shield,
       iconColor: "#10b981",
       iconBg: "rgba(16, 185, 129, 0.1)",

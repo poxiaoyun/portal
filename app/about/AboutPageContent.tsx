@@ -19,12 +19,6 @@ const team = [
     role: "联合创始人 · KubeGems 架构师",
     bio: "主攻云基础设施方向，取得多项专利，擅长云原生架构与 AI 基础平台设计与落地。",
     avatar: "/images/team/zhanglikun.svg"
-  },
-  {
-    name: "邓宇",
-    role: "AI 架构师",
-    bio: "丰富的大模型训练、推理工程化经验，负责 AI 应用产品与生态建设。",
-    avatar: "/images/team/dengyu.svg"
   }
 ];
 
@@ -70,22 +64,22 @@ const honors = [
 const showHonorHighlights = false;
 
 const certificateGallery = [
-  { title: "晓石 AI 平台", issuer: "中华人民共和国国家版权局", year: "2024", image: "/images/honors/gallery/cert-01.png" },
-  { title: "晓石容器云平台", issuer: "中华人民共和国国家版权局", year: "2024", image: "/images/honors/gallery/cert-02.png" },
-  { title: "魔哈 AI 仓库平台", issuer: "中华人民共和国国家版权局", year: "2024", image: "/images/honors/gallery/cert-03.png" },
-  { title: "晓石云模型服务平台", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-04.png" },
-  { title: "晓石混合云管理平台", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-05.png" },
-  { title: "晓石应用管理平台", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-06.png" },
-  { title: "晓石云平台网关中间件", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-07.png" },
-  { title: "晓石云应用实时监控插件", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-08.png" },
-  { title: "晓石应用商店平台", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-09.png" },
-  { title: "晓石数据库管理平台", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-10.png" },
-  { title: "晓石多云运营管理平台", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-11.png" },
-  { title: "晓石多租户应用运维平台", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-12.png" },
-  { title: "晓石 XMOP 安卓版APP", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-13.png" },
-  { title: "晓石 MPOP 安卓版APP", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-14.png" },
-  { title: "晓石 XMOP 苹果版APP", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-15.png" },
-  { title: "晓石 MPOP 苹果版APP", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-16.png" }
+  { title: "晓石 AI 平台", issuer: "中华人民共和国国家版权局", year: "2024", image: "/images/honors/gallery/cert-01.webp" },
+  { title: "晓石容器云平台", issuer: "中华人民共和国国家版权局", year: "2024", image: "/images/honors/gallery/cert-02.webp" },
+  { title: "魔哈 AI 仓库平台", issuer: "中华人民共和国国家版权局", year: "2024", image: "/images/honors/gallery/cert-03.webp" },
+  { title: "晓石云模型服务平台", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-04.webp" },
+  { title: "晓石混合云管理平台", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-05.webp" },
+  { title: "晓石应用管理平台", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-06.webp" },
+  { title: "晓石云平台网关中间件", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-07.webp" },
+  { title: "晓石云应用实时监控插件", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-08.webp" },
+  { title: "晓石应用商店平台", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-09.webp" },
+  { title: "晓石数据库管理平台", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-10.webp" },
+  { title: "晓石多云运营管理平台", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-11.webp" },
+  { title: "晓石多租户应用运维平台", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-12.webp" },
+  { title: "晓石 XMOP 安卓版APP", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-13.webp" },
+  { title: "晓石 MPOP 安卓版APP", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-14.webp" },
+  { title: "晓石 XMOP 苹果版APP", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-15.webp" },
+  { title: "晓石 MPOP 苹果版APP", issuer: "中华人民共和国国家版权局", year: "2025", image: "/images/honors/gallery/cert-16.webp" }
 ];
 
 export function AboutPageContent() {

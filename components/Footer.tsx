@@ -43,7 +43,7 @@ export function Footer() {
               <Space>
                 <EnvironmentOutlined style={{ color: subtleColor }} />
                 <Typography.Paragraph type="secondary" style={{ marginBottom: 0 }}>
-              地址  四川省成都市高新区长虹科技大厦A座1403
+              地址  四川省成都市高新区银泰悦坊17号楼9层
             </Typography.Paragraph>
               </Space>
             </Space>

@@ -16,7 +16,7 @@ export function MapiPageContent() {
     {
       title: "API 网关",
       description: "高性能的 AI API 访问控制网关，提供统一的 API 入口和管理能力。支持多种 AI 服务的接入和管理，实现统一的 API 访问控制。",
-      image: "/images/products/rune/model-engineering.jpg",
+      image: "/images/products/rune/model-engineering.webp",
       icon: Network,
       iconColor: "#0a7cff",
       iconBg: "rgba(10, 124, 255, 0.1)",
@@ -34,7 +34,7 @@ export function MapiPageContent() {
     {
       title: "限流与熔断",
       description: "强大的限流和熔断能力，支持多种限流策略和熔断机制。提供灵活的限流配置，保护后端服务免受高并发冲击。",
-      image: "/images/products/rune/model-inference.jpg",
+      image: "/images/products/rune/model-inference.webp",
       icon: Zap,
       iconColor: "#f59e0b",
       iconBg: "rgba(245, 158, 11, 0.1)",
@@ -43,7 +43,7 @@ export function MapiPageContent() {
     {
       title: "审计与可观测",
       description: "完善的审计和可观测能力，提供详细的访问日志、性能监控、告警通知等。支持多维度数据分析和报表生成。",
-      image: "/images/products/rune/multi-tenant.jpg",
+      image: "/images/products/rune/multi-tenant.webp",
       icon: Eye,
       iconColor: "#10b981",
       iconBg: "rgba(16, 185, 129, 0.1)",

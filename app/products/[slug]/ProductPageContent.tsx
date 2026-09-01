@@ -19,12 +19,12 @@ interface ProductFeature {
 // 获取产品图片路径
 function getProductImage(productId: string): string | null {
   const imageMap: Record<string, string> = {
-    rune: "/images/products/rune/model-engineering.jpg",
-    xmcp: "/images/products/rune/model-engineering.jpg", // 占位，后续可替换
-    moha: "/images/products/rune/model-engineering.jpg", // 占位，后续可替换
-    kubegems: "/images/products/rune/model-engineering.jpg", // 占位，后续可替换
-    "ai-router": "/images/products/rune/model-engineering.jpg", // 占位，后续可替换
-    chatbox: "/images/products/rune/model-engineering.jpg", // 占位，后续可替换
+    rune: "/images/products/rune/model-engineering.webp",
+    xmcp: "/images/products/rune/model-engineering.webp", // 占位，后续可替换
+    moha: "/images/products/rune/model-engineering.webp", // 占位，后续可替换
+    kubegems: "/images/products/rune/model-engineering.webp", // 占位，后续可替换
+    "ai-router": "/images/products/rune/model-engineering.webp", // 占位，后续可替换
+    chatbox: "/images/products/rune/model-engineering.webp", // 占位，后续可替换
   };
   return imageMap[productId] || null;
 }
@@ -36,7 +36,7 @@ function getProductFeatures(productId: string): ProductFeature[] {
       {
         title: "模型工程",
         description: "提供完整的模型开发、训练、调优工具链，支持多种深度学习框架，实现从数据到模型的端到端工程化。",
-        image: "/images/products/rune/model-engineering.jpg",
+        image: "/images/products/rune/model-engineering.webp",
       },
       {
         title: "模型管理",
@@ -46,17 +46,17 @@ function getProductFeatures(productId: string): ProductFeature[] {
       {
         title: "模型推理",
         description: "高性能推理服务，支持批量推理、在线推理、边缘推理等多种场景，提供弹性扩缩容能力。",
-        image: "/images/products/rune/model-inference.jpg",
+        image: "/images/products/rune/model-inference.webp",
       },
       {
         title: "异构计算",
         description: "支持 GPU、NPU、TPU 等多种计算资源，实现算力资源的统一调度和优化利用。",
-        image: "/images/products/rune/heterogeneous-computing.jpg",
+        image: "/images/products/rune/heterogeneous-computing.webp",
       },
       {
         title: "多租户管理",
         description: "完善的多租户隔离机制，支持资源配额、权限控制、成本分摊等企业级能力。",
-        image: "/images/products/rune/multi-tenant.jpg",
+        image: "/images/products/rune/multi-tenant.webp",
       },
       {
         title: "多应用管理",
@@ -68,7 +68,7 @@ function getProductFeatures(productId: string): ProductFeature[] {
       {
         title: "多云互联",
         description: "自动识别与接入 Kubernetes、vCenter、OpenStack、华为云等多种云平台，实现统一纳管。",
-        image: "/images/products/rune/model-engineering.jpg", // 占位
+        image: "/images/products/rune/model-engineering.webp", // 占位
       },
       {
         title: "网络编排",
@@ -80,28 +80,28 @@ function getProductFeatures(productId: string): ProductFeature[] {
       {
         title: "私有化存储",
         description: "支持数据加密，帮助企业实现模型、数据集的私有化管理与安全存储。",
-        image: "/images/products/rune/model-engineering.jpg", // 占位
+        image: "/images/products/rune/model-engineering.webp", // 占位
       },
     ],
     kubegems: [
       {
         title: "多集群管理",
         description: "跨地域集群统一纳管与巡检，提供统一的集群视图和管理能力。",
-        image: "/images/products/rune/model-engineering.jpg", // 占位
+        image: "/images/products/rune/model-engineering.webp", // 占位
       },
     ],
     "ai-router": [
       {
         title: "API 网关",
         description: "高性能的 AI API 访问控制网关，提供企业级权限治理、限流、审计与可观测能力。",
-        image: "/images/products/rune/model-engineering.jpg", // 占位
+        image: "/images/products/rune/model-engineering.webp", // 占位
       },
     ],
     chatbox: [
       {
         title: "多模态体验",
         description: "功能强大的多模态模型体验平台，支持文本、图像、语音等多种模态交互。",
-        image: "/images/products/rune/model-engineering.jpg", // 占位
+        image: "/images/products/rune/model-engineering.webp", // 占位
       },
     ],
   };

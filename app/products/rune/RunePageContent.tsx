@@ -16,7 +16,7 @@ export function RunePageContent() {
     {
       title: "AI 云原生架构",
       description: "云原生架构，支持英伟达、华为等国产GPU，兼容异构GPU资源池管理，多维度调度，满足多云算力中心集中接入和治理。支持虚拟化能力，灵活匹配不同任务的差异化需求。",
-      image: "/images/products/rune/heterogeneous-computing.png",
+      image: "/images/products/rune/heterogeneous-computing.webp",
       icon: Cpu,
       iconColor: "#0a7cff",
       iconBg: "rgba(10, 124, 255, 0.1)",
@@ -25,7 +25,7 @@ export function RunePageContent() {
     {
       title: "模型工程管理",
       description: "内置丰富AI开发，调优和数据管理工具，提供集成IDE和桌面仿真环境。满足用户一键开发、训练、调优、推理、部署全流程需求",
-      image: "/images/products/rune/model-engineering.png",
+      image: "/images/products/rune/model-engineering.webp",
       icon: Code,
       iconColor: "#06b6d4",
       iconBg: "rgba(6, 182, 212, 0.1)",
@@ -34,7 +34,7 @@ export function RunePageContent() {
     {
       title: "高性能模型推理",
       description: "基于分布式并行推理，计算与存储分离、PD分离实现请求的智能调度与算力动态扩容，确保高并发下仍能提供低延迟服务，保障用户体验与业务连续性。推理实例实施监控，异常告警。",
-      image: "/images/products/rune/model-inference.png",
+      image: "/images/products/rune/model-inference.webp",
       icon: Zap,
       iconColor: "#f59e0b",
       iconBg: "rgba(245, 158, 11, 0.1)",
@@ -43,7 +43,7 @@ export function RunePageContent() {
     {
       title: "多租户运营",
       description: "租户资源隔离，支持算力、模型、存储的多维配额定制，可为租户设定独立的资源、规格配额，并提供按资源与时长等灵活计费模式，实现精细化运营。",
-      image: "/images/products/rune/multi-tenant.png",
+      image: "/images/products/rune/multi-tenant.webp",
       icon: Users,
       iconColor: "#10b981",
       iconBg: "rgba(16, 185, 129, 0.1)",

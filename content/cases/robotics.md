@@ -1,7 +1,7 @@
 ---
 title: "具身智能"
 date: "2025-11-08"
-coverImage: "/images/cases/robotics.png"
+coverImage: "/images/cases/robotics.webp"
 excerpt: "围绕机器人的开发生态，为具身智能提供数字孪生仿真训练、多模态交互编排、AI 应用开发与算法扩展，并以云与算力资源智能调度、自动化运维支撑规模化落地。"
 industry: "manufacturing"
 industryLabel: "制造"

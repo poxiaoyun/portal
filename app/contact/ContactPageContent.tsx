@@ -22,10 +22,10 @@ export function ContactPageContent() {
           <Card bordered={false} style={{ borderRadius: 16, boxShadow: "0 12px 24px rgba(15,23,42,0.08)" }}>
             <Typography.Title level={4}>联系方式</Typography.Title>
             <Typography.Paragraph type="secondary">邮箱：support@xiaoshiai.cn</Typography.Paragraph>
-            <Typography.Paragraph type="secondary">地址：四川省成都市高新区长虹科技大厦A座1403</Typography.Paragraph>
+            <Typography.Paragraph type="secondary">地址：四川省成都市高新区银泰悦坊17号楼9层</Typography.Paragraph>
             <Typography.Paragraph type="secondary">GitHub：github.com/poxiaoyun</Typography.Paragraph>
             <div style={{ marginTop: 24 }}>
-              <Image src={withBasePath("/images/map-placeholder.png")} alt="Map placeholder" width={600} height={360} style={{ borderRadius: 12 }} unoptimized />
+              <Image src={withBasePath("/images/map-placeholder.webp")} alt="Map placeholder" width={600} height={360} style={{ borderRadius: 12 }} unoptimized />
             </div>
           </Card>
         </Col>

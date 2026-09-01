@@ -1,7 +1,7 @@
 ---
 title: "智能驾驶"
 date: "2025-09-15"
-coverImage: "/images/cases/autodrive.jpg"
+coverImage: "/images/cases/autodrive.webp"
 excerpt: "以全域精细交通感知、车路协同决策与动态交通优化为核心，构建可运营的智慧交通与智能驾驶能力底座。"
 industry: "transportation"
 industryLabel: "智能驾驶"

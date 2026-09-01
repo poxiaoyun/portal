@@ -7,7 +7,7 @@ import { useEffect, useState, useRef } from "react";
 import type { RefObject } from "react";
 import { Button } from "@/components/Button";
 import { cn } from "@/lib/utils";
-import Logo from "@/public/images/nav/logo.png";
+import Logo from "@/public/images/nav/logo.webp";
 import type { Product } from "@/data/products";
 import { products } from "@/data/products";
 import type { OpenSourceProject } from "@/data/openSourceProjects";
@@ -260,37 +260,25 @@ export function Navbar() {
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
-              width: 40,
-              height: 40,
+              gap: 8,
+              padding: "8px 16px",
               borderRadius: "8px",
-              background: "transparent",
-              color: "var(--text-primary)",
+              background: "#0f172a",
+              color: "#ffffff",
               textDecoration: "none",
+              fontWeight: 500,
               transition: "background-color 0.3s ease"
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(15,23,42,0.08)";
+              e.currentTarget.style.backgroundColor = "#1e293b";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "transparent";
+              e.currentTarget.style.backgroundColor = "#0f172a";
             }}
           >
-            <Phone size={20} />
+            <Phone size={18} />
+            <span>联系我们</span>
           </Link>
-          <Button
-            className="navbar__desktopCta"
-            type="default"
-            href="https://github.com/poxiaoyun"
-            target="_blank"
-            rel="noreferrer"
-            style={{
-              background: "rgba(15,23,42,0.06)",
-              borderColor: "transparent",
-              color: "var(--text-primary)"
-            }}
-          >
-            GitHub
-          </Button>
           <Button className="navbar__mobileTrigger" type="text" onClick={() => setOpen(true)}>
             菜单
           </Button>
@@ -405,28 +393,14 @@ export function Navbar() {
               marginBottom: 12,
               padding: "8px 16px",
               borderRadius: "8px",
-              background: "rgba(15,23,42,0.06)",
-              color: "var(--text-primary)",
+              background: "#0f172a",
+              color: "#ffffff",
               textDecoration: "none"
             }}
           >
             <Phone size={18} />
             <span>联系我们</span>
           </Link>
-          <Button
-            type="default"
-            href="https://github.com/poxiaoyun"
-            target="_blank"
-            rel="noreferrer"
-            style={{
-              width: "100%",
-              background: "rgba(15,23,42,0.06)",
-              borderColor: "transparent",
-              color: "var(--text-primary)"
-            }}
-          >
-              GitHub
-          </Button>
         </div>
       )}
     </header>

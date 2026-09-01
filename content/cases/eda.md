@@ -1,7 +1,7 @@
 ---
 title: "电路设计"
 date: "2025-09-15"
-coverImage: "/images/cases/eda.jpg"
+coverImage: "/images/cases/eda.webp"
 excerpt: "赋能 PCB 电路板设计流程，通过 AI 辅助设计大幅提升研发效率。"
 industry: "manufacturing"
 industryLabel: "制造"
