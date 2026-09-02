@@ -65,7 +65,7 @@ pnpm dev       # http://localhost:3000
 3. 网站将通过 `http://localhost:3000` 访问（容器内由 Nginx 提供静态文件）
 
 ## 地图与图像占位
-- `public/images/map-placeholder.webp` 用于联系页地图
+- 联系页地图使用腾讯地图 GL JS（`components/OfficeMap.tsx`），key 通过环境变量 `NEXT_PUBLIC_TENCENT_MAP_KEY` 注入（免费申请：https://lbs.qq.com/，需配置域名白名单）；未配置时降级显示地址卡片。参见 `.env.example`
 - `public/images/partner/*.svg` 用于合作伙伴 Logo
 - `public/og.png` 作为默认分享图，可在设计完成后替换
 
