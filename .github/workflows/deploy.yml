@@ -36,6 +36,8 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build project
+        env:
+          NEXT_PUBLIC_TENCENT_MAP_KEY: ${{ secrets.NEXT_PUBLIC_TENCENT_MAP_KEY }}
         run: |
           export GITHUB_PAGES=true
           pnpm run build
