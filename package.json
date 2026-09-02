@@ -12,10 +12,8 @@
   "dependencies": {
     "@ant-design/icons": "^5.5.2",
     "@lobehub/ui": "^1.171.0",
-    "@radix-ui/react-slot": "^1.0.2",
     "antd": "^5.20.2",
     "antd-style": "^3.6.1",
-    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.451.0",
@@ -25,8 +23,7 @@
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
     "tailwind-merge": "^2.5.2",
-    "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.23.8"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
