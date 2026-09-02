@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
+import { OfficeMap } from "@/components/OfficeMap";
 import { Typography, Row, Col, Card } from "antd";
-import { withBasePath } from "@/lib/withBasePath";
 
 export function ContactPageContent() {
   return (
@@ -25,7 +24,7 @@ export function ContactPageContent() {
             <Typography.Paragraph type="secondary">地址：四川省成都市高新区银泰悦坊17号楼9层</Typography.Paragraph>
             <Typography.Paragraph type="secondary">GitHub：github.com/poxiaoyun</Typography.Paragraph>
             <div style={{ marginTop: 24 }}>
-              <Image src={withBasePath("/images/map-placeholder.webp")} alt="Map placeholder" width={600} height={360} style={{ borderRadius: 12 }} unoptimized />
+              <OfficeMap />
             </div>
           </Card>
         </Col>

@@ -36,8 +36,9 @@ export const siteConfig = {
     addressCountry: "CN"
   },
   coordinates: {
-    latitude: "30.5728",
-    longitude: "104.0668"
+    // 成都银泰城悦坊（益州大道中段1999号），GCJ-02 坐标
+    latitude: "30.540905",
+    longitude: "104.05972"
   },
   contact: {
     email: "support@xiaoshiai.cn"
