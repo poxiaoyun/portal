@@ -34,7 +34,7 @@ pnpm dev       # http://localhost:3000
 ## Contact 表单
 - 本站为纯静态导出（`output: "export"`），不支持 API 路由
 - 路径：联系页表单（`components/ContactForm.tsx`）
-- 逻辑：填写姓名/公司/邮箱/电话/需求描述 → 提交时通过 `mailto:` 拉起用户邮件客户端，收件人为 `support@xiaoshiai.cn`，内容自动拼接到邮件正文
+- 逻辑：填写姓名/公司/邮箱/电话/需求描述 → 配置了 `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` 时经 Web3Forms API 提交直达 `support@xiaoshiai.cn`；未配置时降级为 `mailto:` 拉起邮件客户端
 - 如需接入外部邮件/工单服务，只需在 `components/ContactForm.tsx` 中替换 `handleSubmit` 的实现
 
 ## 自定义与品牌替换

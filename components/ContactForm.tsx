@@ -1,31 +1,74 @@
 "use client";
 
+import { useState } from "react";
 import { Form, Input, message, Row, Col } from "antd";
 import { Button } from "@/components/Button";
 import { siteConfig } from "@/lib/site";
 
+/**
+ * 联系表单提交（静态导出站，无后端）：
+ * - 配置了 NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY 时，通过 Web3Forms API 提交（免费，直达 siteConfig.contact.email）
+ * - 未配置时降级为 mailto，拉起用户邮件客户端
+ */
+
+const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim() ?? "";
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+
 export function ContactForm() {
   const [form] = Form.useForm();
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (values: Record<string, string>) => {
+  const handleSubmit = async (values: Record<string, string>) => {
     const subject = `官网合作咨询 - ${values.company} ${values.name}`;
-    const body = [
-      `姓名：${values.name}`,
-      `公司：${values.company}`,
-      `邮箱：${values.email}`,
-      `电话：${values.phone}`,
-      "",
-      "需求描述：",
-      values.message
-    ].join("\n");
 
-    // 静态导出站点不支持 API 路由，通过 mailto 拉起用户邮件客户端发送
-    window.location.href = `mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
+    // 静态导出站点不支持 API 路由；未配置 Web3Forms 时降级为 mailto
+    if (!ACCESS_KEY) {
+      const body = [
+        `姓名：${values.name}`,
+        `公司：${values.company}`,
+        `邮箱：${values.email}`,
+        `电话：${values.phone}`,
+        "",
+        "需求描述：",
+        values.message
+      ].join("\n");
 
-    message.success("已为您打开邮件客户端，请在邮件中确认发送。");
-    form.resetFields();
+      window.location.href = `mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+
+      message.success("已为您打开邮件客户端，请在邮件中确认发送。");
+      form.resetFields();
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: ACCESS_KEY,
+          subject,
+          from_name: "破晓石科技官网联系表单",
+          name: values.name,
+          company: values.company,
+          email: values.email,
+          phone: values.phone,
+          message: values.message
+        })
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message || "提交失败");
+      message.success("提交成功，我们将在 1 个工作日内与您联系。");
+      form.resetFields();
+    } catch {
+      message.error(
+        `提交失败，请稍后重试，或直接发送邮件至 ${siteConfig.contact.email}`
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -37,6 +80,9 @@ export function ContactForm() {
       style={{ padding: 32 }}
       size="large"
     >
+      {/* Web3Forms 蜜罐字段，用于拦截机器人提交 */}
+      <input type="checkbox" name="botcheck" style={{ display: "none" }} />
+
       <Form.Item name="name" label="姓名" rules={[{ required: true, message: "请输入姓名" }]}>
         <Input placeholder="如：李雷" />
       </Form.Item>
@@ -63,7 +109,7 @@ export function ContactForm() {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
+        <Button type="primary" htmlType="submit" loading={submitting} style={{ width: "100%" }}>
           提交
         </Button>
       </Form.Item>

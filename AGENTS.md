@@ -49,7 +49,7 @@ app/
     productPageFactory.tsx    # makeProductPage/buildProductMetadata 工厂
     [slug]/                   # 通用产品详情兜底页
     xmcp| rune | moha | ai-router | chatbox /   # 各产品独立页 + 独立 PageContent
-components/                   # Navbar/Footer/Hero/Button/Card/ContactForm(mailto 提交)/TeamMemberCard/AntdProvider/InitialRenderStyles
+components/                   # Navbar/Footer/Hero/Button/Card/OfficeMap(腾讯地图)/ContactForm(Web3Forms 提交，未配置 key 时降级 mailto)/TeamMemberCard/AntdProvider/InitialRenderStyles
 content/news/*.md             # 动态文章（front matter: title/date/coverImage/excerpt）
 content/cases/*.md            # 案例（front matter: title/date/industry/customer/goal/tags/challenges/solutions/results/advantages）
 data/products.ts              # 5 个产品卡片元数据（导航与产品页的数据源）
@@ -92,7 +92,7 @@ docker/nginx.conf             # 容器 Nginx 配置
 仍遗留：
 
 1. 本仓不在 Rune 工作区 `repositories.json` / PROJECT_MEMORY.md 的 15 仓索引内（独立远端 poxiaoyun/portal），工作区治理文件未覆盖。
-2. mailto 方案依赖用户本地邮件客户端；若后续需要服务端收集，需接入外部表单服务或改为动态部署。
+2. 表单收集已改用 Web3Forms（key 走 Secret `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`，见 .env.example）；key 未配置或服务不可用时降级为 mailto。2026-09-02 更新。
 
 ## 8. 验证要求（改动后的最低门禁）
 

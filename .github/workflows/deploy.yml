@@ -38,6 +38,7 @@ jobs:
       - name: Build project
         env:
           NEXT_PUBLIC_TENCENT_MAP_KEY: ${{ secrets.NEXT_PUBLIC_TENCENT_MAP_KEY }}
+          NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY }}
         run: |
           export GITHUB_PAGES=true
           pnpm run build
