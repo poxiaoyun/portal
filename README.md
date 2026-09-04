@@ -35,7 +35,6 @@ pnpm dev       # http://localhost:3000
 - 本站为纯静态导出（`output: "export"`），不支持 API 路由
 - 路径：联系页表单（`components/ContactForm.tsx`）
 - 逻辑：填写姓名/公司/邮箱/电话/需求描述 → 配置了 `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` 时经 Web3Forms API 提交直达 `support@xiaoshiai.cn`；未配置时降级为 `mailto:` 拉起邮件客户端
-- 推荐接入：配置 `NEXT_PUBLIC_TXC_PRODUCT_ID`（腾讯兔小巢）后表单区替换为反馈入口卡片，国内访客直连可用；Web3Forms 为境外服务，国内网络不可达，仅作未配置兔小巢时的兼容路径
 - 如需接入外部邮件/工单服务，只需在 `components/ContactForm.tsx` 中替换 `handleSubmit` 的实现
 
 ## 自定义与品牌替换

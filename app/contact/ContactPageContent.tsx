@@ -1,6 +1,6 @@
 "use client";
 
-import { FeedbackEntry } from "@/components/FeedbackEntry";
+import { ContactForm } from "@/components/ContactForm";
 import { OfficeMap } from "@/components/OfficeMap";
 import { Typography, Row, Col, Card } from "antd";
 
@@ -15,7 +15,7 @@ export function ContactPageContent() {
       </header>
       <Row gutter={32}>
         <Col xs={24} md={14}>
-          <FeedbackEntry />
+          <ContactForm />
         </Col>
         <Col xs={24} md={10}>
           <Card bordered={false} style={{ borderRadius: 16, boxShadow: "0 12px 24px rgba(15,23,42,0.08)" }}>
