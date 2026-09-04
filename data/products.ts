@@ -34,7 +34,7 @@ export const products: Product[] = [
   },
   {
     id: "ai-router",
-    logo: "/images/nav/logo.webp",
+    logo: "/images/nav/ai-router-logo.webp",
     name: "MAPI · 智能 AI 网关",
     badge: "AI 网关",
     tagline: "功能强大的 AI API 网关",
